@@ -1,6 +1,4 @@
-// ignore_for_file: prefer_const_constructors
-
-import 'package:capstone/common/styles.dart';
+import 'package:dicoding_capstone_pos/common/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -33,7 +31,7 @@ class GridViewFood extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      image: DecorationImage(
+                      image: const DecorationImage(
                           image: AssetImage('assets/images/food.jpg'),
                           fit: BoxFit.cover),
                     ),
@@ -46,15 +44,15 @@ class GridViewFood extends StatelessWidget {
                     children: [
                       Text(
                         foodName,
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      SizedBox(height: 3.0),
-                      Text(
+                      const SizedBox(height: 3.0),
+                      const Text(
                         '(must choose level)',
                         style: TextStyle(
                             fontSize: 12, color: CupertinoColors.inactiveGray),
                       ),
-                      SizedBox(height: 10.0),
+                      const SizedBox(height: 10.0),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -62,7 +60,7 @@ class GridViewFood extends StatelessWidget {
                             '\$' + price.toString(),
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: onPrimary,
+                                color: primaryColor,
                                 fontSize: 16),
                           ),
                           Container(
@@ -70,14 +68,14 @@ class GridViewFood extends StatelessWidget {
                             height: 29.0,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                color: onPrimary),
+                                color: primaryColor),
                             child: IconButton(
                               splashColor: Colors.transparent,
                               iconSize: 20,
                               padding: const EdgeInsets.all(0),
                               color: Colors.white,
                               onPressed: () {},
-                              icon: Icon(CupertinoIcons.add),
+                              icon: const Icon(CupertinoIcons.add),
                             ),
                           )
                         ],

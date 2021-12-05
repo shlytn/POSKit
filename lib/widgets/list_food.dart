@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
-import 'package:capstone/common/styles.dart';
+import 'package:dicoding_capstone_pos/common/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -60,7 +60,7 @@ class ListViewFood extends StatelessWidget {
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16,
-                              color: onPrimary),
+                              color: primaryColor),
                         )
                       ],
                     ),
@@ -73,7 +73,7 @@ class ListViewFood extends StatelessWidget {
                     height: 39.0,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color: onPrimary),
+                        color: primaryColor),
                     child: IconButton(
                         splashColor: Colors.transparent,
                         iconSize: 24,
