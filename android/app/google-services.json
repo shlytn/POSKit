@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "499034223333",
+    "project_id": "dicoding-capstone-pos",
+    "storage_bucket": "dicoding-capstone-pos.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:499034223333:android:a2d99b26e5f67641575a0c",
+        "android_client_info": {
+          "package_name": "com.dicoding.dicoding_capstone_pos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "499034223333-9tkffandjtpak0d198ssi4kkl048ut3i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_TmmstC5TcAS5JnBMYi5rXqd699H31c0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "499034223333-9tkffandjtpak0d198ssi4kkl048ut3i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

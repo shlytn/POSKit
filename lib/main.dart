@@ -1,11 +1,14 @@
 import 'package:dicoding_capstone_pos/ui/signup_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 import 'ui/login_page.dart';
 import 'ui/onboarding_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
