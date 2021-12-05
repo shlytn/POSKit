@@ -11,7 +11,7 @@ class RoundedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () => onClick,
+      onPressed: () => onClick(),
       child: Text(text),
       style: ElevatedButton.styleFrom(
         minimumSize: const Size.fromHeight(56.0),
