@@ -1,3 +1,4 @@
+import 'package:dicoding_capstone_pos/ui/signup_page.dart';
 import 'package:dicoding_capstone_pos/widgets/account_check_text.dart';
 import 'package:dicoding_capstone_pos/widgets/custom_app_bar.dart';
 import 'package:dicoding_capstone_pos/widgets/input_field.dart';
@@ -47,7 +48,8 @@ class LoginPage extends StatelessWidget {
               _spacing(16.0),
               AccountCheckText(
                 isLogin: true,
-                onClick: () {},
+                onClick: () =>
+                    Navigator.pushNamed(context, SignUpPage.routeName),
               ),
             ],
           ),

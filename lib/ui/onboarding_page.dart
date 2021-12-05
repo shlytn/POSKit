@@ -18,13 +18,15 @@ class OnboardingPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             RoundedButton(
-                onClick: () {},
+                onClick: () =>
+                    Navigator.pushNamed(context, LoginPage.routeName),
                 text: LoginPage.pageTitle),
             const SizedBox(
               height: 16.0,
             ),
             RoundedButton(
-                onClick: () {},
+                onClick: () =>
+                    Navigator.pushNamed(context, SignUpPage.routeName),
                 text: SignUpPage.pageTitle),
           ],
         ),

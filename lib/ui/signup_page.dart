@@ -1,3 +1,4 @@
+import 'package:dicoding_capstone_pos/ui/login_page.dart';
 import 'package:dicoding_capstone_pos/widgets/account_check_text.dart';
 import 'package:dicoding_capstone_pos/widgets/custom_app_bar.dart';
 import 'package:dicoding_capstone_pos/widgets/input_field.dart';
@@ -27,8 +28,7 @@ class SignUpPage extends StatelessWidget {
               _spacing(24.0),
               const InputField(label: 'Business Name', hint: "Business Name"),
               _spacing(16.0),
-              const InputField(
-                  label: 'Email', hint: "mail@mail.com"),
+              const InputField(label: 'Email', hint: "mail@mail.com"),
               _spacing(16.0),
               const PasswordField(
                   label: 'Password', hint: "At least 8 characters"),
@@ -37,7 +37,8 @@ class SignUpPage extends StatelessWidget {
               _spacing(16.0),
               AccountCheckText(
                 isLogin: false,
-                onClick: () {},
+                onClick: () =>
+                    Navigator.pushNamed(context, LoginPage.routeName),
               ),
             ],
           ),
