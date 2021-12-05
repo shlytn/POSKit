@@ -7,13 +7,15 @@ class PasswordField extends StatefulWidget {
   final String label;
   final String hint;
 
-  const PasswordField({Key? key, required this.label, required this.hint}) : super(key: key);
+  const PasswordField({Key? key, required this.label, required this.hint})
+      : super(key: key);
 
   @override
   State<PasswordField> createState() => _PasswordFieldState();
 }
 
 class _PasswordFieldState extends State<PasswordField> {
+  bool isVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +26,20 @@ class _PasswordFieldState extends State<PasswordField> {
         Text(widget.label),
         TextFieldContainer(
           child: TextFormField(
-            obscureText: true,
+            obscureText: !isVisible,
             decoration: InputDecoration(
               border: InputBorder.none,
               hintText: widget.hint,
-              suffixIcon: const Icon(CupertinoIcons.eye_slash)
+              suffixIcon: IconButton(
+                icon: Icon(
+                    isVisible ? CupertinoIcons.eye : CupertinoIcons.eye_slash),
+                color: Colors.black,
+                onPressed: () {
+                  setState(() {
+                    isVisible = !isVisible;
+                  });
+                },
+              ),
             ),
             keyboardType: TextInputType.emailAddress,
           ),
