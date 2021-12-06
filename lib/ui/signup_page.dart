@@ -15,6 +15,10 @@ class SignUpPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var name = '';
+    var email = '';
+    var password = '';
+
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -26,12 +30,23 @@ class SignUpPage extends StatelessWidget {
             children: [
               CustomAppBar(title: pageTitle),
               _spacing(24.0),
-              const InputField(label: 'Business Name', hint: "Business Name"),
+              InputField(
+                label: 'Business Name',
+                hint: "Business Name",
+                onChanged: (value) => name = value,
+              ),
               _spacing(16.0),
-              const InputField(label: 'Email', hint: "mail@mail.com"),
+              InputField(
+                label: 'Email',
+                hint: "mail@mail.com",
+                onChanged: (value) => email = value,
+              ),
               _spacing(16.0),
-              const PasswordField(
-                  label: 'Password', hint: "At least 8 characters"),
+              PasswordField(
+                label: 'Password',
+                hint: "At least 8 characters",
+                onChanged: (value) => password = value,
+              ),
               _spacing(44.0),
               RoundedButton(onClick: () {}, text: pageTitle),
               _spacing(16.0),

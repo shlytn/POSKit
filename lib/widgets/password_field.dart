@@ -6,9 +6,14 @@ import 'text_field_container.dart';
 class PasswordField extends StatefulWidget {
   final String label;
   final String hint;
+  final ValueChanged<String> onChanged;
 
-  const PasswordField({Key? key, required this.label, required this.hint})
-      : super(key: key);
+  const PasswordField({
+    Key? key,
+    required this.label,
+    required this.hint,
+    required this.onChanged,
+  }) : super(key: key);
 
   @override
   State<PasswordField> createState() => _PasswordFieldState();
@@ -42,6 +47,7 @@ class _PasswordFieldState extends State<PasswordField> {
               ),
             ),
             keyboardType: TextInputType.emailAddress,
+            onChanged: widget.onChanged,
           ),
         ),
       ],

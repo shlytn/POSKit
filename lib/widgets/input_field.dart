@@ -5,15 +5,20 @@ import 'text_field_container.dart';
 class InputField extends StatefulWidget {
   final String label;
   final String hint;
+  final ValueChanged<String> onChanged;
 
-  const InputField({Key? key, required this.label, required this.hint}) : super(key: key);
+  const InputField({
+    Key? key,
+    required this.label,
+    required this.hint,
+    required this.onChanged,
+  }) : super(key: key);
 
   @override
   State<InputField> createState() => _InputFieldState();
 }
 
 class _InputFieldState extends State<InputField> {
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -28,6 +33,7 @@ class _InputFieldState extends State<InputField> {
               hintText: widget.hint,
             ),
             keyboardType: TextInputType.emailAddress,
+            onChanged: widget.onChanged,
           ),
         ),
       ],

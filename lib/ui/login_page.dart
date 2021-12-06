@@ -15,6 +15,9 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var email = '';
+    var password = '';
+
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -26,10 +29,17 @@ class LoginPage extends StatelessWidget {
             children: [
               CustomAppBar(title: pageTitle),
               _spacing(24.0),
-              const InputField(label: 'Email', hint: "mail@mail.com"),
+              InputField(
+                label: 'Email',
+                hint: "mail@mail.com",
+                onChanged: (value) => email = value,
+              ),
               _spacing(16.0),
-              const PasswordField(
-                  label: 'Password', hint: "At least 8 characters"),
+              PasswordField(
+                label: 'Password',
+                hint: "At least 8 characters",
+                onChanged: (value) => password = value,
+              ),
               Align(
                 alignment: Alignment.topRight,
                 child: GestureDetector(
