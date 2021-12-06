@@ -1,4 +1,6 @@
+
 // ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, use_key_in_widget_constructors, prefer_const_literals_to_create_immutables
+
 
 import 'package:dicoding_capstone_pos/widgets/cart_button.dart';
 import 'package:dicoding_capstone_pos/widgets/grid_food.dart';
@@ -24,10 +26,10 @@ class _ProductListPageState extends State<ProductListPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded(
+            const Expanded(
               child: SizedBox(width: 30),
             ),
-            Expanded(
+            const Expanded(
               child: Center(
                 child: Text('Cashier'),
               ),
@@ -37,7 +39,7 @@ class _ProductListPageState extends State<ProductListPage> {
                 alignment: Alignment.centerRight,
                 child: IconButton(
                   onPressed: () {},
-                  icon: Icon(CupertinoIcons.add),
+                  icon: const Icon(CupertinoIcons.add),
                 ),
               ),
             )
@@ -57,9 +59,9 @@ class _ProductListPageState extends State<ProductListPage> {
                     border:
                         Border.all(color: CupertinoColors.lightBackgroundGray),
                   ),
-                  child: Center(
+                  child: const Center(
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(8.0),
                       child: TextField(
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
@@ -93,7 +95,7 @@ class _ProductListPageState extends State<ProductListPage> {
                               isListView = false;
                             });
                           },
-                          icon: Icon(CupertinoIcons.square_grid_2x2),
+                          icon: const Icon(CupertinoIcons.square_grid_2x2),
                         )
                       : IconButton(
                           onPressed: () {
@@ -101,18 +103,18 @@ class _ProductListPageState extends State<ProductListPage> {
                               isListView = true;
                             });
                           },
-                          icon: Icon(CupertinoIcons.list_bullet),
+                          icon: const Icon(CupertinoIcons.list_bullet),
                         ),
                 ),
               )
             ],
           ),
-          SizedBox(height: 8.0),
+          const SizedBox(height: 8.0),
           Expanded(
-            child: isListView ? ListViewFood() : GridViewFood(),
+            child: isListView ? const ListViewFood() : const GridViewFood(),
           ),
-          CartButton(),
-          SizedBox(height: 8.0)
+          const CartButton(),
+          const SizedBox(height: 8.0)
         ],
       ),
     );
