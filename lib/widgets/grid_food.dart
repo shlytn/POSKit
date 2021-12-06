@@ -1,4 +1,5 @@
-import 'package:dicoding_capstone_pos/common/styles.dart';
+import 'package:dicoding_capstone_pos/common/style.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -60,7 +61,7 @@ class GridViewFood extends StatelessWidget {
                             '\$' + price.toString(),
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: primaryColor,
+                                color: secondaryColor,
                                 fontSize: 16),
                           ),
                           Container(
@@ -68,7 +69,9 @@ class GridViewFood extends StatelessWidget {
                             height: 29.0,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                color: primaryColor),
+
+                                color: secondaryColor),
+
                             child: IconButton(
                               splashColor: Colors.transparent,
                               iconSize: 20,
