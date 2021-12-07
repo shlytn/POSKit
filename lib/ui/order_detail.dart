@@ -11,6 +11,7 @@ class OrderDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: background,
       appBar: AppBar(
         centerTitle: true,
         elevation: 0,
