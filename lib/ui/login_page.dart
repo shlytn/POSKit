@@ -1,3 +1,4 @@
+import 'package:dicoding_capstone_pos/ui/product_list_page.dart';
 import 'package:dicoding_capstone_pos/ui/signup_page.dart';
 import 'package:dicoding_capstone_pos/widgets/account_check_text.dart';
 import 'package:dicoding_capstone_pos/widgets/custom_app_bar.dart';
@@ -44,7 +45,11 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
               _spacing(44.0),
-              RoundedButton(onClick: () {}, text: pageTitle),
+              RoundedButton(
+                  onClick: () {
+                    Navigator.pushNamed(context, ProductListPage.routeName);
+                  },
+                  text: pageTitle),
               _spacing(16.0),
               AccountCheckText(
                 isLogin: true,
