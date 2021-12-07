@@ -4,14 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 class CartButton extends StatelessWidget {
-  const CartButton({Key? key}) : super(key: key);
+  final String route;
+  const CartButton({Key? key, required this.route}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24.0),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, route);
+        },
         style: ElevatedButton.styleFrom(
             primary: secondaryColor, onPrimary: Colors.white),
         child: Container(

@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, use_key_in_widget_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:dicoding_capstone_pos/ui/cart_page.dart';
 import 'package:dicoding_capstone_pos/widgets/cart_button.dart';
 import 'package:dicoding_capstone_pos/widgets/grid_food.dart';
 import 'package:dicoding_capstone_pos/widgets/list_food.dart';
@@ -100,7 +101,9 @@ class _ProductListPageState extends State<ProductListPage> {
           Expanded(
             child: isListView ? const ListViewFood() : const GridViewFood(),
           ),
-          const CartButton(),
+          const CartButton(
+            route: CartPage.routeName,
+          ),
           const SizedBox(height: 8.0)
         ],
       ),
