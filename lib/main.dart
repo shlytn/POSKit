@@ -1,3 +1,5 @@
+import 'package:dicoding_capstone_pos/common/styles.dart';
+import 'package:dicoding_capstone_pos/ui/product_list_page.dart';
 import 'package:dicoding_capstone_pos/ui/signup_page.dart';
 
 import 'ui/login_page.dart';
@@ -17,7 +19,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter App',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        colorScheme: const ColorScheme.light(
+            primary: Colors.white,
+            background: Colors.amberAccent,
+            onPrimary: secondaryColor),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       // theme: CupertinoThemeData(
@@ -28,6 +33,7 @@ class MyApp extends StatelessWidget {
         OnboardingPage.routeName: (context) => const OnboardingPage(),
         LoginPage.routeName: (context) => const LoginPage(),
         SignUpPage.routeName: (context) => const SignUpPage(),
+        ProductListPage.routeName: (context) => const ProductListPage()
       },
     );
   }
