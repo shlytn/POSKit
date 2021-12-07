@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:dicoding_capstone_pos/common/styles.dart';
+import 'package:dicoding_capstone_pos/ui/order_detail.dart';
 import 'package:dicoding_capstone_pos/widgets/cart_button.dart';
 import 'package:dicoding_capstone_pos/widgets/list_cart.dart';
 import 'package:flutter/cupertino.dart';
@@ -30,7 +32,7 @@ class _CartPageState extends State<CartPage> {
             child: ListViewCart(),
           ),
           CartButton(
-            route: CartPage.routeName,
+            route: OrderDetailPage.routeName,
           ),
           SizedBox(height: 8.0)
         ],

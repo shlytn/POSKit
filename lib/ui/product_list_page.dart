@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, use_key_in_widget_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:dicoding_capstone_pos/common/styles.dart';
 import 'package:dicoding_capstone_pos/ui/cart_page.dart';
 import 'package:dicoding_capstone_pos/widgets/cart_button.dart';
 import 'package:dicoding_capstone_pos/widgets/grid_food.dart';
@@ -20,6 +21,7 @@ class _ProductListPageState extends State<ProductListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: background,
       appBar: AppBar(
           centerTitle: true,
           leading: IconButton(
