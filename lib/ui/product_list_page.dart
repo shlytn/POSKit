@@ -21,6 +21,10 @@ class _ProductListPageState extends State<ProductListPage> {
     return Scaffold(
       appBar: AppBar(
           centerTitle: true,
+          leading: IconButton(
+            onPressed: () {},
+            icon: Icon(CupertinoIcons.line_horizontal_3_decrease),
+          ),
           elevation: 0,
           title: Text('Cashier'),
           actions: [
