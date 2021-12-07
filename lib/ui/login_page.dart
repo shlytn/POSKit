@@ -1,3 +1,5 @@
+import 'package:dicoding_capstone_pos/data/api/auth_service.dart';
+import 'package:dicoding_capstone_pos/ui/home_page.dart';
 import 'package:dicoding_capstone_pos/ui/signup_page.dart';
 import 'package:dicoding_capstone_pos/widgets/account_check_text.dart';
 import 'package:dicoding_capstone_pos/widgets/custom_app_bar.dart';
@@ -6,6 +8,7 @@ import 'package:dicoding_capstone_pos/widgets/password_field.dart';
 import 'package:dicoding_capstone_pos/widgets/rounded_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatelessWidget {
   static const routeName = '/login';
@@ -54,7 +57,10 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
               _spacing(44.0),
-              RoundedButton(onClick: () {}, text: pageTitle),
+              RoundedButton(onClick: () {
+                context.read<AuthService>().signIn(email, password);
+                Navigator.pushNamedAndRemoveUntil(context, HomePage.routeName, (route) => false);
+              }, text: pageTitle),
               _spacing(16.0),
               AccountCheckText(
                 isLogin: true,
