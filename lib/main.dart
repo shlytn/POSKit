@@ -1,5 +1,6 @@
 import 'package:dicoding_capstone_pos/common/styles.dart';
 import 'package:dicoding_capstone_pos/ui/cart_page.dart';
+import 'package:dicoding_capstone_pos/ui/order_detail.dart';
 import 'package:dicoding_capstone_pos/ui/product_list_page.dart';
 import 'package:dicoding_capstone_pos/ui/signup_page.dart';
 
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: const ColorScheme.light(
             primary: Colors.white,
-            background: Colors.amberAccent,
+            background: background,
             onPrimary: secondaryColor),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
@@ -35,7 +36,8 @@ class MyApp extends StatelessWidget {
         LoginPage.routeName: (context) => const LoginPage(),
         SignUpPage.routeName: (context) => const SignUpPage(),
         ProductListPage.routeName: (context) => const ProductListPage(),
-        CartPage.routeName: (context) => const CartPage()
+        CartPage.routeName: (context) => const CartPage(),
+        OrderDetailPage.routeName: (context) => const OrderDetailPage()
       },
     );
   }
