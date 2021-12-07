@@ -1,3 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
-final Color primaryColor = CupertinoColors.systemBlue;
+const Color primaryColor = Colors.white;
+const secondaryColor = Color(0xFF1A72DD);
+const background = Color(0xFFF7F8FA);

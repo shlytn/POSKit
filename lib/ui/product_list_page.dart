@@ -1,6 +1,4 @@
-
 // ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, use_key_in_widget_constructors, prefer_const_literals_to_create_immutables
-
 
 import 'package:dicoding_capstone_pos/widgets/cart_button.dart';
 import 'package:dicoding_capstone_pos/widgets/grid_food.dart';
@@ -9,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ProductListPage extends StatefulWidget {
+  static const routeName = '/product_list';
   const ProductListPage({Key? key}) : super(key: key);
 
   @override
@@ -21,31 +20,15 @@ class _ProductListPageState extends State<ProductListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
-        title: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Expanded(
-              child: SizedBox(width: 30),
+          centerTitle: true,
+          elevation: 0,
+          title: Text('Cashier'),
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: Icon(CupertinoIcons.add),
             ),
-            const Expanded(
-              child: Center(
-                child: Text('Cashier'),
-              ),
-            ),
-            Expanded(
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(CupertinoIcons.add),
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
+          ]),
       body: Column(
         children: [
           Row(
