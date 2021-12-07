@@ -1,4 +1,4 @@
-import 'package:dicoding_capstone_pos/common/style.dart';
+import 'package:dicoding_capstone_pos/common/styles.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -69,9 +69,7 @@ class GridViewFood extends StatelessWidget {
                             height: 29.0,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-
                                 color: secondaryColor),
-
                             child: IconButton(
                               splashColor: Colors.transparent,
                               iconSize: 20,
