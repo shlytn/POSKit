@@ -5,6 +5,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ProductListPage extends StatefulWidget {
+  static const routeName = '/list';
+  static const pageTitle = 'List';
+
   const ProductListPage({Key? key}) : super(key: key);
 
   @override
