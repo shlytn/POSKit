@@ -5,7 +5,7 @@ import 'package:getwidget/components/button/gf_icon_button.dart';
 class CustomAppBar extends StatelessWidget {
   final String title;
 
-  CustomAppBar({required this.title});
+   const CustomAppBar({Key? key, required this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,19 +13,8 @@ class CustomAppBar extends StatelessWidget {
       padding: const EdgeInsets.symmetric(
         vertical: 16.0,
       ),
-      child:
-          Stack(
-              fit: StackFit.loose,
-              children: [
-          GFIconButton(
-            icon: const Icon(CupertinoIcons.back),
-            onPressed: () => Navigator.pop(context),
-            borderShape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8.0),
-            ),
-          ),
-        // ),
-        Expanded(
+      child: Stack(fit: StackFit.loose, children: [
+        Positioned(
           child: SizedBox(
             height: 45.0,
             child: Center(
@@ -36,6 +25,13 @@ class CustomAppBar extends StatelessWidget {
                 ),
               ),
             ),
+          ),
+        ),
+        GFIconButton(
+          icon: const Icon(CupertinoIcons.back),
+          onPressed: () => Navigator.pop(context),
+          borderShape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
           ),
         ),
       ]),
