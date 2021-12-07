@@ -1,4 +1,4 @@
-import 'package:dicoding_capstone_pos/data/api/auth_service.dart';
+import 'package:dicoding_capstone_pos/provider/auth_provider.dart';
 import 'package:dicoding_capstone_pos/ui/home_page.dart';
 import 'package:dicoding_capstone_pos/ui/login_page.dart';
 import 'package:dicoding_capstone_pos/widgets/account_check_text.dart';
@@ -23,47 +23,64 @@ class SignUpPage extends StatelessWidget {
     var password = '';
 
     return Scaffold(
-      body: SafeArea(
-        child: Container(
-          margin: const EdgeInsets.symmetric(
-            horizontal: 24.0,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              CustomAppBar(title: pageTitle),
-              _spacing(24.0),
-              InputField(
-                label: 'Business Name',
-                hint: "Business Name",
-                onChanged: (value) => name = value,
+      body: Consumer<AuthProvider>(
+        builder: (context, auth, _) {
+          return SafeArea(
+            child: Container(
+              margin: const EdgeInsets.symmetric(
+                horizontal: 24.0,
               ),
-              _spacing(16.0),
-              InputField(
-                label: 'Email',
-                hint: "mail@mail.com",
-                onChanged: (value) => email = value,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CustomAppBar(title: pageTitle),
+                  _spacing(24.0),
+                  InputField(
+                    label: 'Business Name',
+                    hint: "Business Name",
+                    onChanged: (value) => name = value,
+                  ),
+                  _spacing(16.0),
+                  InputField(
+                    label: 'Email',
+                    hint: "mail@mail.com",
+                    onChanged: (value) => email = value,
+                  ),
+                  _spacing(16.0),
+                  PasswordField(
+                    label: 'Password',
+                    hint: "At least 8 characters",
+                    onChanged: (value) => password = value,
+                  ),
+                  _spacing(44.0),
+                  auth.state == AuthState.authenticating
+                      ? const Center(child: CircularProgressIndicator())
+                      : RoundedButton(
+                      onClick: () async {
+                        await auth.signUp(name, email, password);
+
+                        if (auth.state == AuthState.authenticated) {
+                          Navigator.pushNamedAndRemoveUntil(
+                              context, HomePage.routeName, (route) => false);
+                        } else {
+                          final snackBar = SnackBar(
+                            content: Text(auth.message),
+                          );
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        }
+                      },
+                      text: pageTitle),
+                  _spacing(16.0),
+                  AccountCheckText(
+                    isLogin: false,
+                    onClick: () =>
+                        Navigator.pushNamed(context, LoginPage.routeName),
+                  ),
+                ],
               ),
-              _spacing(16.0),
-              PasswordField(
-                label: 'Password',
-                hint: "At least 8 characters",
-                onChanged: (value) => password = value,
-              ),
-              _spacing(44.0),
-              RoundedButton(onClick: () {
-                context.read<AuthService>().signUp(name, email, password);
-                Navigator.pushNamedAndRemoveUntil(context, HomePage.routeName, (route) => false);
-              }, text: pageTitle),
-              _spacing(16.0),
-              AccountCheckText(
-                isLogin: false,
-                onClick: () =>
-                    Navigator.pushNamed(context, LoginPage.routeName),
-              ),
-            ],
-          ),
-        ),
+            ),
+          );
+        }
       ),
     );
   }

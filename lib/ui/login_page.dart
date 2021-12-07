@@ -1,4 +1,4 @@
-import 'package:dicoding_capstone_pos/data/api/auth_service.dart';
+import 'package:dicoding_capstone_pos/provider/auth_provider.dart';
 import 'package:dicoding_capstone_pos/ui/home_page.dart';
 import 'package:dicoding_capstone_pos/ui/signup_page.dart';
 import 'package:dicoding_capstone_pos/widgets/account_check_text.dart';
@@ -22,55 +22,70 @@ class LoginPage extends StatelessWidget {
     var password = '';
 
     return Scaffold(
-      body: SafeArea(
-        child: Container(
-          margin: const EdgeInsets.symmetric(
-            horizontal: 24.0,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              CustomAppBar(title: pageTitle),
-              _spacing(24.0),
-              InputField(
-                label: 'Email',
-                hint: "mail@mail.com",
-                onChanged: (value) => email = value,
-              ),
-              _spacing(16.0),
-              PasswordField(
-                label: 'Password',
-                hint: "At least 8 characters",
-                onChanged: (value) => password = value,
-              ),
-              Align(
-                alignment: Alignment.topRight,
-                child: GestureDetector(
-                  onTap: () {},
-                  child: const Text(
-                    "Forgot Password?",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.blueAccent,
+      body: Consumer<AuthProvider>(builder: (context, auth, _) {
+        return SafeArea(
+          child: Container(
+            margin: const EdgeInsets.symmetric(
+              horizontal: 24.0,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CustomAppBar(title: pageTitle),
+                _spacing(24.0),
+                InputField(
+                  label: 'Email',
+                  hint: "mail@mail.com",
+                  onChanged: (value) => email = value,
+                ),
+                _spacing(16.0),
+                PasswordField(
+                  label: 'Password',
+                  hint: "At least 8 characters",
+                  onChanged: (value) => password = value,
+                ),
+                Align(
+                  alignment: Alignment.topRight,
+                  child: GestureDetector(
+                    onTap: () {},
+                    child: const Text(
+                      "Forgot Password?",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blueAccent,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              _spacing(44.0),
-              RoundedButton(onClick: () {
-                context.read<AuthService>().signIn(email, password);
-                Navigator.pushNamedAndRemoveUntil(context, HomePage.routeName, (route) => false);
-              }, text: pageTitle),
-              _spacing(16.0),
-              AccountCheckText(
-                isLogin: true,
-                onClick: () =>
-                    Navigator.pushNamed(context, SignUpPage.routeName),
-              ),
-            ],
+                _spacing(44.0),
+                auth.state == AuthState.authenticating
+                    ? const Center(child: CircularProgressIndicator())
+                    : RoundedButton(
+                        onClick: () async {
+                          await auth.signIn(email, password);
+
+                          if (auth.state == AuthState.authenticated) {
+                            Navigator.pushNamedAndRemoveUntil(
+                                context, HomePage.routeName, (route) => false);
+                          } else {
+                            final snackBar = SnackBar(
+                              content: Text(auth.message),
+                            );
+                            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                          }
+                        },
+                        text: pageTitle),
+                _spacing(16.0),
+                AccountCheckText(
+                  isLogin: true,
+                  onClick: () =>
+                      Navigator.pushNamed(context, SignUpPage.routeName),
+                ),
+              ],
+            ),
           ),
-        ),
-      ),
+        );
+      }),
     );
   }
 

@@ -1,7 +1,8 @@
+import 'package:dicoding_capstone_pos/provider/auth_provider.dart';
 import 'package:dicoding_capstone_pos/ui/home_page.dart';
 import 'package:dicoding_capstone_pos/ui/onboarding_page.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class AuthWrapper extends StatelessWidget {
@@ -10,12 +11,19 @@ class AuthWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final firebaseUser = context.watch<User?>();
-
-    if (firebaseUser != null) {
-      return HomePage();
-    }
-    return const OnboardingPage();
+    return Consumer<AuthProvider>(
+      builder: (context, auth, _) {
+        switch (auth.state) {
+          case AuthState.uninitialized:
+          case AuthState.unauthenticated:
+            return const OnboardingPage();
+          case AuthState.authenticating:
+            return HomePage();
+          case AuthState.authenticated:
+            return HomePage();
+        }
+      },
+    );
   }
 
 }

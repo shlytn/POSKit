@@ -1,5 +1,5 @@
-import 'package:dicoding_capstone_pos/data/api/auth_service.dart';
-import 'package:dicoding_capstone_pos/widgets/empty_widget.dart';
+import 'package:dicoding_capstone_pos/provider/auth_provider.dart';
+import 'package:dicoding_capstone_pos/ui/onboarding_page.dart';
 import 'package:dicoding_capstone_pos/widgets/rounded_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,10 +13,12 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        margin: const EdgeInsets.all(24.0),
         alignment: Alignment.center,
-        // height: double.infinity,
         child: RoundedButton(onClick: (){
-          context.read<AuthService>().signOut();
+          Provider.of<AuthProvider>(context, listen: false).signOut();
+          Navigator.pushNamedAndRemoveUntil(
+              context, OnboardingPage.routeName, (route) => false);
         }, text: 'Log Out',)
       ),
     );

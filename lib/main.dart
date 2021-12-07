@@ -1,10 +1,9 @@
-import 'package:dicoding_capstone_pos/data/api/auth_service.dart';
+import 'package:dicoding_capstone_pos/provider/auth_provider.dart';
 import 'package:dicoding_capstone_pos/ui/home_page.dart';
 import 'package:dicoding_capstone_pos/ui/login_page.dart';
 import 'package:dicoding_capstone_pos/ui/onboarding_page.dart';
 import 'package:dicoding_capstone_pos/ui/signup_page.dart';
 import 'package:dicoding_capstone_pos/utils/auth_wrapper.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 
@@ -24,12 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider<AuthService>(
-          create: (context) => AuthService(FirebaseAuth.instance),
-        ),
-        StreamProvider(
-            create: (context) => context.read<AuthService>().authStateChanges,
-            initialData: null)
+        ChangeNotifierProvider(create: (_) => AuthProvider.instance()),
       ],
       child: MaterialApp(
         title: 'Flutter App',
