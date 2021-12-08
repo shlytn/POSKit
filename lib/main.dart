@@ -1,7 +1,9 @@
 import 'package:dicoding_capstone_pos/provider/auth_provider.dart';
+import 'package:dicoding_capstone_pos/ui/add_update_product_page.dart';
 import 'package:dicoding_capstone_pos/ui/home_page.dart';
 import 'package:dicoding_capstone_pos/ui/login_page.dart';
 import 'package:dicoding_capstone_pos/ui/onboarding_page.dart';
+import 'package:dicoding_capstone_pos/ui/product_list_page.dart';
 import 'package:dicoding_capstone_pos/ui/signup_page.dart';
 import 'package:dicoding_capstone_pos/utils/auth_wrapper.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -41,6 +43,8 @@ class MyApp extends StatelessWidget {
           LoginPage.routeName: (context) => const LoginPage(),
           SignUpPage.routeName: (context) => const SignUpPage(),
           HomePage.routeName: (context) => HomePage(),
+          ProductListPage.routeName: (context) => const ProductListPage(),
+          AddUpdateProductPage.routeName: (context) => AddUpdateProductPage(),
         },
       ),
     );

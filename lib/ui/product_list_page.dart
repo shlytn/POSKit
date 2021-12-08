@@ -4,6 +4,8 @@ import 'package:dicoding_capstone_pos/widgets/list_food.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'add_update_product_page.dart';
+
 class ProductListPage extends StatefulWidget {
   static const routeName = '/list';
   static const pageTitle = 'List';
@@ -16,6 +18,7 @@ class ProductListPage extends StatefulWidget {
 
 class _ProductListPageState extends State<ProductListPage> {
   bool isListView = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +40,9 @@ class _ProductListPageState extends State<ProductListPage> {
               child: Align(
                 alignment: Alignment.centerRight,
                 child: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, AddUpdateProductPage.routeName);
+                  },
                   icon: const Icon(CupertinoIcons.add),
                 ),
               ),
