@@ -37,6 +37,7 @@ class LoginPage extends StatelessWidget {
                   InputField(
                     label: 'Email',
                     hint: "mail@mail.com",
+                    type: TextInputType.emailAddress,
                     onChanged: (value) => email = value,
                   ),
                   _spacing(16.0),
