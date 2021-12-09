@@ -36,7 +36,8 @@ class _ProductListPageState extends State<ProductListPage> {
           actions: [
             IconButton(
               onPressed: () {
-                Navigator.pushNamed(context, AddUpdateProductPage.routeName);
+                Navigator.pushNamed(context, AddUpdateProductPage.routeName,
+                    arguments: false);
               },
               icon: const Icon(CupertinoIcons.add),
             ),
@@ -106,7 +107,8 @@ class _ProductListPageState extends State<ProductListPage> {
           ),
           const SizedBox(height: 8.0),
           Expanded(
-            child: isListView ? const ListViewProduct() : const GridViewProduct(),
+            child:
+                isListView ? const ListViewProduct() : const GridViewProduct(),
           ),
           const CartButton(
             route: CartPage.routeName,

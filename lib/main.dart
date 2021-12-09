@@ -51,10 +51,12 @@ class MyApp extends StatelessWidget {
           SignUpPage.routeName: (context) => const SignUpPage(),
           HomePage.routeName: (context) => HomePage(),
           ProductListPage.routeName: (context) => const ProductListPage(),
-          AddUpdateProductPage.routeName: (context) => const AddUpdateProductPage(),
+          AddUpdateProductPage.routeName: (context) => AddUpdateProductPage(
+            isUpdate: ModalRoute.of(context)?.settings.arguments as bool,
+          ),
           CartPage.routeName: (context) => const CartPage(),
           OrderDetailPage.routeName: (context) => const OrderDetailPage(),
-          AccountPage.routeName: (context) => const AccountPage()
+          AccountPage.routeName: (context) => const AccountPage(),
         },
       ),
     );
