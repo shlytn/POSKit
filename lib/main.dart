@@ -1,4 +1,5 @@
 import 'package:dicoding_capstone_pos/common/styles.dart';
+import 'package:dicoding_capstone_pos/ui/account_page.dart';
 import 'package:dicoding_capstone_pos/ui/cart_page.dart';
 import 'package:dicoding_capstone_pos/ui/order_detail.dart';
 import 'package:dicoding_capstone_pos/ui/product_list_page.dart';
@@ -37,7 +38,8 @@ class MyApp extends StatelessWidget {
         SignUpPage.routeName: (context) => const SignUpPage(),
         ProductListPage.routeName: (context) => const ProductListPage(),
         CartPage.routeName: (context) => const CartPage(),
-        OrderDetailPage.routeName: (context) => const OrderDetailPage()
+        OrderDetailPage.routeName: (context) => const OrderDetailPage(),
+        AccountPage.routeName: (context) => const AccountPage()
       },
     );
   }
