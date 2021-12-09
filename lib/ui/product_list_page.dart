@@ -11,7 +11,6 @@ import 'add_update_product_page.dart';
 class ProductListPage extends StatefulWidget {
   static const routeName = '/product_list';
   static const pageTitle = 'List';
-
   const ProductListPage({Key? key}) : super(key: key);
 
   @override
@@ -27,12 +26,8 @@ class _ProductListPageState extends State<ProductListPage> {
       backgroundColor: background,
       appBar: AppBar(
           centerTitle: true,
-          leading: IconButton(
-            onPressed: () {},
-            icon: const Icon(CupertinoIcons.line_horizontal_3_decrease),
-          ),
           elevation: 0,
-          title: const Text('Cashier'),
+          title: Text(ProductListPage.pageTitle),
           actions: [
             IconButton(
               onPressed: () {

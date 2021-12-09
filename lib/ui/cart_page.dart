@@ -16,13 +16,14 @@ class CartPage extends StatefulWidget {
 
 class _CartPageState extends State<CartPage> {
   bool isListView = true;
+  static const pageTitle = 'Cart';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         elevation: 0,
-        title: Text('Cart'),
+        title: Text(pageTitle),
       ),
       body: Column(
         children: [

@@ -15,6 +15,7 @@ class OrderDetailPage extends StatefulWidget {
 class _OrderDetailPageState extends State<OrderDetailPage> {
   int? defaultChoice;
   final List<String> _choicesList = ['Take Away', 'Delivery', 'Dine In'];
+  static const pageTitle = 'Order Details';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +23,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
       appBar: AppBar(
         centerTitle: true,
         elevation: 0,
-        title: Text('Order Details'),
+        title: Text(pageTitle),
       ),
       body: Column(
         children: [
