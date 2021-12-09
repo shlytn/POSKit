@@ -63,7 +63,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     onPressed: () =>
                         Navigator.pushNamed(context, LoginPage.routeName),
                     child: const Text(LoginPage.pageTitle,
-                        style: TextStyle(fontSize: 16.0, color: primaryColor)),
+                        style: TextStyle(fontSize: 16.0, color: secondaryColor)),
                   ),
                 ],
               ),
