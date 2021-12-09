@@ -1,3 +1,4 @@
+import 'package:dicoding_capstone_pos/common/styles.dart';
 import 'package:dicoding_capstone_pos/widgets/cart_button.dart';
 import 'package:dicoding_capstone_pos/widgets/grid_food.dart';
 import 'package:dicoding_capstone_pos/widgets/list_food.dart';
@@ -7,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'add_update_product_page.dart';
 
 class ProductListPage extends StatefulWidget {
-  static const routeName = '/list';
+  static const routeName = '/product_list';
   static const pageTitle = 'List';
 
   const ProductListPage({Key? key}) : super(key: key);
@@ -22,34 +23,23 @@ class _ProductListPageState extends State<ProductListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: background,
       appBar: AppBar(
-        elevation: 0,
-        title: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Expanded(
-              child: SizedBox(width: 30),
+          centerTitle: true,
+          leading: IconButton(
+            onPressed: () {},
+            icon: const Icon(CupertinoIcons.line_horizontal_3_decrease),
+          ),
+          elevation: 0,
+          title: const Text('Cashier'),
+          actions: [
+            IconButton(
+              onPressed: () {
+                Navigator.pushNamed(context, AddUpdateProductPage.routeName);
+              },
+              icon: const Icon(CupertinoIcons.add),
             ),
-            const Expanded(
-              child: Center(
-                child: Text('Cashier'),
-              ),
-            ),
-            Expanded(
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: IconButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, AddUpdateProductPage.routeName);
-                  },
-                  icon: const Icon(CupertinoIcons.add),
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
+          ]),
       body: Column(
         children: [
           Row(
@@ -117,7 +107,9 @@ class _ProductListPageState extends State<ProductListPage> {
           Expanded(
             child: isListView ? const ListViewFood() : const GridViewFood(),
           ),
-          const CartButton(),
+          const CartButton(
+            route: CartPage.routeName,
+          ),
           const SizedBox(height: 8.0)
         ],
       ),

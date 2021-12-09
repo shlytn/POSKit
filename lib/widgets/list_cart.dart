@@ -5,8 +5,8 @@ import 'package:dicoding_capstone_pos/common/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-class ListViewFood extends StatelessWidget {
-  const ListViewFood({
+class ListViewCart extends StatelessWidget {
+  const ListViewCart({
     Key? key,
   }) : super(key: key);
 
@@ -16,7 +16,7 @@ class ListViewFood extends StatelessWidget {
       separatorBuilder: (context, index) {
         return Divider();
       },
-      itemCount: 4,
+      itemCount: 1,
       itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 4.0),
@@ -66,21 +66,41 @@ class ListViewFood extends StatelessWidget {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 20.0, top: 25),
-                  child: Container(
-                    width: 41.0,
-                    height: 39.0,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: secondaryColor),
-                    child: IconButton(
-                        splashColor: Colors.transparent,
-                        iconSize: 24,
-                        padding: const EdgeInsets.all(0),
-                        color: Colors.white,
-                        onPressed: () {},
-                        icon: Icon(CupertinoIcons.add)),
+                Expanded(
+                  flex: 2,
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.only(left: 1, right: 20.0, top: 25),
+                    child: Container(
+                      height: 32.0,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: secondaryColor),
+                      child: Row(
+                        children: [
+                          IconButton(
+                            splashColor: Colors.transparent,
+                            iconSize: 16,
+                            padding: const EdgeInsets.all(0),
+                            color: Colors.white,
+                            onPressed: () {},
+                            icon: Icon(CupertinoIcons.minus),
+                          ),
+                          Text(
+                            '1',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          IconButton(
+                            splashColor: Colors.transparent,
+                            iconSize: 16,
+                            padding: const EdgeInsets.all(0),
+                            color: Colors.white,
+                            onPressed: () {},
+                            icon: Icon(CupertinoIcons.add),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 )
               ],
