@@ -5,7 +5,6 @@ import 'package:dicoding_capstone_pos/ui/login_page.dart';
 import 'package:dicoding_capstone_pos/ui/onboarding_page.dart';
 import 'package:dicoding_capstone_pos/ui/product_list_page.dart';
 import 'package:dicoding_capstone_pos/common/styles.dart';
-import 'package:dicoding_capstone_pos/ui/account_page.dart';
 import 'package:dicoding_capstone_pos/ui/cart_page.dart';
 import 'package:dicoding_capstone_pos/ui/order_detail.dart';
 import 'package:dicoding_capstone_pos/ui/signup_page.dart';
@@ -51,10 +50,10 @@ class MyApp extends StatelessWidget {
           SignUpPage.routeName: (context) => const SignUpPage(),
           HomePage.routeName: (context) => HomePage(),
           ProductListPage.routeName: (context) => const ProductListPage(),
-          AddUpdateProductPage.routeName: (context) => const AddUpdateProductPage(),
+          AddUpdateProductPage.routeName: (context) =>
+              const AddUpdateProductPage(),
           CartPage.routeName: (context) => const CartPage(),
-          OrderDetailPage.routeName: (context) => const OrderDetailPage(),
-          AccountPage.routeName: (context) => const AccountPage()
+          OrderDetailPage.routeName: (context) => const OrderDetailPage()
         },
       ),
     );
