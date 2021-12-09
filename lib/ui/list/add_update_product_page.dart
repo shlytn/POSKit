@@ -70,7 +70,29 @@ class AddUpdateProductPage extends StatelessWidget {
                 onChanged: (value) => barcode = value,
               ),
               _spacing(12.0),
-              RoundedButton(onClick: (){}, text: title)
+              RoundedButton(onClick: () {}, text: title),
+              _spacing(12.0),
+              TextButton(
+                onPressed: () {
+                  isUpdate ? null : Navigator.pop(context);
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      CupertinoIcons.delete,
+                      color: Colors.red,
+                    ),
+                    const SizedBox(
+                      width: 8.0,
+                    ),
+                    Text(
+                      isUpdate ? 'Delete Product' : 'Cancel',
+                      style: const TextStyle(color: Colors.red),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
