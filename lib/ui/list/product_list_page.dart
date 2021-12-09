@@ -2,7 +2,7 @@ import 'package:dicoding_capstone_pos/common/styles.dart';
 import 'package:dicoding_capstone_pos/ui/cart/cart_page.dart';
 import 'package:dicoding_capstone_pos/widgets/cart_button.dart';
 import 'package:dicoding_capstone_pos/widgets/grid_food.dart';
-import 'package:dicoding_capstone_pos/widgets/list_food.dart';
+import 'package:dicoding_capstone_pos/widgets/list_product.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -27,10 +27,10 @@ class _ProductListPageState extends State<ProductListPage> {
       backgroundColor: background,
       appBar: AppBar(
           centerTitle: true,
-          leading: IconButton(
-            onPressed: () {},
-            icon: const Icon(CupertinoIcons.line_horizontal_3_decrease),
-          ),
+          // leading: IconButton(
+          //   onPressed: () {},
+          //   icon: const Icon(CupertinoIcons.line_horizontal_3_decrease),
+          // ),
           elevation: 0,
           title: const Text('Cashier'),
           actions: [
@@ -106,7 +106,7 @@ class _ProductListPageState extends State<ProductListPage> {
           ),
           const SizedBox(height: 8.0),
           Expanded(
-            child: isListView ? const ListViewFood() : const GridViewFood(),
+            child: isListView ? const ListViewProduct() : const GridViewFood(),
           ),
           const CartButton(
             route: CartPage.routeName,

@@ -5,8 +5,8 @@ import 'package:dicoding_capstone_pos/common/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-class ListViewFood extends StatelessWidget {
-  const ListViewFood({
+class ListViewProduct extends StatelessWidget {
+  const ListViewProduct({
     Key? key,
   }) : super(key: key);
 
