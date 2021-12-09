@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CustomText extends StatelessWidget {
+class IconText extends StatelessWidget {
   final String text;
   final IconData icon;
   final Color? textColor;
@@ -8,7 +8,7 @@ class CustomText extends StatelessWidget {
   final double? textSize;
   final double? iconSize;
 
-  const CustomText({
+  const IconText({
     Key? key,
     required this.text,
     required this.icon,

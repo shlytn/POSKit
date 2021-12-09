@@ -1,7 +1,7 @@
 import 'package:dicoding_capstone_pos/common/styles.dart';
 import 'package:dicoding_capstone_pos/ui/cart/cart_page.dart';
 import 'package:dicoding_capstone_pos/widgets/cart_button.dart';
-import 'package:dicoding_capstone_pos/widgets/grid_food.dart';
+import 'package:dicoding_capstone_pos/widgets/grid_product.dart';
 import 'package:dicoding_capstone_pos/widgets/list_product.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -106,7 +106,7 @@ class _ProductListPageState extends State<ProductListPage> {
           ),
           const SizedBox(height: 8.0),
           Expanded(
-            child: isListView ? const ListViewProduct() : const GridViewFood(),
+            child: isListView ? const ListViewProduct() : const GridViewProduct(),
           ),
           const CartButton(
             route: CartPage.routeName,

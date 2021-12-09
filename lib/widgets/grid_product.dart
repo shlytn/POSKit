@@ -3,8 +3,8 @@ import 'package:dicoding_capstone_pos/common/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class GridViewFood extends StatelessWidget {
-  const GridViewFood({
+class GridViewProduct extends StatelessWidget {
+  const GridViewProduct({
     Key? key,
   }) : super(key: key);
 

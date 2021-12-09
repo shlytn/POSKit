@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:dicoding_capstone_pos/widgets/custom_text.dart';
+import 'package:dicoding_capstone_pos/widgets/icon_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -61,7 +61,7 @@ class _ImageFieldState extends State<ImageField> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
-            child: CustomText(
+            child: IconText(
               text: imageName,
               icon: CupertinoIcons.photo,
               textColor: Colors.black,
