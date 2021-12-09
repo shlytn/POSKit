@@ -15,7 +15,7 @@ class EmptyWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
         children: [
-          Image.asset('images/search.png', width: size),
+          Image.asset('assets/images/search.png', width: size),
           const Text('No Data'),
         ],
       ),

@@ -1,11 +1,16 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:dicoding_capstone_pos/common/styles.dart';
+import 'package:dicoding_capstone_pos/provider/auth_provider.dart';
+import 'package:dicoding_capstone_pos/ui/auth/onboarding_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AccountPage extends StatelessWidget {
   static const routeName = '/account';
+  static const pageTitle = 'Account';
+
   const AccountPage({Key? key}) : super(key: key);
 
   @override
@@ -152,7 +157,11 @@ class AccountPage extends StatelessWidget {
               height: 60.0,
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Provider.of<AuthProvider>(context, listen: false).signOut();
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, OnboardingPage.routeName, (route) => false);
+                },
                 style: ElevatedButton.styleFrom(
                   onPrimary: CupertinoColors.systemRed,
                   elevation: 0,

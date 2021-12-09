@@ -1,7 +1,7 @@
-import 'package:dicoding_capstone_pos/ui/history_page.dart';
-import 'package:dicoding_capstone_pos/ui/product_list_page.dart';
-import 'package:dicoding_capstone_pos/ui/settings_page.dart';
-import 'package:dicoding_capstone_pos/ui/stat_page.dart';
+import 'package:dicoding_capstone_pos/ui/history/history_page.dart';
+import 'package:dicoding_capstone_pos/ui/list/product_list_page.dart';
+import 'package:dicoding_capstone_pos/ui/profile/account_page.dart';
+import 'package:dicoding_capstone_pos/ui/home/stat_page.dart';
 import 'package:fancy_bottom_navigation/fancy_bottom_navigation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
     StatPage(),
     const ProductListPage(),
     HistoryPage(),
-    SettingsPage(),
+    AccountPage(),
   ];
 
   final List<TabData> _bottomNavBarItems = [
@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
     ),
     TabData(
       iconData: CupertinoIcons.person,
-      title: SettingsPage.pageTitle,
+      title: AccountPage.pageTitle,
     ),
   ];
 }

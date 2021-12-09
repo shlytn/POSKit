@@ -1,6 +1,6 @@
 import 'package:dicoding_capstone_pos/provider/auth_provider.dart';
-import 'package:dicoding_capstone_pos/ui/home_page.dart';
-import 'package:dicoding_capstone_pos/ui/signup_page.dart';
+import 'package:dicoding_capstone_pos/ui/home/home_page.dart';
+import 'package:dicoding_capstone_pos/ui/auth/signup_page.dart';
 import 'package:dicoding_capstone_pos/widgets/account_check_text.dart';
 import 'package:dicoding_capstone_pos/widgets/custom_app_bar.dart';
 import 'package:dicoding_capstone_pos/widgets/input_field.dart';
@@ -32,7 +32,7 @@ class LoginPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CustomAppBar(title: pageTitle),
+                  const CustomAppBar(title: pageTitle),
                   _spacing(24.0),
                   InputField(
                     label: 'Email',

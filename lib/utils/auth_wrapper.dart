@@ -1,6 +1,6 @@
 import 'package:dicoding_capstone_pos/provider/auth_provider.dart';
-import 'package:dicoding_capstone_pos/ui/home_page.dart';
-import 'package:dicoding_capstone_pos/ui/onboarding_page.dart';
+import 'package:dicoding_capstone_pos/ui/home/home_page.dart';
+import 'package:dicoding_capstone_pos/ui/auth/onboarding_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
