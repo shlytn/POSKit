@@ -76,29 +76,25 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
   final List<PageViewModel> _listPageViewModel = [
     PageViewModel(
-      title: "Easy Management",
-      body:
-          "Manage your transaction and products easier and quicker\nProvide transaction history alongside with stat",
-      image: Center(
-        child: Image.asset("images/onboarding/screen1.png"),
-      ),
-      decoration: const PageDecoration(
-        imagePadding: EdgeInsets.all(0.0)
-      )
-    ),
+        title: "Easy Management",
+        body:
+            "Manage your transaction and products easier and quicker\nProvide transaction history alongside with stat",
+        image: Center(
+          child: Image.asset("assets/images/onboarding/screen1.png"),
+        ),
+        decoration: const PageDecoration(imagePadding: EdgeInsets.all(0.0))),
     PageViewModel(
       title: "Increased Efficiency",
-      body:
-          "More productive and time saving, help reduce numbers of operation",
+      body: "More productive and time saving, help reduce numbers of operation",
       image: Center(
-        child: Image.asset("images/onboarding/screen2.png"),
+        child: Image.asset("assets/images/onboarding/screen2.png"),
       ),
     ),
     PageViewModel(
       title: "More Accuracy",
       body: "Minimalist mistake in your transaction",
       image: Center(
-        child: Image.asset("images/onboarding/screen3.png"),
+        child: Image.asset("assets/images/onboarding/screen3.png"),
       ),
     ),
   ];
