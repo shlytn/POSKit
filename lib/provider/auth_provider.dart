@@ -6,7 +6,7 @@ enum AuthState { uninitialized, authenticated, authenticating, unauthenticated }
 class AuthProvider extends ChangeNotifier {
   final FirebaseAuth _firebaseAuth;
 
-  AuthProvider.instance(): _firebaseAuth = FirebaseAuth.instance {
+  AuthProvider.instance() : _firebaseAuth = FirebaseAuth.instance {
     _firebaseAuth.authStateChanges().listen(_onAuthStateChanged);
   }
 
@@ -24,7 +24,8 @@ class AuthProvider extends ChangeNotifier {
     try {
       _state = AuthState.authenticating;
       notifyListeners();
-      UserCredential userCredential = await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
+      UserCredential userCredential = await _firebaseAuth
+          .createUserWithEmailAndPassword(email: email, password: password);
       User? user = userCredential.user;
       user?.updateDisplayName(name);
       if (user != null) {
@@ -48,7 +49,8 @@ class AuthProvider extends ChangeNotifier {
     try {
       _state = AuthState.authenticating;
       notifyListeners();
-      await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
+      await _firebaseAuth.signInWithEmailAndPassword(
+          email: email, password: password);
       return true;
     } on FirebaseAuthException catch (e) {
       return _message = e.message.toString();
@@ -71,6 +73,15 @@ class AuthProvider extends ChangeNotifier {
       _state = AuthState.authenticated;
     }
     notifyListeners();
+  }
+
+  Future<dynamic> resetPassword(String email) async {
+    try {
+      await _firebaseAuth.sendPasswordResetEmail(email: email);
+      return _message = "Password Reset sent to Email";
+    } catch (e) {
+      return _message = "Failed to reset password";
+    }
   }
 
   String getMessageFromErrorCode(FirebaseAuthException e) {

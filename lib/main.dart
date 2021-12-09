@@ -1,4 +1,5 @@
 import 'package:dicoding_capstone_pos/provider/auth_provider.dart';
+import 'package:dicoding_capstone_pos/ui/auth/forgot_password_page.dart';
 import 'package:dicoding_capstone_pos/ui/list/add_update_product_page.dart';
 import 'package:dicoding_capstone_pos/ui/home/home_page.dart';
 import 'package:dicoding_capstone_pos/ui/auth/login_page.dart';
@@ -37,7 +38,8 @@ class MyApp extends StatelessWidget {
           colorScheme: const ColorScheme.light(
               primary: Colors.white,
               background: background,
-              onPrimary: secondaryColor),
+              onPrimary: secondaryColor,
+          ),
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         // theme: CupertinoThemeData(
@@ -57,6 +59,7 @@ class MyApp extends StatelessWidget {
           CartPage.routeName: (context) => const CartPage(),
           OrderDetailPage.routeName: (context) => const OrderDetailPage(),
           AccountPage.routeName: (context) => const AccountPage(),
+          ForgotPasswordPage.routeName: (context) => ForgotPasswordPage(),
         },
       ),
     );

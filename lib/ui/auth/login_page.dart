@@ -1,4 +1,5 @@
 import 'package:dicoding_capstone_pos/provider/auth_provider.dart';
+import 'package:dicoding_capstone_pos/ui/auth/forgot_password_page.dart';
 import 'package:dicoding_capstone_pos/ui/home/home_page.dart';
 import 'package:dicoding_capstone_pos/ui/auth/signup_page.dart';
 import 'package:dicoding_capstone_pos/widgets/account_check_text.dart';
@@ -49,7 +50,9 @@ class LoginPage extends StatelessWidget {
                   Align(
                     alignment: Alignment.topRight,
                     child: GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(context, ForgotPasswordPage.routeName);
+                      },
                       child: const Text(
                         "Forgot Password?",
                         style: TextStyle(
