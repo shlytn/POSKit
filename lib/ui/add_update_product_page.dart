@@ -69,6 +69,7 @@ class AddUpdateProductPage extends StatelessWidget {
                 type: TextInputType.number,
                 onChanged: (value) => barcode = value,
               ),
+              _spacing(12.0),
               RoundedButton(onClick: (){}, text: title)
             ],
           ),
