@@ -32,13 +32,15 @@ class CustomText extends StatelessWidget {
         const SizedBox(
           width: 8.0,
         ),
-        Text(
-          text,
-          style: TextStyle(
-            fontSize: textSize,
-            color: textColor,
+        Expanded(
+          child: Text(
+            text,
+            style: TextStyle(
+              fontSize: textSize,
+              color: textColor,
+            ),
+            overflow: TextOverflow.ellipsis,
           ),
-          overflow: TextOverflow.ellipsis,
         ),
       ],
     );
