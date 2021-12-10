@@ -6,16 +6,20 @@ import 'text_field_container.dart';
 
 class InputField extends StatefulWidget {
   final String label;
+  final String? text;
   final String hint;
   final TextInputType type;
-  final ValueChanged<String> onChanged;
+  final ValueChanged<String>? onChanged;
+  final bool isEnable;
 
   const InputField({
     Key? key,
     required this.label,
+    this.text,
     required this.hint,
     this.type = TextInputType.text,
-    required this.onChanged,
+    this.onChanged,
+    this.isEnable = true,
   }) : super(key: key);
 
   @override
@@ -23,6 +27,14 @@ class InputField extends StatefulWidget {
 }
 
 class _InputFieldState extends State<InputField> {
+  late TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController(text: widget.text ?? "");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -32,6 +44,8 @@ class _InputFieldState extends State<InputField> {
         Text(widget.label),
         TextFieldContainer(
           child: TextFormField(
+            controller: _controller,
+            enabled: widget.isEnable,
             decoration: InputDecoration(
               border: InputBorder.none,
               hintText: widget.hint,
@@ -53,4 +67,6 @@ class _InputFieldState extends State<InputField> {
       ],
     );
   }
+
+
 }

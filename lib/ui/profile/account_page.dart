@@ -2,6 +2,7 @@
 
 import 'package:dicoding_capstone_pos/provider/auth_provider.dart';
 import 'package:dicoding_capstone_pos/ui/auth/onboarding_page.dart';
+import 'package:dicoding_capstone_pos/ui/profile/settings_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -53,7 +54,9 @@ class AccountPage extends StatelessWidget {
             SizedBox(height: 22.0),
             _buildRowMenu(
               title: 'Setting Account',
-              onClick: () {},
+              onClick: () {
+                Navigator.pushNamed(context, SettingsPage.routeName);
+              },
             ),
             Divider(
               height: 1,

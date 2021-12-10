@@ -10,6 +10,7 @@ import 'package:dicoding_capstone_pos/ui/profile/account_page.dart';
 import 'package:dicoding_capstone_pos/ui/cart/cart_page.dart';
 import 'package:dicoding_capstone_pos/ui/cart/order_detail.dart';
 import 'package:dicoding_capstone_pos/ui/auth/signup_page.dart';
+import 'package:dicoding_capstone_pos/ui/profile/settings_page.dart';
 import 'package:dicoding_capstone_pos/utils/auth_wrapper.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
@@ -60,6 +61,7 @@ class MyApp extends StatelessWidget {
           OrderDetailPage.routeName: (context) => const OrderDetailPage(),
           AccountPage.routeName: (context) => const AccountPage(),
           ForgotPasswordPage.routeName: (context) => ForgotPasswordPage(),
+          SettingsPage.routeName: (context) => const SettingsPage(),
         },
       ),
     );
