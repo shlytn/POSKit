@@ -46,6 +46,9 @@ class _InputFieldState extends State<InputField> {
           child: TextFormField(
             controller: _controller,
             enabled: widget.isEnable,
+            textCapitalization: widget.type == TextInputType.text
+                ? TextCapitalization.words
+                : TextCapitalization.none,
             decoration: InputDecoration(
               border: InputBorder.none,
               hintText: widget.hint,
@@ -67,6 +70,4 @@ class _InputFieldState extends State<InputField> {
       ],
     );
   }
-
-
 }
