@@ -14,6 +14,9 @@ class AccountPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var user = Provider.of<AuthProvider>(context).user;
+    var name = user.displayName != null || user.displayName!.trim() != '' ? user.displayName : 'Anonymous';
+
     return Scaffold(
       appBar: AppBar(
         title: Center(
@@ -36,114 +39,30 @@ class AccountPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'My Store',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                      "$name",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 22,
+                          color: Colors.black),
                     ),
-                    Text('082112344321'),
-                    Text('Owner@gmail.com')
+                    Text(user.email!)
                   ],
                 )
               ],
             ),
             SizedBox(height: 22.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Setting Account',
-                  style: TextStyle(fontSize: 16),
-                ),
-                IconButton(
-                  padding: const EdgeInsets.all(0),
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.arrow_forward_ios,
-                    size: 12,
-                  ),
-                ),
-              ],
+            _buildRowMenu(
+              title: 'Setting Account',
+              onClick: () {},
             ),
             Divider(
               height: 1,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Subscription history',
-                  style: TextStyle(fontSize: 16),
-                ),
-                IconButton(
-                  padding: const EdgeInsets.all(0),
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.arrow_forward_ios,
-                    size: 12,
-                  ),
-                ),
-              ],
-            ),
+            _buildRowMenu(title: 'Business Information', onClick: () {}),
             Divider(
               height: 1,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Business Information',
-                  style: TextStyle(fontSize: 16),
-                ),
-                IconButton(
-                  padding: const EdgeInsets.all(0),
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.arrow_forward_ios,
-                    size: 12,
-                  ),
-                ),
-              ],
-            ),
-            Divider(
-              height: 1,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Dashboard',
-                  style: TextStyle(fontSize: 16),
-                ),
-                IconButton(
-                  padding: const EdgeInsets.all(0),
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.arrow_forward_ios,
-                    size: 12,
-                  ),
-                ),
-              ],
-            ),
-            Divider(
-              height: 1,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'User Help',
-                  style: TextStyle(fontSize: 16),
-                ),
-                IconButton(
-                  padding: const EdgeInsets.all(0),
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.arrow_forward_ios,
-                    size: 12,
-                  ),
-                ),
-              ],
-            ),
+            _buildRowMenu(title: 'User Help', onClick: () {}),
             Divider(
               height: 1,
             ),
@@ -170,6 +89,33 @@ class AccountPage extends StatelessWidget {
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildRowMenu({required String title, required Function onClick}) {
+    return InkWell(
+      onTap: () => onClick(),
+      child: Padding(
+        padding: const EdgeInsets.only(
+          top: 12.5,
+          bottom: 12.5,
+          left: 4.0,
+          right: 18.0,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              title,
+              style: TextStyle(fontSize: 16),
+            ),
+            Icon(
+              Icons.arrow_forward_ios,
+              size: 12,
             ),
           ],
         ),
