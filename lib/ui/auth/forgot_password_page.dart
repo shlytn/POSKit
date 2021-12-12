@@ -82,6 +82,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                       border: InputBorder.none,
                     ),
                     style: const TextStyle(color: Colors.black),
+                    keyboardType: TextInputType.emailAddress,
                   ),
                 ),
                 RoundedButton(
