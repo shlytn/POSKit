@@ -3,6 +3,7 @@
 import 'package:dicoding_capstone_pos/provider/auth_provider.dart';
 import 'package:dicoding_capstone_pos/ui/auth/onboarding_page.dart';
 import 'package:dicoding_capstone_pos/ui/profile/settings_page.dart';
+import 'package:dicoding_capstone_pos/widgets/row_menu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,6 +20,13 @@ class AccountPage extends StatelessWidget {
     var name = user.displayName != null && user.displayName != ''
         ? user.displayName
         : 'Anonymous';
+
+    var padding = EdgeInsets.only(
+      top: 12.5,
+      bottom: 12.5,
+      left: 4.0,
+      right: 18.0,
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -54,8 +62,9 @@ class AccountPage extends StatelessWidget {
               ],
             ),
             SizedBox(height: 22.0),
-            _buildRowMenu(
+            RowMenu(
               title: 'Setting Account',
+              padding: padding,
               onClick: () {
                 Navigator.pushNamed(context, SettingsPage.routeName);
               },
@@ -63,11 +72,14 @@ class AccountPage extends StatelessWidget {
             Divider(
               height: 1,
             ),
-            _buildRowMenu(title: 'Business Information', onClick: () {}),
+            RowMenu(
+                title: 'Business Information',
+                padding: padding,
+                onClick: () {}),
             Divider(
               height: 1,
             ),
-            _buildRowMenu(title: 'User Help', onClick: () {}),
+            RowMenu(title: 'User Help', padding: padding, onClick: () {}),
             Divider(
               height: 1,
             ),
@@ -94,33 +106,6 @@ class AccountPage extends StatelessWidget {
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildRowMenu({required String title, required Function onClick}) {
-    return InkWell(
-      onTap: () => onClick(),
-      child: Padding(
-        padding: const EdgeInsets.only(
-          top: 12.5,
-          bottom: 12.5,
-          left: 4.0,
-          right: 18.0,
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              title,
-              style: TextStyle(fontSize: 16),
-            ),
-            Icon(
-              Icons.arrow_forward_ios,
-              size: 12,
             ),
           ],
         ),
