@@ -16,7 +16,9 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var user = Provider.of<AuthProvider>(context).user;
-    var name = user.displayName != null || user.displayName!.trim() != '' ? user.displayName : 'Anonymous';
+    var name = user.displayName != null && user.displayName!.trim() != ''
+        ? user.displayName
+        : 'Anonymous';
 
     return Scaffold(
       appBar: AppBar(title: const Text(pageTitle)),
