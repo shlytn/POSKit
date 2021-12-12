@@ -27,10 +27,11 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-        ),
-        body: Consumer<AuthProvider>(builder: (context, auth, _) {
+      appBar: AppBar(
+        elevation: 0,
+      ),
+      body: Consumer<AuthProvider>(
+        builder: (context, auth, _) {
           return Padding(
             padding:
                 const EdgeInsets.symmetric(vertical: 32.0, horizontal: 28.0),
@@ -38,11 +39,17 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  "Please enter your Email Address",
+                  "Reset Password",
                   style: TextStyle(
                     fontSize: 28.0,
                     color: onPrimary,
                     fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const Text(
+                  "Enter email address associated with your account and we'll email the instruction to reset your password",
+                  style: TextStyle(
+                    color: Colors.grey,
                   ),
                 ),
                 Container(
@@ -90,7 +97,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               ],
             ),
           );
-        }));
+        },
+      ),
+    );
   }
 
   @override
