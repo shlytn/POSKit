@@ -28,7 +28,7 @@ class RowMenu extends StatelessWidget {
             ),
             const Icon(
               Icons.arrow_forward_ios,
-              size: 12,
+              size: 14,
             ),
           ],
         ),
