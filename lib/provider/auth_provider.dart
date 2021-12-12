@@ -39,7 +39,7 @@ class AuthProvider extends ChangeNotifier {
     } on FirebaseAuthException catch (e) {
       _state = AuthState.unauthenticated;
       notifyListeners();
-      _message = getMessageFromErrorCode(e);
+      _message = getMessageFromErrorCode(e, "Sign Up");
       return _message;
     } catch (e) {
       _state = AuthState.unauthenticated;
@@ -58,7 +58,7 @@ class AuthProvider extends ChangeNotifier {
     } on FirebaseAuthException catch (e) {
       _state = AuthState.unauthenticated;
       notifyListeners();
-      return _message = e.message.toString();
+      return _message = getMessageFromErrorCode(e, "Login");
     } catch (e) {
       _state = AuthState.unauthenticated;
       notifyListeners();
@@ -89,12 +89,12 @@ class AuthProvider extends ChangeNotifier {
     }
   }
 
-  String getMessageFromErrorCode(FirebaseAuthException e) {
+  String getMessageFromErrorCode(FirebaseAuthException e, String auth) {
     switch (e.code) {
       case "ERROR_EMAIL_ALREADY_IN_USE":
       case "account-exists-with-different-credential":
       case "email-already-in-use":
-        return "Email already used. Go to login page.";
+        return "Email already used. Please go to login page.";
       case "ERROR_WRONG_PASSWORD":
       case "wrong-password":
         return "Wrong email/password combination.";
@@ -113,7 +113,7 @@ class AuthProvider extends ChangeNotifier {
       case "invalid-email":
         return "Email address is invalid.";
       default:
-        return "Login failed. Please try again.";
+        return "$auth failed. Please try again. Make sure your internet are connected.";
     }
   }
 }
