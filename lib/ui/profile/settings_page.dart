@@ -1,4 +1,3 @@
-import 'package:dicoding_capstone_pos/common/styles.dart';
 import 'package:dicoding_capstone_pos/provider/auth_provider.dart';
 import 'package:dicoding_capstone_pos/widgets/image_widget.dart';
 import 'package:dicoding_capstone_pos/widgets/input_field.dart';
