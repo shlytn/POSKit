@@ -27,8 +27,11 @@ class AuthProvider extends ChangeNotifier {
       UserCredential userCredential = await _firebaseAuth
           .createUserWithEmailAndPassword(email: email, password: password);
       User? user = userCredential.user;
-      user?.updateDisplayName(name);
       if (user != null) {
+        user.updateDisplayName(name);
+        await user.reload();
+        user = _firebaseAuth.currentUser;
+        _user = user!;
         _state = AuthState.authenticated;
         notifyListeners();
       }
@@ -53,6 +56,8 @@ class AuthProvider extends ChangeNotifier {
           email: email, password: password);
       return true;
     } on FirebaseAuthException catch (e) {
+      _state = AuthState.unauthenticated;
+      notifyListeners();
       return _message = e.message.toString();
     } catch (e) {
       _state = AuthState.unauthenticated;
