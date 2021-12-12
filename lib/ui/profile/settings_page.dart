@@ -2,6 +2,8 @@ import 'package:dicoding_capstone_pos/common/styles.dart';
 import 'package:dicoding_capstone_pos/provider/auth_provider.dart';
 import 'package:dicoding_capstone_pos/widgets/image_widget.dart';
 import 'package:dicoding_capstone_pos/widgets/input_field.dart';
+import 'package:dicoding_capstone_pos/widgets/rounded_button.dart';
+import 'package:dicoding_capstone_pos/widgets/row_menu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -25,20 +27,35 @@ class SettingsPage extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             ImageWidget(),
-            const SizedBox(height: 24.0,),
+            const SizedBox(
+              height: 24.0,
+            ),
             InputField(
               label: "Business Name",
               text: name,
               hint: "",
-              isEnable: false,
             ),
-            const SizedBox(height: 12.0,),
+            const SizedBox(
+              height: 12.0,
+            ),
             InputField(
               label: "Email Address",
               text: user.email,
               hint: "",
               isEnable: false,
-            )
+            ),
+            const SizedBox(
+              height: 12.0,
+            ),
+            RowMenu(
+              title: 'Change Password',
+              padding: const EdgeInsets.symmetric(vertical: 12.5),
+              onClick: () {},
+            ),
+            const SizedBox(
+              height: 24.0,
+            ),
+            RoundedButton(text: 'Save Changes', onClick: (){},),
           ],
         ),
       ),
