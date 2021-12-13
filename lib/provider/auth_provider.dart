@@ -100,6 +100,22 @@ class AuthProvider extends ChangeNotifier {
     }
   }
 
+  Future<dynamic> updateProfile(String name) async {
+    try{
+      User? user = _firebaseAuth.currentUser;
+      if (user != null) {
+        await user.updateDisplayName(name);
+        await user.reload();
+        user = _firebaseAuth.currentUser;
+        _user = user!;
+        _message = "Changes Saved";
+      }
+      return _message;
+    } catch (e) {
+      return _message = "Failed to save account changes";
+    }
+  }
+
   Future<dynamic> resetPassword(String email) async {
     try {
       await _firebaseAuth.sendPasswordResetEmail(email: email);
