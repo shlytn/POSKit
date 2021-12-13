@@ -1,4 +1,5 @@
 import 'package:dicoding_capstone_pos/provider/auth_provider.dart';
+import 'package:dicoding_capstone_pos/ui/profile/change_password_page.dart';
 import 'package:dicoding_capstone_pos/widgets/image_widget.dart';
 import 'package:dicoding_capstone_pos/widgets/input_field.dart';
 import 'package:dicoding_capstone_pos/widgets/rounded_button.dart';
@@ -51,7 +52,9 @@ class SettingsPage extends StatelessWidget {
             RowMenu(
               title: 'Change Password',
               padding: const EdgeInsets.symmetric(vertical: 12.5),
-              onClick: () {},
+              onClick: () {
+                Navigator.pushNamed(context, ChangePasswordPage.routeName);
+              },
             ),
             const SizedBox(
               height: 24.0,
