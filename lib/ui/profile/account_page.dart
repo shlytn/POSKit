@@ -2,6 +2,7 @@
 
 import 'package:dicoding_capstone_pos/provider/auth_provider.dart';
 import 'package:dicoding_capstone_pos/ui/auth/onboarding_page.dart';
+import 'package:dicoding_capstone_pos/ui/profile/help_page.dart';
 import 'package:dicoding_capstone_pos/ui/profile/settings_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,9 @@ class AccountPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var user = Provider.of<AuthProvider>(context).user;
-    var name = user.displayName != null || user.displayName!.trim() != '' ? user.displayName : 'Anonymous';
+    var name = user.displayName != null || user.displayName!.trim() != ''
+        ? user.displayName
+        : 'Anonymous';
 
     return Scaffold(
       appBar: AppBar(
@@ -65,7 +68,11 @@ class AccountPage extends StatelessWidget {
             Divider(
               height: 1,
             ),
-            _buildRowMenu(title: 'User Help', onClick: () {}),
+            _buildRowMenu(
+                title: 'User Help',
+                onClick: () {
+                  Navigator.pushNamed(context, UserHelpPage.routeName);
+                }),
             Divider(
               height: 1,
             ),
