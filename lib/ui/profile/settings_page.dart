@@ -35,15 +35,15 @@ class SettingsPage extends StatelessWidget {
             InputField(
               label: "Business Name",
               text: name,
-              hint: "",
+
+              hint: "Enter your Business Name",
             ),
             const SizedBox(
               height: 12.0,
             ),
             InputField(
               label: "Email Address",
-              text: user.email,
-              hint: "",
+              hint: user.email!,
               isEnable: false,
             ),
             const SizedBox(
