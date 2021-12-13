@@ -6,6 +6,7 @@ import 'package:dicoding_capstone_pos/widgets/custom_app_bar.dart';
 import 'package:dicoding_capstone_pos/widgets/input_field.dart';
 import 'package:dicoding_capstone_pos/widgets/password_field.dart';
 import 'package:dicoding_capstone_pos/widgets/rounded_button.dart';
+import 'package:dicoding_capstone_pos/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -35,26 +36,26 @@ class SignUpPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const CustomAppBar(title: pageTitle),
-                    _spacing(24.0),
+                    spacing(24.0),
                     InputField(
                       label: 'Business Name',
                       hint: "Business Name",
                       onChanged: (value) => name = value,
                     ),
-                    _spacing(16.0),
+                    spacing(16.0),
                     InputField(
                       label: 'Email',
                       hint: "mail@mail.com",
                       type: TextInputType.emailAddress,
                       onChanged: (value) => email = value,
                     ),
-                    _spacing(16.0),
+                    spacing(16.0),
                     PasswordField(
                       label: 'Password',
                       hint: "At least 6 characters",
                       onChanged: (value) => password = value,
                     ),
-                    _spacing(44.0),
+                    spacing(44.0),
                     auth.state == AuthState.authenticating
                         ? const Center(child: CircularProgressIndicator())
                         : RoundedButton(
@@ -72,7 +73,7 @@ class SignUpPage extends StatelessWidget {
                           }
                         },
                         text: pageTitle),
-                    _spacing(16.0),
+                    spacing(16.0),
                     AccountCheckText(
                       isLogin: false,
                       onClick: () =>
@@ -85,12 +86,6 @@ class SignUpPage extends StatelessWidget {
           );
         }
       ),
-    );
-  }
-
-  Widget _spacing(double height) {
-    return SizedBox(
-      height: height,
     );
   }
 }

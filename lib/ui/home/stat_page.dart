@@ -2,6 +2,7 @@ import 'package:dicoding_capstone_pos/common/styles.dart';
 import 'package:dicoding_capstone_pos/widgets/sale_card.dart';
 import 'package:dicoding_capstone_pos/widgets/stat_card.dart';
 import 'package:dicoding_capstone_pos/widgets/stock_card.dart';
+import 'package:dicoding_capstone_pos/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -41,9 +42,9 @@ class StatPage extends StatelessWidget {
                 ),
               ],
             ),
-            _spacing(24.0),
+            spacing(24.0),
             _buildTitleText("Best-Selling Products"),
-            _spacing(12.0),
+            spacing(12.0),
             ListView.builder(
               itemBuilder: (context, index) {
                 return Padding(
@@ -55,9 +56,9 @@ class StatPage extends StatelessWidget {
               shrinkWrap: true,
               physics: const ClampingScrollPhysics(),
             ),
-            _spacing(24.0),
+            spacing(24.0),
             _buildTitleText("Out of Stock!"),
-            _spacing(12.0),
+            spacing(12.0),
             SizedBox(
               height: 200.0,
               child: ListView.builder(
@@ -72,7 +73,7 @@ class StatPage extends StatelessWidget {
                 physics: const ClampingScrollPhysics(),
               ),
             ),
-            _spacing(24.0),
+            spacing(24.0),
           ]),
         ),
       ),
@@ -83,12 +84,6 @@ class StatPage extends StatelessWidget {
     return Text(
       text,
       style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.w600),
-    );
-  }
-
-  Widget _spacing(double height) {
-    return SizedBox(
-      height: height,
     );
   }
 }
