@@ -80,6 +80,26 @@ class AuthProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<dynamic> changePassword(
+      String currentPassword, String newPassword) async {
+    try {
+      final user = _firebaseAuth.currentUser;
+      if (user != null) {
+        final credential = EmailAuthProvider.credential(
+            email: user.email!, password: currentPassword);
+
+        await user.reauthenticateWithCredential(credential);
+        await user.updatePassword(newPassword);
+
+        return _message = "Password changed Succeeded";
+      }
+    } on FirebaseAuthException catch (e) {
+      return _message = e.message.toString();
+    } catch (e) {
+      return _message = 'Error: $e';
+    }
+  }
+
   Future<dynamic> resetPassword(String email) async {
     try {
       await _firebaseAuth.sendPasswordResetEmail(email: email);
