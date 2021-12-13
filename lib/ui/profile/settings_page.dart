@@ -16,10 +16,12 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var user = Provider.of<AuthProvider>(context).user;
+    var auth = Provider.of<AuthProvider>(context);
+    var user = auth.user;
     var name = user.displayName != null && user.displayName!.trim() != ''
         ? user.displayName
         : 'Anonymous';
+    var newName = '';
 
     return Scaffold(
       appBar: AppBar(title: const Text(pageTitle)),
@@ -33,11 +35,10 @@ class SettingsPage extends StatelessWidget {
               height: 24.0,
             ),
             InputField(
-              label: "Business Name",
-              text: name,
-
-              hint: "Enter your Business Name",
-            ),
+                label: "Business Name",
+                text: name,
+                hint: "Enter your Business Name",
+                onChanged: (value) => newName = value),
             const SizedBox(
               height: 12.0,
             ),
@@ -59,7 +60,17 @@ class SettingsPage extends StatelessWidget {
             const SizedBox(
               height: 24.0,
             ),
-            RoundedButton(text: 'Save Changes', onClick: (){},),
+            RoundedButton(
+              text: 'Save Changes',
+              onClick: () async {
+                await auth.updateProfile(newName);
+
+                final snackBar = SnackBar(
+                  content: Text(auth.message),
+                );
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              },
+            ),
           ],
         ),
       ),
