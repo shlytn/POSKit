@@ -1,4 +1,5 @@
 import 'package:dicoding_capstone_pos/provider/auth_provider.dart';
+import 'package:dicoding_capstone_pos/ui/auth/email_sent_page.dart';
 import 'package:dicoding_capstone_pos/ui/auth/forgot_password_page.dart';
 import 'package:dicoding_capstone_pos/ui/list/add_update_product_page.dart';
 import 'package:dicoding_capstone_pos/ui/home/home_page.dart';
@@ -64,6 +65,7 @@ class MyApp extends StatelessWidget {
           ForgotPasswordPage.routeName: (context) => ForgotPasswordPage(),
           SettingsPage.routeName: (context) => const SettingsPage(),
           ChangePasswordPage.routeName: (context) => const ChangePasswordPage(),
+          EmailSentPage.routeName: (context) => const EmailSentPage(),
         },
       ),
     );

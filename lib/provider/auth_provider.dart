@@ -103,9 +103,11 @@ class AuthProvider extends ChangeNotifier {
   Future<dynamic> resetPassword(String email) async {
     try {
       await _firebaseAuth.sendPasswordResetEmail(email: email);
-      return _message = "Password Reset sent to Email";
+      _message = "Password Reset sent to Email";
+      return true;
     } catch (e) {
-      return _message = "Failed to reset password";
+      _message = "Failed to reset password";
+      return false;
     }
   }
 

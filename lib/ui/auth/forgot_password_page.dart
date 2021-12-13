@@ -1,5 +1,6 @@
 import 'package:dicoding_capstone_pos/common/styles.dart';
 import 'package:dicoding_capstone_pos/provider/auth_provider.dart';
+import 'package:dicoding_capstone_pos/ui/auth/email_sent_page.dart';
 import 'package:dicoding_capstone_pos/widgets/rounded_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -86,8 +87,10 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   ),
                 ),
                 RoundedButton(
-                  onClick: () {
-                    auth.resetPassword(_controller.text);
+                  onClick: () async {
+                    if (await auth.resetPassword(_controller.text)){
+                      Navigator.pushNamed(context, EmailSentPage.routeName);
+                    }
                     final snackBar = SnackBar(
                       content: Text(auth.message),
                     );
