@@ -96,7 +96,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     );
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   },
-                  text: "Reset Password",
+                  text: "Send Email",
                 )
               ],
             ),

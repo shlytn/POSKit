@@ -1,5 +1,5 @@
 import 'package:dicoding_capstone_pos/common/styles.dart';
-import 'package:dicoding_capstone_pos/ui/auth/login_page.dart';
+import 'package:dicoding_capstone_pos/ui/auth/onboarding_page.dart';
 import 'package:dicoding_capstone_pos/widgets/rounded_button.dart';
 import 'package:dicoding_capstone_pos/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
@@ -45,15 +45,15 @@ class EmailSentPage extends StatelessWidget {
             ),
             spacing(50.0),
             RoundedButton(
-              text: 'Login',
+              text: 'Return to Login',
               onClick: () {
                 Navigator.pushNamedAndRemoveUntil(
-                    context, LoginPage.routeName, (route) => false);
+                    context, OnboardingPage.routeName, (route) => false);
               },
             ),
             TextButton(
               child: const Text(
-                'Change email?',
+                'Resend Email?',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: secondaryColor,
