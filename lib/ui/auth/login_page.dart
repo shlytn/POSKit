@@ -44,7 +44,7 @@ class LoginPage extends StatelessWidget {
                   _spacing(16.0),
                   PasswordField(
                     label: 'Password',
-                    hint: "At least 8 characters",
+                    hint: "At least 6 characters",
                     onChanged: (value) => password = value,
                   ),
                   Align(
