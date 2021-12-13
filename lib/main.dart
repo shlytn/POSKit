@@ -10,6 +10,7 @@ import 'package:dicoding_capstone_pos/ui/profile/account_page.dart';
 import 'package:dicoding_capstone_pos/ui/cart/cart_page.dart';
 import 'package:dicoding_capstone_pos/ui/cart/order_detail.dart';
 import 'package:dicoding_capstone_pos/ui/auth/signup_page.dart';
+import 'package:dicoding_capstone_pos/ui/profile/help_page.dart';
 import 'package:dicoding_capstone_pos/ui/profile/settings_page.dart';
 import 'package:dicoding_capstone_pos/utils/auth_wrapper.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -37,9 +38,9 @@ class MyApp extends StatelessWidget {
         title: 'Flutter App',
         theme: ThemeData(
           colorScheme: const ColorScheme.light(
-              primary: Colors.white,
-              background: background,
-              onPrimary: secondaryColor,
+            primary: Colors.white,
+            background: background,
+            onPrimary: secondaryColor,
           ),
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
@@ -55,13 +56,14 @@ class MyApp extends StatelessWidget {
           HomePage.routeName: (context) => HomePage(),
           ProductListPage.routeName: (context) => const ProductListPage(),
           AddUpdateProductPage.routeName: (context) => AddUpdateProductPage(
-            isUpdate: ModalRoute.of(context)?.settings.arguments as bool,
-          ),
+                isUpdate: ModalRoute.of(context)?.settings.arguments as bool,
+              ),
           CartPage.routeName: (context) => const CartPage(),
           OrderDetailPage.routeName: (context) => const OrderDetailPage(),
           AccountPage.routeName: (context) => const AccountPage(),
           ForgotPasswordPage.routeName: (context) => ForgotPasswordPage(),
           SettingsPage.routeName: (context) => const SettingsPage(),
+          UserHelpPage.routeName: (context) => const UserHelpPage()
         },
       ),
     );
