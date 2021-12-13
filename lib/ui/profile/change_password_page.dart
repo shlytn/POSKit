@@ -1,5 +1,5 @@
 import 'package:dicoding_capstone_pos/provider/auth_provider.dart';
-import 'package:dicoding_capstone_pos/widgets/input_field.dart';
+import 'package:dicoding_capstone_pos/widgets/password_field.dart';
 import 'package:dicoding_capstone_pos/widgets/rounded_button.dart';
 import 'package:dicoding_capstone_pos/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
@@ -25,13 +25,13 @@ class ChangePasswordPage extends StatelessWidget {
           padding: const EdgeInsets.all(24.0),
           child: Column(
             children: [
-              InputField(
+              PasswordField(
                 label: 'Current Password',
                 hint: 'Enter Current Password',
                 onChanged: (value) => currentPassword = value,
               ),
               spacing(12.0),
-              InputField(
+              PasswordField(
                 label: 'New Password',
                 hint: 'Must at least 6 character',
                 onChanged: (value) => newPassword = value,
