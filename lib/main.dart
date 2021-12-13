@@ -10,6 +10,7 @@ import 'package:dicoding_capstone_pos/ui/profile/account_page.dart';
 import 'package:dicoding_capstone_pos/ui/cart/cart_page.dart';
 import 'package:dicoding_capstone_pos/ui/cart/order_detail.dart';
 import 'package:dicoding_capstone_pos/ui/auth/signup_page.dart';
+import 'package:dicoding_capstone_pos/ui/profile/help/add_product.dart';
 import 'package:dicoding_capstone_pos/ui/profile/help_page.dart';
 import 'package:dicoding_capstone_pos/ui/profile/settings_page.dart';
 import 'package:dicoding_capstone_pos/utils/auth_wrapper.dart';
@@ -63,7 +64,8 @@ class MyApp extends StatelessWidget {
           AccountPage.routeName: (context) => const AccountPage(),
           ForgotPasswordPage.routeName: (context) => ForgotPasswordPage(),
           SettingsPage.routeName: (context) => const SettingsPage(),
-          UserHelpPage.routeName: (context) => const UserHelpPage()
+          UserHelpPage.routeName: (context) => const UserHelpPage(),
+          AddProductHelp.routeName: (context) => const AddProductHelp()
         },
       ),
     );
