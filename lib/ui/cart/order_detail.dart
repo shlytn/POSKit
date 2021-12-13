@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'dart:ffi';
+
 import 'package:dicoding_capstone_pos/common/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -84,38 +86,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
             padding: const EdgeInsets.only(left: 16.0, right: 16.0),
             child: Column(
               children: [
-                ListView.separated(
-                  shrinkWrap: true,
-                  separatorBuilder: (context, index) => Divider(),
-                  itemCount: 1,
-                  itemBuilder: (context, snapshot) {
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          height: 34,
-                          width: 34,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: secondaryColor),
-                          child: Center(
-                            child: Text(
-                              '1',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 16),
-                            ),
-                          ),
-                        ),
-                        Text('Tuna Salad'),
-                        SizedBox(width: 60),
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: Text('\$10.99'),
-                        )
-                      ],
-                    );
-                  },
-                ),
+                _buildOrderList(),
                 Divider(),
                 SizedBox(height: 8.0),
                 Row(
@@ -176,31 +147,54 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
               style: ElevatedButton.styleFrom(
                   primary: secondaryColor, onPrimary: Colors.white),
               child: Container(
+                width: double.infinity,
                 height: 60,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    RichText(
-                      text: const TextSpan(
-                        children: [
-                          WidgetSpan(
-                            child: Padding(
-                              padding: EdgeInsets.only(right: 4.0),
-                              child: Icon(CupertinoIcons.cart_fill, size: 18),
-                            ),
-                          ),
-                          TextSpan(text: '8 items')
-                        ],
-                      ),
-                    ),
-                    Text('Total: \$890.00')
-                  ],
+                child: Center(
+                  child: Text(
+                    'Confirm Order',
+                    style: TextStyle(fontSize: 16),
+                  ),
                 ),
               ),
             ),
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildOrderList() {
+    return ListView.separated(
+      shrinkWrap: true,
+      separatorBuilder: (context, index) => Divider(),
+      itemCount: 1,
+      itemBuilder: (context, snapshot) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              height: 34,
+              width: 34,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: secondaryColor),
+              child: Center(
+                child: Text(
+                  '1',
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                ),
+              ),
+            ),
+            SizedBox(width: 25.0),
+            Text('Tuna Salad'),
+            Spacer(),
+            Align(
+              alignment: Alignment.centerRight,
+              child: Text('\$10.99'),
+            )
+          ],
+        );
+      },
     );
   }
 
