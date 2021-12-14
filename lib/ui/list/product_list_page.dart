@@ -27,10 +27,6 @@ class _ProductListPageState extends State<ProductListPage> {
       backgroundColor: background,
       appBar: AppBar(
           centerTitle: true,
-          // leading: IconButton(
-          //   onPressed: () {},
-          //   icon: const Icon(CupertinoIcons.line_horizontal_3_decrease),
-          // ),
           elevation: 0,
           title: const Text('Cashier'),
           actions: [

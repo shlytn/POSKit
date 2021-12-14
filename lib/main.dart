@@ -47,9 +47,6 @@ class MyApp extends StatelessWidget {
           ),
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        // theme: CupertinoThemeData(
-        //   primaryColor: CupertinoColors.systemBlue,
-        // ),
         initialRoute: AuthWrapper.routeName,
         routes: {
           AuthWrapper.routeName: (context) => const AuthWrapper(),
