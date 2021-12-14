@@ -1,4 +1,5 @@
 import 'package:dicoding_capstone_pos/provider/auth_provider.dart';
+import 'package:dicoding_capstone_pos/provider/database_provider.dart';
 import 'package:dicoding_capstone_pos/ui/auth/email_sent_page.dart';
 import 'package:dicoding_capstone_pos/ui/auth/forgot_password_page.dart';
 import 'package:dicoding_capstone_pos/ui/list/add_update_product_page.dart';
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider.instance()),
+        ChangeNotifierProvider(create: (_) => DatabaseProvider(),)
       ],
       child: MaterialApp(
         title: 'Flutter App',
