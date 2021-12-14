@@ -63,11 +63,13 @@ class AddUpdateProductPage extends StatelessWidget {
               InputField(
                   label: "Product Category",
                   hint: "Product Name",
+                  validate: false,
                   onChanged: (value) => category = value),
               spacing(12.0),
               InputField(
                 label: "Barcode",
                 hint: "8732349",
+                validate: false,
                 type: TextInputType.number,
                 onChanged: (value) => barcode = value,
               ),

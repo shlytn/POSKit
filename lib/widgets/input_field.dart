@@ -11,6 +11,7 @@ class InputField extends StatefulWidget {
   final TextInputType type;
   final ValueChanged<String>? onChanged;
   final bool isEnable;
+  final bool validate;
 
   const InputField({
     Key? key,
@@ -20,6 +21,7 @@ class InputField extends StatefulWidget {
     this.type = TextInputType.text,
     this.onChanged,
     this.isEnable = true,
+    this.validate = true,
   }) : super(key: key);
 
   @override
@@ -44,6 +46,7 @@ class _InputFieldState extends State<InputField> {
         Text(widget.label),
         TextFieldContainer(
           child: TextFormField(
+            autovalidateMode: AutovalidateMode.always,
             controller: _controller,
             enabled: widget.isEnable,
             textCapitalization: widget.type == TextInputType.text
@@ -60,10 +63,16 @@ class _InputFieldState extends State<InputField> {
                   ? FilteringTextInputFormatter.digitsOnly
                   : FilteringTextInputFormatter.singleLineFormatter,
             ],
-            validator: widget.type == TextInputType.emailAddress
-                ? (value) => EmailValidator.validate(value!)
-                    ? null
-                    : "Please input a valid email."
+            validator: widget.validate
+                ? widget.type == TextInputType.emailAddress
+                    ? (value) => EmailValidator.validate(value!)
+                        ? null
+                        : "Please input a valid email."
+                    : (value) {
+                        if (value == null || value.isEmpty) {
+                          return "Please input ${widget.label}";
+                        }
+                      }
                 : null,
           ),
         ),

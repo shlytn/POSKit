@@ -31,24 +31,32 @@ class _PasswordFieldState extends State<PasswordField> {
         Text(widget.label),
         TextFieldContainer(
           child: TextFormField(
-            obscureText: !isVisible,
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: widget.hint,
-              suffixIcon: IconButton(
-                icon: Icon(
-                    isVisible ? CupertinoIcons.eye : CupertinoIcons.eye_slash),
-                color: Colors.black,
-                onPressed: () {
-                  setState(() {
-                    isVisible = !isVisible;
-                  });
-                },
+              autovalidateMode: AutovalidateMode.always,
+              obscureText: !isVisible,
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: widget.hint,
+                suffixIcon: IconButton(
+                  icon: Icon(isVisible
+                      ? CupertinoIcons.eye
+                      : CupertinoIcons.eye_slash),
+                  color: Colors.black,
+                  onPressed: () {
+                    setState(() {
+                      isVisible = !isVisible;
+                    });
+                  },
+                ),
               ),
-            ),
-            keyboardType: TextInputType.emailAddress,
-            onChanged: widget.onChanged,
-          ),
+              keyboardType: TextInputType.emailAddress,
+              onChanged: widget.onChanged,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please input password';
+                } else if (value.length < 6) {
+                  return 'Password must at least 6 characters';
+                }
+              }),
         ),
       ],
     );
