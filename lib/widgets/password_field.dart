@@ -31,7 +31,7 @@ class _PasswordFieldState extends State<PasswordField> {
         Text(widget.label),
         TextFieldContainer(
           child: TextFormField(
-              autovalidateMode: AutovalidateMode.always,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               obscureText: !isVisible,
               decoration: InputDecoration(
                 border: InputBorder.none,

@@ -46,7 +46,7 @@ class _InputFieldState extends State<InputField> {
         Text(widget.label),
         TextFieldContainer(
           child: TextFormField(
-            autovalidateMode: AutovalidateMode.always,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             controller: _controller,
             enabled: widget.isEnable,
             textCapitalization: widget.type == TextInputType.text
