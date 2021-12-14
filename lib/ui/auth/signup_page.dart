@@ -15,7 +15,9 @@ class SignUpPage extends StatelessWidget {
   static const routeName = '/sign_up';
   static const pageTitle = 'Sign Up';
 
-  const SignUpPage({Key? key}) : super(key: key);
+  SignUpPage({Key? key}) : super(key: key);
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -32,54 +34,59 @@ class SignUpPage extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(
                   horizontal: 24.0,
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const CustomAppBar(title: pageTitle),
-                    spacing(24.0),
-                    InputField(
-                      label: 'Business Name',
-                      hint: "Business Name",
-                      onChanged: (value) => name = value,
-                    ),
-                    spacing(16.0),
-                    InputField(
-                      label: 'Email',
-                      hint: "mail@mail.com",
-                      type: TextInputType.emailAddress,
-                      onChanged: (value) => email = value,
-                    ),
-                    spacing(16.0),
-                    PasswordField(
-                      label: 'Password',
-                      hint: "At least 6 characters",
-                      onChanged: (value) => password = value,
-                    ),
-                    spacing(44.0),
-                    auth.state == AuthState.authenticating
-                        ? const Center(child: CircularProgressIndicator())
-                        : RoundedButton(
-                        onClick: () async {
-                          await auth.signUp(name, email, password);
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const CustomAppBar(title: pageTitle),
+                      spacing(24.0),
+                      InputField(
+                        label: 'Business Name',
+                        hint: "Business Name",
+                        onChanged: (value) => name = value,
+                      ),
+                      spacing(16.0),
+                      InputField(
+                        label: 'Email',
+                        hint: "mail@mail.com",
+                        type: TextInputType.emailAddress,
+                        onChanged: (value) => email = value,
+                      ),
+                      spacing(16.0),
+                      PasswordField(
+                        label: 'Password',
+                        hint: "At least 6 characters",
+                        onChanged: (value) => password = value,
+                      ),
+                      spacing(44.0),
+                      auth.state == AuthState.authenticating
+                          ? const Center(child: CircularProgressIndicator())
+                          : RoundedButton(
+                          onClick: () async {
+                            if(_formKey.currentState!.validate()){
+                              await auth.signUp(name, email, password);
 
-                          if (auth.state == AuthState.authenticated) {
-                            Navigator.pushNamedAndRemoveUntil(
-                                context, HomePage.routeName, (route) => false);
-                          } else {
-                            final snackBar = SnackBar(
-                              content: Text(auth.message),
-                            );
-                            ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                          }
-                        },
-                        text: pageTitle),
-                    spacing(16.0),
-                    AccountCheckText(
-                      isLogin: false,
-                      onClick: () =>
-                          Navigator.pushNamed(context, LoginPage.routeName),
-                    ),
-                  ],
+                              if (auth.state == AuthState.authenticated) {
+                                Navigator.pushNamedAndRemoveUntil(
+                                    context, HomePage.routeName, (route) => false);
+                              } else {
+                                final snackBar = SnackBar(
+                                  content: Text(auth.message),
+                                );
+                                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                              }
+                            }
+                          },
+                          text: pageTitle),
+                      spacing(16.0),
+                      AccountCheckText(
+                        isLogin: false,
+                        onClick: () =>
+                            Navigator.pushNamed(context, LoginPage.routeName),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

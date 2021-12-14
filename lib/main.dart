@@ -54,8 +54,8 @@ class MyApp extends StatelessWidget {
         routes: {
           AuthWrapper.routeName: (context) => const AuthWrapper(),
           OnboardingPage.routeName: (context) => const OnboardingPage(),
-          LoginPage.routeName: (context) => const LoginPage(),
-          SignUpPage.routeName: (context) => const SignUpPage(),
+          LoginPage.routeName: (context) => LoginPage(),
+          SignUpPage.routeName: (context) => SignUpPage(),
           HomePage.routeName: (context) => HomePage(),
           ProductListPage.routeName: (context) => const ProductListPage(),
           AddUpdateProductPage.routeName: (context) => AddUpdateProductPage(
@@ -66,7 +66,7 @@ class MyApp extends StatelessWidget {
           AccountPage.routeName: (context) => const AccountPage(),
           ForgotPasswordPage.routeName: (context) => ForgotPasswordPage(),
           SettingsPage.routeName: (context) => const SettingsPage(),
-          ChangePasswordPage.routeName: (context) => const ChangePasswordPage(),
+          ChangePasswordPage.routeName: (context) => ChangePasswordPage(),
           EmailSentPage.routeName: (context) => const EmailSentPage(),
           UserHelpPage.routeName: (context) => const UserHelpPage(),
           AddProductHelp.routeName: (context) => const AddProductHelp()

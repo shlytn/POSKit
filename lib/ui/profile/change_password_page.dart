@@ -10,7 +10,9 @@ class ChangePasswordPage extends StatelessWidget {
   static const routeName = '/change_password';
   static const pageTitle = 'Change Password';
 
-  const ChangePasswordPage({Key? key}) : super(key: key);
+  ChangePasswordPage({Key? key}) : super(key: key);
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -23,32 +25,37 @@ class ChangePasswordPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
-          child: Column(
-            children: [
-              PasswordField(
-                label: 'Current Password',
-                hint: 'Enter Current Password',
-                onChanged: (value) => currentPassword = value,
-              ),
-              spacing(12.0),
-              PasswordField(
-                label: 'New Password',
-                hint: 'Must at least 6 character',
-                onChanged: (value) => newPassword = value,
-              ),
-              spacing(32.0),
-              RoundedButton(
-                text: 'Update Password',
-                onClick: () async {
-                  await auth.changePassword(currentPassword, newPassword);
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                PasswordField(
+                  label: 'Current Password',
+                  hint: 'Enter Current Password',
+                  onChanged: (value) => currentPassword = value,
+                ),
+                spacing(12.0),
+                PasswordField(
+                  label: 'New Password',
+                  hint: 'Must at least 6 character',
+                  onChanged: (value) => newPassword = value,
+                ),
+                spacing(32.0),
+                RoundedButton(
+                  text: 'Update Password',
+                  onClick: () async {
+                    if (_formKey.currentState!.validate()) {
+                      await auth.changePassword(currentPassword, newPassword);
 
-                  final snackBar = SnackBar(
-                    content: Text(auth.message),
-                  );
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                },
-              )
-            ],
+                      final snackBar = SnackBar(
+                        content: Text(auth.message),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    }
+                  },
+                )
+              ],
+            ),
           ),
         ),
       ),

@@ -1,3 +1,4 @@
+// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dicoding_capstone_pos/widgets/image_field.dart';
 import 'package:dicoding_capstone_pos/widgets/input_field.dart';
 import 'package:dicoding_capstone_pos/widgets/rounded_button.dart';
@@ -13,11 +14,15 @@ class AddUpdateProductPage extends StatelessWidget {
 
   final bool isUpdate;
 
-  const AddUpdateProductPage({Key? key, this.isUpdate = false})
+   AddUpdateProductPage({Key? key, this.isUpdate = false})
       : super(key: key);
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    // final ref = firebase.collection('items');
+
     var title = isUpdate ? "Update Product" : "Add Product";
     var name, sellPrice, capPrice, stock, category, barcode;
     name = category = barcode = '';
@@ -31,73 +36,80 @@ class AddUpdateProductPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.all(24.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildTitleText('Product Details'),
-              spacing(16.0),
-              InputField(
-                  label: "Product Name",
-                  hint: "Product Name",
-                  onChanged: (value) => name = value),
-              spacing(12.0),
-              InputField(
-                  label: "Selling Price",
-                  hint: "20000",
-                  type: TextInputType.number,
-                  onChanged: (value) => sellPrice = value),
-              spacing(12.0),
-              InputField(
-                  label: "Capital Price",
-                  hint: "18000",
-                  type: TextInputType.number,
-                  onChanged: (value) => capPrice = value),
-              spacing(12.0),
-              _buildTitleText('Adds on Details (Optional)'),
-              spacing(12.0),
-              ImageField(buttonText: "Add Image"),
-              spacing(12.0),
-              const StockManage(),
-              spacing(12.0),
-              InputField(
-                  label: "Product Category",
-                  hint: "Product Name",
+          child: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildTitleText('Product Details'),
+                spacing(16.0),
+                InputField(
+                    label: "Product Name",
+                    hint: "Product Name",
+                    onChanged: (value) => name = value),
+                spacing(12.0),
+                InputField(
+                    label: "Selling Price",
+                    hint: "20000",
+                    type: TextInputType.number,
+                    onChanged: (value) => sellPrice = value),
+                spacing(12.0),
+                InputField(
+                    label: "Capital Price",
+                    hint: "18000",
+                    type: TextInputType.number,
+                    onChanged: (value) => capPrice = value),
+                spacing(12.0),
+                _buildTitleText('Adds on Details (Optional)'),
+                spacing(12.0),
+                ImageField(buttonText: "Add Image"),
+                spacing(12.0),
+                const StockManage(),
+                spacing(12.0),
+                InputField(
+                    label: "Product Category",
+                    hint: "Product Name",
+                    validate: false,
+                    onChanged: (value) => category = value),
+                spacing(12.0),
+                InputField(
+                  label: "Barcode",
+                  hint: "8732349",
                   validate: false,
-                  onChanged: (value) => category = value),
-              spacing(12.0),
-              InputField(
-                label: "Barcode",
-                hint: "8732349",
-                validate: false,
-                type: TextInputType.number,
-                onChanged: (value) => barcode = value,
-              ),
-              spacing(12.0),
-              RoundedButton(onClick: () {}, text: title),
-              spacing(12.0),
-              TextButton(
-                onPressed: () {
-                  isUpdate ? null : Navigator.pop(context);
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(
-                      CupertinoIcons.delete,
-                      color: Colors.red,
-                    ),
-                    const SizedBox(
-                      width: 8.0,
-                    ),
-                    Text(
-                      isUpdate ? 'Delete Product' : 'Cancel',
-                      style: const TextStyle(color: Colors.red),
-                    ),
-                  ],
+                  type: TextInputType.number,
+                  onChanged: (value) => barcode = value,
                 ),
-              ),
-            ],
+                spacing(12.0),
+                RoundedButton(onClick: () {
+                  if(_formKey.currentState!.validate()){
+
+                  }
+                }, text: title),
+                spacing(12.0),
+                TextButton(
+                  onPressed: () {
+                    isUpdate ? null : Navigator.pop(context);
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        CupertinoIcons.delete,
+                        color: Colors.red,
+                      ),
+                      const SizedBox(
+                        width: 8.0,
+                      ),
+                      Text(
+                        isUpdate ? 'Delete Product' : 'Cancel',
+                        style: const TextStyle(color: Colors.red),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
