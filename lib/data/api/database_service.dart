@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dicoding_capstone_pos/data/models/item.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:path/path.dart';
 
 class DatabaseService {
   final _db = FirebaseFirestore.instance;
@@ -36,5 +40,15 @@ class DatabaseService {
 
   Future<void> deleteData(String id) {
     return _ref.doc(id).delete();
+  }
+
+  Future<String> uploadImage(File image) async {
+    String filename = basename(image.path);
+
+    Reference ref = FirebaseStorage.instance.ref().child(filename);
+    UploadTask task = ref.putFile(image);
+    TaskSnapshot snapshot = task.snapshot;
+
+    return await snapshot.ref.getDownloadURL();
   }
 }
