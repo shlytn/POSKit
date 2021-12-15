@@ -1,3 +1,4 @@
+import 'package:dicoding_capstone_pos/common/styles.dart';
 import 'package:dicoding_capstone_pos/provider/image_picker_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -30,11 +31,11 @@ class BottomSheetButton extends StatelessWidget {
             Icon(
               icon,
               size: 35.0,
-              color: Colors.blueGrey,
+              color: secondaryColor,
             ),
             Text(
               text,
-              style: const TextStyle(color: Colors.blueGrey),
+              style: const TextStyle(color: secondaryColor),
             )
           ],
         ),
