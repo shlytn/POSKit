@@ -34,4 +34,7 @@ class DatabaseService {
     return _ref.doc(id).set(item);
   }
 
+  Future<void> deleteData(String id) {
+    return _ref.doc(id).delete();
+  }
 }

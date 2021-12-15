@@ -45,4 +45,12 @@ class DatabaseProvider extends ChangeNotifier {
     }
   }
 
+  Future<void> deleteItem(String id) async {
+    try {
+      await _api.deleteData(id);
+      debugPrint("Success to delete data");
+    } catch (e) {
+      debugPrint("Failed to delete data");
+    }
+  }
 }
