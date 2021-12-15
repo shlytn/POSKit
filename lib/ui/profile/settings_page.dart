@@ -26,45 +26,47 @@ class SettingsPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(title: const Text(pageTitle)),
-      body: Container(
-        margin: const EdgeInsets.all(24.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ImageWidget(),
-            spacing(24.0),
-            InputField(
-                label: "Business Name",
-                text: name,
-                hint: "Enter your Business Name",
-                onChanged: (value) => newName = value),
-            spacing(12.0),
-            InputField(
-              label: "Email Address",
-              hint: user.email!,
-              isEnable: false,
-            ),
-            spacing(12.0),
-            RowMenu(
-              title: 'Change Password',
-              padding: const EdgeInsets.symmetric(vertical: 12.5),
-              onClick: () {
-                Navigator.pushNamed(context, ChangePasswordPage.routeName);
-              },
-            ),
-            spacing(24.0),
-            RoundedButton(
-              text: 'Save Changes',
-              onClick: () async {
-                await auth.updateProfile(newName);
+      body: SingleChildScrollView(
+        child: Container(
+          margin: const EdgeInsets.all(24.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ImageWidget(),
+              spacing(24.0),
+              InputField(
+                  label: "Business Name",
+                  text: name,
+                  hint: "Enter your Business Name",
+                  onChanged: (value) => newName = value),
+              spacing(12.0),
+              InputField(
+                label: "Email Address",
+                hint: user.email!,
+                isEnable: false,
+              ),
+              spacing(12.0),
+              RowMenu(
+                title: 'Change Password',
+                padding: const EdgeInsets.symmetric(vertical: 12.5),
+                onClick: () {
+                  Navigator.pushNamed(context, ChangePasswordPage.routeName);
+                },
+              ),
+              spacing(24.0),
+              RoundedButton(
+                text: 'Save Changes',
+                onClick: () async {
+                  await auth.updateProfile(newName);
 
-                final snackBar = SnackBar(
-                  content: Text(auth.message),
-                );
-                ScaffoldMessenger.of(context).showSnackBar(snackBar);
-              },
-            ),
-          ],
+                  final snackBar = SnackBar(
+                    content: Text(auth.message),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
