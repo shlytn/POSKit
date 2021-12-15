@@ -102,7 +102,7 @@ class AddUpdateProductPage extends StatelessWidget {
                 RoundedButton(
                     onClick: () {
                       if (_formKey.currentState!.validate()) {
-                        provider.addItem(Item(
+                        final newItem = Item(
                           name: name,
                           sellingPrice: sellingPrice,
                           capitalPrice: capitalPrice,
@@ -110,8 +110,15 @@ class AddUpdateProductPage extends StatelessWidget {
                           stock: stock,
                           category: category,
                           barcode: barcode,
-                        ));
-                        _formKey.currentState!.reset();
+                        );
+
+                        if (isUpdate){
+                          provider.updateItem(item!.id!, newItem);
+                          Navigator.pop(context);
+                        } else {
+                          provider.addItem(newItem);
+                          _formKey.currentState!.reset();
+                        }
                       }
                     },
                     text: title),
