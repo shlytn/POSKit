@@ -1,3 +1,4 @@
+import 'package:dicoding_capstone_pos/data/models/item.dart';
 import 'package:dicoding_capstone_pos/provider/auth_provider.dart';
 import 'package:dicoding_capstone_pos/provider/database_provider.dart';
 import 'package:dicoding_capstone_pos/ui/auth/email_sent_page.dart';
@@ -58,7 +59,7 @@ class MyApp extends StatelessWidget {
           HomePage.routeName: (context) => HomePage(),
           ProductListPage.routeName: (context) => const ProductListPage(),
           AddUpdateProductPage.routeName: (context) => AddUpdateProductPage(
-                isUpdate: ModalRoute.of(context)?.settings.arguments as bool,
+                item: ModalRoute.of(context)?.settings.arguments as Item?,
               ),
           CartPage.routeName: (context) => const CartPage(),
           OrderDetailPage.routeName: (context) => const OrderDetailPage(),

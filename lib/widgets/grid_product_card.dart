@@ -14,7 +14,7 @@ class GridProductCard extends StatelessWidget {
     return GestureDetector(
       onDoubleTap: () {
         Navigator.pushNamed(context, AddUpdateProductPage.routeName,
-            arguments: true);
+            arguments: item);
       },
       child: Padding(
         padding: const EdgeInsets.all(8.0),

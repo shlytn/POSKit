@@ -14,7 +14,7 @@ class CardProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onDoubleTap: (){
-        Navigator.pushNamed(context, AddUpdateProductPage.routeName, arguments: true);
+        Navigator.pushNamed(context, AddUpdateProductPage.routeName, arguments: item);
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 4.0),

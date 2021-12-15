@@ -37,8 +37,7 @@ class _ProductListPageState extends State<ProductListPage> {
           actions: [
             IconButton(
               onPressed: () {
-                Navigator.pushNamed(context, AddUpdateProductPage.routeName,
-                    arguments: false);
+                Navigator.pushNamed(context, AddUpdateProductPage.routeName);
               },
               icon: const Icon(CupertinoIcons.add),
             ),

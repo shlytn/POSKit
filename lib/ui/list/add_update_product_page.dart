@@ -14,9 +14,9 @@ class AddUpdateProductPage extends StatelessWidget {
   static const routeName = '/add_product';
   static const pageTitle = 'add_product';
 
-  final bool isUpdate;
+  final Item? item;
 
-  AddUpdateProductPage({Key? key, this.isUpdate = false}) : super(key: key);
+  AddUpdateProductPage({Key? key, this.item}) : super(key: key);
 
   final _formKey = GlobalKey<FormState>();
 
@@ -24,12 +24,22 @@ class AddUpdateProductPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = Provider.of<DatabaseProvider>(context);
 
+    var isUpdate = item != null;
     var title = isUpdate ? "Update Product" : "Add Product";
     String name = '';
     String? category, barcode;
     int sellingPrice, capitalPrice, stock;
     sellingPrice = capitalPrice = stock = 0;
     bool isManage = false;
+
+    if (isUpdate) {
+      name = item!.name;
+      sellingPrice = item!.sellingPrice;
+      capitalPrice = item!.capitalPrice;
+      isManage = item!.isManage;
+      category = item?.category;
+      barcode = item?.barcode;
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -50,17 +60,20 @@ class AddUpdateProductPage extends StatelessWidget {
                 InputField(
                     label: "Product Name",
                     hint: "Product Name",
+                    text: name,
                     onChanged: (value) => name = value),
                 spacing(12.0),
                 InputField(
                     label: "Selling Price",
                     hint: "20000",
+                    text: sellingPrice.toString(),
                     type: TextInputType.number,
                     onChanged: (value) => sellingPrice = int.parse(value)),
                 spacing(12.0),
                 InputField(
                     label: "Capital Price",
                     hint: "18000",
+                    text: capitalPrice.toString(),
                     type: TextInputType.number,
                     onChanged: (value) => capitalPrice = int.parse(value)),
                 spacing(12.0),
@@ -74,12 +87,14 @@ class AddUpdateProductPage extends StatelessWidget {
                     label: "Product Category",
                     hint: "Product Name",
                     validate: false,
+                    text: category,
                     onChanged: (value) => category = value),
                 spacing(12.0),
                 InputField(
                   label: "Barcode",
                   hint: "8732349",
                   validate: false,
+                  text: barcode,
                   type: TextInputType.number,
                   onChanged: (value) => barcode = value,
                 ),
