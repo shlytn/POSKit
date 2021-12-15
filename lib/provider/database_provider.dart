@@ -35,4 +35,14 @@ class DatabaseProvider extends ChangeNotifier {
       debugPrint("Failed to add Data");
     }
   }
+
+  Future<void> updateItem(String id, Item item) async {
+    try {
+      await _api.updateData(id, item);
+      debugPrint("Success to update data");
+    } catch (e) {
+      debugPrint("Failed to update data");
+    }
+  }
+
 }

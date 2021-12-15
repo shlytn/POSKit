@@ -29,4 +29,9 @@ class DatabaseService {
   Future<DocumentReference> addData(Item item) {
     return _ref.add(item);
   }
+
+  Future<void> updateData(String id, Item item) {
+    return _ref.doc(id).set(item);
+  }
+
 }
