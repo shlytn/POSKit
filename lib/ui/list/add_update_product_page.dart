@@ -1,4 +1,5 @@
-// import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dicoding_capstone_pos/data/models/item.dart';
+import 'package:dicoding_capstone_pos/provider/database_provider.dart';
 import 'package:dicoding_capstone_pos/widgets/image_field.dart';
 import 'package:dicoding_capstone_pos/widgets/input_field.dart';
 import 'package:dicoding_capstone_pos/widgets/rounded_button.dart';
@@ -7,6 +8,7 @@ import 'package:dicoding_capstone_pos/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 class AddUpdateProductPage extends StatelessWidget {
   static const routeName = '/add_product';
@@ -20,7 +22,7 @@ class AddUpdateProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final ref = firebase.collection('items');
+    final provider = Provider.of<DatabaseProvider>(context);
 
     var title = isUpdate ? "Update Product" : "Add Product";
     String name = '';
@@ -82,11 +84,22 @@ class AddUpdateProductPage extends StatelessWidget {
                   onChanged: (value) => barcode = value,
                 ),
                 spacing(12.0),
-                RoundedButton(onClick: () {
-                  if(_formKey.currentState!.validate()){
-
-                  }
-                }, text: title),
+                RoundedButton(
+                    onClick: () {
+                      if (_formKey.currentState!.validate()) {
+                        provider.addItem(Item(
+                          name: name,
+                          sellingPrice: sellingPrice,
+                          capitalPrice: capitalPrice,
+                          isManage: isManage,
+                          stock: stock,
+                          category: category,
+                          barcode: barcode,
+                        ));
+                        _formKey.currentState!.reset();
+                      }
+                    },
+                    text: title),
                 spacing(12.0),
                 TextButton(
                   onPressed: () {
