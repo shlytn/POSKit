@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Item {
   Item({
+    this.id,
     required this.name,
     required this.sellingPrice,
     required this.capitalPrice,
@@ -10,6 +13,7 @@ class Item {
     this.image,
   });
 
+  String? id;
   String name;
   int sellingPrice;
   int capitalPrice;
@@ -21,12 +25,23 @@ class Item {
 
   factory Item.fromJson(Map<String, dynamic> json) => Item(
     name: json["name"],
-    sellingPrice: json["sellingPrice"],
-    capitalPrice: json["capitalPrice"],
-    isManage: json["isManage"].toBoolean(),
+    sellingPrice: json["sellingPrice"].toInt(),
+    capitalPrice: json["capitalPrice"].toInt(),
+    isManage: json["isManage"],
     stock: json["stock"].toInt(),
     category: json["category"],
     barcode: json["barcode"],
+  );
+
+  factory Item.fromFirebase(DocumentSnapshot doc) => Item(
+    id: doc.id,
+    name: doc["name"],
+    sellingPrice: doc["sellingPrice"].toInt(),
+    capitalPrice: doc["capitalPrice"].toInt(),
+    isManage: doc["isManage"],
+    stock: doc["stock"],
+    category: doc["category"],
+    barcode: doc["barcode"],
   );
 
   Map<String, dynamic> toJson() => {
