@@ -17,6 +17,15 @@ class DatabaseService {
             toFirestore: (item, _) => item.toJson());
   }
 
+  Stream<List<Item>> getData() {
+    return _ref.snapshots().map((snapshot) =>
+        snapshot.docs.map((doc) => Item.fromFirebase(doc)).toList());
+  }
+
+  Future<DocumentSnapshot> getDataById(String id) {
+    return _ref.doc(id).get();
+  }
+
   Future<DocumentReference> addData(Item item) {
     return _ref.add(item);
   }

@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dicoding_capstone_pos/data/api/database_service.dart';
 import 'package:dicoding_capstone_pos/data/models/item.dart';
 import 'package:dicoding_capstone_pos/utils/result_state.dart';
@@ -15,13 +14,18 @@ class DatabaseProvider extends ChangeNotifier {
 
   String get message => _message;
 
+  late Item _item;
+
+  Item get item => _item;
+
   List<Item> _items = [];
 
   List<Item> get items => _items;
 
-  late Item _item;
-
-  Item get item => _item;
+  Stream<List<Item>> getItems() {
+    final result = _api.getData();
+    return result;
+  }
 
   Future<void> addItem(Item item) async {
     try {
