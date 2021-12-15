@@ -125,7 +125,10 @@ class AddUpdateProductPage extends StatelessWidget {
                 spacing(12.0),
                 TextButton(
                   onPressed: () {
-                    isUpdate ? null : Navigator.pop(context);
+                    if (isUpdate) {
+                      provider.deleteItem(item!.id!);
+                    }
+                    Navigator.pop(context);
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
