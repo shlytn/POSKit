@@ -14,8 +14,7 @@ class AddUpdateProductPage extends StatelessWidget {
 
   final bool isUpdate;
 
-   AddUpdateProductPage({Key? key, this.isUpdate = false})
-      : super(key: key);
+  AddUpdateProductPage({Key? key, this.isUpdate = false}) : super(key: key);
 
   final _formKey = GlobalKey<FormState>();
 
@@ -24,9 +23,11 @@ class AddUpdateProductPage extends StatelessWidget {
     // final ref = firebase.collection('items');
 
     var title = isUpdate ? "Update Product" : "Add Product";
-    var name, sellPrice, capPrice, stock, category, barcode;
-    name = category = barcode = '';
-    sellPrice = capPrice = stock = 0;
+    String name = '';
+    String? category, barcode;
+    int sellingPrice, capitalPrice, stock;
+    sellingPrice = capitalPrice = stock = 0;
+    bool isManage = false;
 
     return Scaffold(
       appBar: AppBar(
@@ -53,13 +54,13 @@ class AddUpdateProductPage extends StatelessWidget {
                     label: "Selling Price",
                     hint: "20000",
                     type: TextInputType.number,
-                    onChanged: (value) => sellPrice = value),
+                    onChanged: (value) => sellingPrice = int.parse(value)),
                 spacing(12.0),
                 InputField(
                     label: "Capital Price",
                     hint: "18000",
                     type: TextInputType.number,
-                    onChanged: (value) => capPrice = value),
+                    onChanged: (value) => capitalPrice = int.parse(value)),
                 spacing(12.0),
                 _buildTitleText('Adds on Details (Optional)'),
                 spacing(12.0),
