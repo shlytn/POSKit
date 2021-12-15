@@ -1,11 +1,14 @@
 import 'package:dicoding_capstone_pos/common/styles.dart';
+import 'package:dicoding_capstone_pos/data/models/item.dart';
 import 'package:dicoding_capstone_pos/ui/list/add_update_product_page.dart';
 import 'package:dicoding_capstone_pos/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CardProduct extends StatelessWidget {
-  const CardProduct({Key? key}) : super(key: key);
+  final Item item;
+
+  const CardProduct({Key? key, required this.item}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +43,7 @@ class CardProduct extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Tuna Salad',
+                        item.name,
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       Text(
@@ -51,7 +54,7 @@ class CardProduct extends StatelessWidget {
                       ),
                       spacing(15.0),
                       Text(
-                        '\$10.99',
+                        "${item.sellingPrice}",
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 16,

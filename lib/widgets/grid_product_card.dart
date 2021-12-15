@@ -1,16 +1,16 @@
 import 'package:dicoding_capstone_pos/common/styles.dart';
+import 'package:dicoding_capstone_pos/data/models/item.dart';
 import 'package:dicoding_capstone_pos/ui/list/add_update_product_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class GridProductCard extends StatelessWidget {
-  const GridProductCard({Key? key}) : super(key: key);
+  final Item item;
+
+  const GridProductCard({Key? key, required this.item}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    String foodName = 'Salad Tuna';
-    double price = 10.99;
-
     return GestureDetector(
       onDoubleTap: () {
         Navigator.pushNamed(context, AddUpdateProductPage.routeName,
@@ -40,7 +40,7 @@ class GridProductCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      foodName,
+                      item.name,
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 3.0),
@@ -54,7 +54,7 @@ class GridProductCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '\$' + price.toString(),
+                          "${item.sellingPrice}",
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: secondaryColor,
