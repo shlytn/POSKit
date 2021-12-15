@@ -1,53 +1,25 @@
 import 'dart:io';
 
+import 'package:dicoding_capstone_pos/provider/image_picker_provider.dart';
 import 'package:dicoding_capstone_pos/widgets/icon_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:path/path.dart';
+import 'package:provider/provider.dart';
 
 class ImageField extends StatefulWidget {
   final String buttonText;
 
-  ImageField({Key? key, required this.buttonText}) : super(key: key);
+  const ImageField({Key? key, required this.buttonText}) : super(key: key);
 
   @override
   State<ImageField> createState() => _ImageFieldState();
 }
 
 class _ImageFieldState extends State<ImageField> {
-  var imageName = '';
-  File? image;
-
-  Future pickImage(ImageSource source) async {
-    try {
-      final image = await ImagePicker().pickImage(source: source);
-      if (image == null) return;
-
-      final imageTemporary = File(image.path);
-      imageName = basename(image.path);
-      // final imagePermanent = await saveImagePermanently(image.path);
-      setState(() {
-        this.image = imageTemporary;
-      });
-    } on PlatformException catch (e) {
-      print('Failed to pick Image $e');
-    }
-  }
-
-  Future<File> saveImagePermanently(String imagePath) async {
-    final directory = await getApplicationDocumentsDirectory();
-    final name = basename(imagePath);
-    final image = File('${directory.path}/$name');
-    // print("image = $image");
-    return File(imagePath).copy(image.path);
-  }
-
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ImagePickerProvider>(context);
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
@@ -62,7 +34,7 @@ class _ImageFieldState extends State<ImageField> {
         children: [
           Expanded(
             child: IconText(
-              text: imageName,
+              text: provider.fileName,
               icon: CupertinoIcons.photo,
               textColor: Colors.black,
               iconSize: 50.0,
