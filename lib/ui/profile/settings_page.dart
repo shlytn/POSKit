@@ -11,13 +11,25 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class SettingsPage extends StatelessWidget {
+class SettingsPage extends StatefulWidget {
   static const routeName = '/settings';
   static const pageTitle = 'Account Settings';
 
-  SettingsPage({Key? key}) : super(key: key);
+  const SettingsPage({Key? key}) : super(key: key);
 
+  @override
+  State<SettingsPage> createState() => _SettingsPageState();
+}
+
+class _SettingsPageState extends State<SettingsPage> {
   final _formKey = GlobalKey<FormState>();
+  var isEnable = false;
+
+  setEnable(condition){
+    setState(() {
+      isEnable = condition;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +44,7 @@ class SettingsPage extends StatelessWidget {
     var imageProvider = Provider.of<ImagePickerProvider>(context);
 
     return Scaffold(
-      appBar: AppBar(title: const Text(pageTitle)),
+      appBar: AppBar(title: const Text(SettingsPage.pageTitle)),
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.all(24.0),
@@ -41,13 +53,16 @@ class SettingsPage extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                ImageWidget(),
+                const ImageWidget(),
                 spacing(24.0),
                 InputField(
                     label: "Business Name",
                     text: name,
                     hint: "Enter your Business Name",
-                    onChanged: (value) => newName = value),
+                    onChanged: (value){
+                      newName = value;
+                      setEnable(value != name);
+                    }),
                 spacing(12.0),
                 InputField(
                   label: "Email Address",
@@ -65,6 +80,7 @@ class SettingsPage extends StatelessWidget {
                 spacing(24.0),
                 RoundedButton(
                   text: 'Save Changes',
+                  isEnable: isEnable,
                   onClick: () async {
                     if (_formKey.currentState!.validate()){
                       await auth.updateProfile(newName);
