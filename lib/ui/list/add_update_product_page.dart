@@ -1,5 +1,6 @@
 import 'package:dicoding_capstone_pos/data/models/item.dart';
 import 'package:dicoding_capstone_pos/provider/database_provider.dart';
+import 'package:dicoding_capstone_pos/provider/image_picker_provider.dart';
 import 'package:dicoding_capstone_pos/widgets/image_field.dart';
 import 'package:dicoding_capstone_pos/widgets/input_field.dart';
 import 'package:dicoding_capstone_pos/widgets/rounded_button.dart';
@@ -23,14 +24,16 @@ class AddUpdateProductPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<DatabaseProvider>(context);
+    final imageProvider = Provider.of<ImagePickerProvider>(context);
 
     var isUpdate = item != null;
     var title = isUpdate ? "Update Product" : "Add Product";
     String name = '';
-    String? category, barcode;
-    int sellingPrice, capitalPrice, stock;
-    sellingPrice = capitalPrice = stock = 0;
+    String? category, barcode, url;
+    int? sellingPrice, capitalPrice, stock;
+    stock = 0;
     bool isManage = false;
+    String image = imageProvider.fileName;
 
     if (isUpdate) {
       name = item!.name;
@@ -79,7 +82,7 @@ class AddUpdateProductPage extends StatelessWidget {
                 spacing(12.0),
                 _buildTitleText('Adds on Details (Optional)'),
                 spacing(12.0),
-                ImageField(buttonText: "Add Image"),
+                ImageField(buttonText: "Add Image", fileName: image,),
                 spacing(12.0),
                 const StockManage(),
                 spacing(12.0),
@@ -100,8 +103,12 @@ class AddUpdateProductPage extends StatelessWidget {
                 ),
                 spacing(12.0),
                 RoundedButton(
-                    onClick: () {
-                      if (_formKey.currentState!.validate()) {
+                    onClick: () async {
+                      if (_formKey.currentState!.validate()){
+                        if (imageProvider.image != null && imageProvider.fileName != '') {
+                          url = await provider.getImageUrl(imageProvider.image!, true);
+                        }
+
                         final newItem = Item(
                           name: name,
                           sellingPrice: sellingPrice,
@@ -110,6 +117,7 @@ class AddUpdateProductPage extends StatelessWidget {
                           stock: stock,
                           category: category,
                           barcode: barcode,
+                          imageUrl: url
                         );
 
                         if (isUpdate){
@@ -119,6 +127,8 @@ class AddUpdateProductPage extends StatelessWidget {
                           provider.addItem(newItem);
                           _formKey.currentState!.reset();
                         }
+                        showMessageSnackBar(context, provider.message);
+                        imageProvider.clearImage();
                       }
                     },
                     text: title),
@@ -129,6 +139,7 @@ class AddUpdateProductPage extends StatelessWidget {
                       provider.deleteItem(item!.id!);
                     }
                     Navigator.pop(context);
+                    imageProvider.clearImage();
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
