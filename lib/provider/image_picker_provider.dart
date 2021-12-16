@@ -40,4 +40,9 @@ class ImagePickerProvider extends ChangeNotifier {
     final image = File('${directory.path}/$name');
     return File(imagePath).copy(image.path);
   }
+
+  void clearImage() {
+    _fileName = '';
+    _image = null;
+  }
 }
