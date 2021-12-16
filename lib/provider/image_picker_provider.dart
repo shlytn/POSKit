@@ -11,9 +11,9 @@ class ImagePickerProvider extends ChangeNotifier {
 
   String get message => _message;
 
-  late File _image;
+  File? _image;
 
-  File get image => _image;
+  File? get image => _image;
 
   String _fileName = '';
 
