@@ -11,6 +11,13 @@ class GridProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ImageProvider<Object> image;
+    if (item.imageUrl != null) {
+      image = NetworkImage(item.imageUrl!);
+    } else {
+      image = const AssetImage('assets/images/food.jpg');
+    }
+
     return GestureDetector(
       onDoubleTap: () {
         Navigator.pushNamed(context, AddUpdateProductPage.routeName,
@@ -28,8 +35,8 @@ class GridProductCard extends StatelessWidget {
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    image: const DecorationImage(
-                        image: AssetImage('assets/images/food.jpg'),
+                    image: DecorationImage(
+                        image: image,
                         fit: BoxFit.cover),
                   ),
                 ),

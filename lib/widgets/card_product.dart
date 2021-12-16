@@ -13,8 +13,9 @@ class CardProduct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onDoubleTap: (){
-        Navigator.pushNamed(context, AddUpdateProductPage.routeName, arguments: item);
+      onDoubleTap: () {
+        Navigator.pushNamed(context, AddUpdateProductPage.routeName,
+            arguments: item);
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 4.0),
@@ -31,7 +32,9 @@ class CardProduct extends StatelessWidget {
                 flex: 1,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
-                  child: Image.asset('assets/images/food.jpg'),
+                  child: item.imageUrl != null
+                      ? Image.network(item.imageUrl!)
+                      : Image.asset('assets/images/food.jpg'),
                 ),
               ),
               const SizedBox(width: 10.0),
@@ -49,8 +52,7 @@ class CardProduct extends StatelessWidget {
                       Text(
                         '(must choose level)',
                         style: TextStyle(
-                            fontSize: 12,
-                            color: CupertinoColors.inactiveGray),
+                            fontSize: 12, color: CupertinoColors.inactiveGray),
                       ),
                       spacing(15.0),
                       Text(
@@ -87,5 +89,4 @@ class CardProduct extends StatelessWidget {
       ),
     );
   }
-
 }
