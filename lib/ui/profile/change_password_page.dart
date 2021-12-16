@@ -47,10 +47,7 @@ class ChangePasswordPage extends StatelessWidget {
                     if (_formKey.currentState!.validate()) {
                       await auth.changePassword(currentPassword, newPassword);
 
-                      final snackBar = SnackBar(
-                        content: Text(auth.message),
-                      );
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      showMessageSnackBar(context, auth.message);
                     }
                   },
                 )
