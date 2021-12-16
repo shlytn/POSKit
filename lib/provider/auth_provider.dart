@@ -38,8 +38,8 @@ class AuthProvider extends ChangeNotifier {
       return true;
     } on FirebaseAuthException catch (e) {
       _state = AuthState.unauthenticated;
-      notifyListeners();
       _message = getMessageFromErrorCode(e, "Sign Up");
+      notifyListeners();
       return _message;
     } catch (e) {
       _state = AuthState.unauthenticated;
@@ -110,10 +110,10 @@ class AuthProvider extends ChangeNotifier {
         _user = user!;
         _message = "Changes Saved";
       }
-      return _message;
     } catch (e) {
-      return _message = "Failed to save account changes";
+      _message = "Failed to save account changes";
     }
+    notifyListeners();
   }
 
   Future<dynamic> resetPassword(String email) async {
