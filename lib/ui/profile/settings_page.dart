@@ -62,7 +62,8 @@ class SettingsPage extends StatelessWidget {
                 RoundedButton(
                   text: 'Save Changes',
                   onClick: () async {
-                    await auth.updateProfile(newName);
+                    if (_formKey.currentState!.validate()){
+                      await auth.updateProfile(newName);
 
                   showMessageSnackBar(context, auth.message);
                 },
