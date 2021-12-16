@@ -69,14 +69,14 @@ class AddUpdateProductPage extends StatelessWidget {
                 InputField(
                     label: "Selling Price",
                     hint: "20000",
-                    text: sellingPrice.toString(),
+                    text: sellingPrice != null ? sellingPrice.toString() : '',
                     type: TextInputType.number,
                     onChanged: (value) => sellingPrice = int.parse(value)),
                 spacing(12.0),
                 InputField(
                     label: "Capital Price",
                     hint: "18000",
-                    text: capitalPrice.toString(),
+                    text: capitalPrice != null ? capitalPrice.toString() : '',
                     type: TextInputType.number,
                     onChanged: (value) => capitalPrice = int.parse(value)),
                 spacing(12.0),
@@ -88,7 +88,7 @@ class AddUpdateProductPage extends StatelessWidget {
                 spacing(12.0),
                 InputField(
                     label: "Product Category",
-                    hint: "Product Name",
+                    hint: "Product Category",
                     validate: false,
                     text: category,
                     onChanged: (value) => category = value),
@@ -111,8 +111,8 @@ class AddUpdateProductPage extends StatelessWidget {
 
                         final newItem = Item(
                           name: name,
-                          sellingPrice: sellingPrice,
-                          capitalPrice: capitalPrice,
+                          sellingPrice: sellingPrice!,
+                          capitalPrice: capitalPrice!,
                           isManage: isManage,
                           stock: stock,
                           category: category,
