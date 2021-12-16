@@ -59,10 +59,7 @@ class SettingsPage extends StatelessWidget {
                 onClick: () async {
                   await auth.updateProfile(newName);
 
-                  final snackBar = SnackBar(
-                    content: Text(auth.message),
-                  );
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  showMessageSnackBar(context, auth.message);
                 },
               ),
             ],
