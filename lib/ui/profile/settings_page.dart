@@ -1,4 +1,5 @@
 import 'package:dicoding_capstone_pos/provider/auth_provider.dart';
+import 'package:dicoding_capstone_pos/provider/database_provider.dart';
 import 'package:dicoding_capstone_pos/provider/image_picker_provider.dart';
 import 'package:dicoding_capstone_pos/ui/profile/change_password_page.dart';
 import 'package:dicoding_capstone_pos/widgets/image_widget.dart';
@@ -26,6 +27,9 @@ class SettingsPage extends StatelessWidget {
         ? user.displayName
         : 'Anonymous';
     var newName = '';
+
+    var dbProvider = Provider.of<DatabaseProvider>(context);
+    var imageProvider = Provider.of<ImagePickerProvider>(context);
 
     return Scaffold(
       appBar: AppBar(title: const Text(pageTitle)),
@@ -64,11 +68,19 @@ class SettingsPage extends StatelessWidget {
                   onClick: () async {
                     if (_formKey.currentState!.validate()){
                       await auth.updateProfile(newName);
+                      if (imageProvider.image != null &&
+                          imageProvider.fileName != '') {
+                        await dbProvider.getImageUrl(
+                            imageProvider.image!, false);
+                      }
 
-                  showMessageSnackBar(context, auth.message);
-                },
-              ),
-            ],
+                      showMessageSnackBar(context, auth.message);
+                      imageProvider.clearImage();
+                    }
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
