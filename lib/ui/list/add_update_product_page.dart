@@ -82,7 +82,10 @@ class AddUpdateProductPage extends StatelessWidget {
                 spacing(12.0),
                 _buildTitleText('Adds on Details (Optional)'),
                 spacing(12.0),
-                ImageField(buttonText: "Add Image", fileName: image,),
+                ImageField(
+                  buttonText: "Add Image",
+                  fileName: image,
+                ),
                 spacing(12.0),
                 const StockManage(),
                 spacing(12.0),
@@ -104,23 +107,24 @@ class AddUpdateProductPage extends StatelessWidget {
                 spacing(12.0),
                 RoundedButton(
                     onClick: () async {
-                      if (_formKey.currentState!.validate()){
-                        if (imageProvider.image != null && imageProvider.fileName != '') {
-                          url = await provider.getImageUrl(imageProvider.image!, true);
+                      if (_formKey.currentState!.validate()) {
+                        if (imageProvider.image != null &&
+                            imageProvider.fileName != '') {
+                          url = await provider.getImageUrl(
+                              imageProvider.image!, true);
                         }
 
                         final newItem = Item(
-                          name: name,
-                          sellingPrice: sellingPrice!,
-                          capitalPrice: capitalPrice!,
-                          isManage: isManage,
-                          stock: stock,
-                          category: category,
-                          barcode: barcode,
-                          imageUrl: url
-                        );
+                            name: name,
+                            sellingPrice: sellingPrice!,
+                            capitalPrice: capitalPrice!,
+                            isManage: isManage,
+                            stock: stock,
+                            category: category,
+                            barcode: barcode,
+                            imageUrl: url);
 
-                        if (isUpdate){
+                        if (isUpdate) {
                           provider.updateItem(item!.id!, newItem);
                           Navigator.pop(context);
                         } else {
