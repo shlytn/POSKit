@@ -19,15 +19,15 @@ class ImagePickerProvider extends ChangeNotifier {
 
   String get fileName => _fileName;
 
-  Future<void> pickImage(ImageSource source) async {
+  Future<dynamic> pickImage(ImageSource source) async {
     try {
       final image = await ImagePicker().pickImage(source: source);
       if (image == null) return;
 
       final imageTemporary = File(image.path);
+      // final imagePermanent = await saveImagePermanently(image.path);
       _image = imageTemporary;
       _fileName = basename(image.path);
-      // final imagePermanent = await saveImagePermanently(image.path);
     } on PlatformException catch (e) {
       _message = 'Failed to pick Image $e';
     }
