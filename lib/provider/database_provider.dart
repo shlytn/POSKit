@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dicoding_capstone_pos/data/api/database_service.dart';
 import 'package:dicoding_capstone_pos/data/models/item.dart';
 import 'package:dicoding_capstone_pos/utils/result_state.dart';
@@ -52,5 +54,9 @@ class DatabaseProvider extends ChangeNotifier {
     } catch (e) {
       debugPrint("Failed to delete data");
     }
+  }
+
+  Future<String> getImageUrl(File image, bool isItem) async {
+    return await _api.uploadImage(image, isItem);
   }
 }
