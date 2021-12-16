@@ -1,15 +1,18 @@
-import 'package:dicoding_capstone_pos/provider/image_picker_provider.dart';
 import 'package:dicoding_capstone_pos/widgets/icon_text.dart';
 import 'package:dicoding_capstone_pos/widgets/image_bottom_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:provider/provider.dart';
 
 class ImageField extends StatefulWidget {
   final String buttonText;
+  final String fileName;
 
-  const ImageField({Key? key, required this.buttonText}) : super(key: key);
+  const ImageField({
+    Key? key,
+    required this.buttonText,
+    required this.fileName,
+  }) : super(key: key);
 
   @override
   State<ImageField> createState() => _ImageFieldState();
@@ -18,7 +21,6 @@ class ImageField extends StatefulWidget {
 class _ImageFieldState extends State<ImageField> {
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<ImagePickerProvider>(context);
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
@@ -33,7 +35,7 @@ class _ImageFieldState extends State<ImageField> {
         children: [
           Expanded(
             child: IconText(
-              text: provider.fileName,
+              text: widget.fileName,
               icon: CupertinoIcons.photo,
               textColor: Colors.black,
               iconSize: 50.0,
