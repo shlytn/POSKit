@@ -67,7 +67,7 @@ class MyApp extends StatelessWidget {
           OrderDetailPage.routeName: (context) => const OrderDetailPage(),
           AccountPage.routeName: (context) => const AccountPage(),
           ForgotPasswordPage.routeName: (context) => ForgotPasswordPage(),
-          SettingsPage.routeName: (context) => const SettingsPage(),
+          SettingsPage.routeName: (context) => SettingsPage(),
           ChangePasswordPage.routeName: (context) => ChangePasswordPage(),
           EmailSentPage.routeName: (context) => const EmailSentPage(),
           UserHelpPage.routeName: (context) => const UserHelpPage(),
