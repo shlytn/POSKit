@@ -42,13 +42,17 @@ class DatabaseService {
     return _ref.doc(id).delete();
   }
 
-  Future<String> uploadImage(File image) async {
+  Future<String> uploadImage(File image, bool isItem) async {
     String filename = basename(image.path);
 
-    Reference ref = FirebaseStorage.instance.ref().child(filename);
-    UploadTask task = ref.putFile(image);
-    TaskSnapshot snapshot = task.snapshot;
+    Reference ref = FirebaseStorage.instance.ref(user!.uid);
+    if (isItem) {
+      ref = ref.child('items').child(filename);
+    } else {
+      ref = ref.child('profile_image.jpg');
+    }
+    ref.putFile(image);
 
-    return await snapshot.ref.getDownloadURL();
+    return await ref.getDownloadURL();
   }
 }
