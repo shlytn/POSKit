@@ -9,12 +9,15 @@ import 'package:path/path.dart';
 class DatabaseService {
   final _db = FirebaseFirestore.instance;
   late CollectionReference _ref;
+  late DocumentReference _userRef;
   User? user = FirebaseAuth.instance.currentUser;
 
   DatabaseService() {
-    _ref = _db
+    _userRef = _db
         .collection('users')
-        .doc(user!.uid)
+        .doc(user!.uid);
+
+    _ref = _userRef
         .collection('items')
         .withConverter<Item>(
             fromFirestore: (snapshot, _) => Item.fromJson(snapshot.data()!),
@@ -57,10 +60,6 @@ class DatabaseService {
   }
   
   Future<void> setUserProfile(String? imageUrl) async {
-    final _userRef = _db
-        .collection('users')
-        .doc(user!.uid);
-
     final data = {
       "profile_image": imageUrl,
     };
@@ -69,10 +68,6 @@ class DatabaseService {
   }
   
   Stream<DocumentSnapshot> getUserProfile(){
-    final _userRef = _db
-        .collection('users')
-    .doc(user!.uid);
-
     return _userRef.snapshots();
   }
 }
