@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dicoding_capstone_pos/provider/auth_provider.dart';
 import 'package:dicoding_capstone_pos/provider/database_provider.dart';
 import 'package:dicoding_capstone_pos/provider/image_picker_provider.dart';
@@ -25,7 +26,7 @@ class _SettingsPageState extends State<SettingsPage> {
   final _formKey = GlobalKey<FormState>();
   var isEnable = false;
 
-  setEnable(condition){
+  setEnable(condition) {
     setState(() {
       isEnable = condition;
     });
@@ -45,57 +46,64 @@ class _SettingsPageState extends State<SettingsPage> {
 
     return Scaffold(
       appBar: AppBar(title: const Text(SettingsPage.pageTitle)),
-      body: SingleChildScrollView(
-        child: Container(
-          margin: const EdgeInsets.all(24.0),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const ImageWidget(),
-                spacing(24.0),
-                InputField(
-                    label: "Business Name",
-                    text: name,
-                    hint: "Enter your Business Name",
-                    onChanged: (value){
-                      newName = value;
-                      setEnable(value != name);
-                    }),
-                spacing(12.0),
-                InputField(
-                  label: "Email Address",
-                  hint: user.email!,
-                  isEnable: false,
-                ),
-                spacing(12.0),
-                RowMenu(
-                  title: 'Change Password',
-                  padding: const EdgeInsets.symmetric(vertical: 12.5),
-                  onClick: () {
-                    Navigator.pushNamed(context, ChangePasswordPage.routeName);
-                  },
-                ),
-                spacing(24.0),
-                RoundedButton(
-                  text: 'Save Changes',
-                  isEnable: isEnable,
-                  onClick: () async {
-                    if (_formKey.currentState!.validate()){
-                      await auth.updateProfile(newName);
-                      if (imageProvider.image != null &&
-                          imageProvider.fileName != '') {
-                        await dbProvider.getImageUrl(
-                            imageProvider.image!, false);
-                      }
+      body: StreamProvider<DocumentSnapshot?>.value(
+        value: dbProvider.getUserProfile(),
+        initialData: null,
+        child: SingleChildScrollView(
+          child: Container(
+            margin: const EdgeInsets.all(24.0),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const ImageWidget(),
+                  spacing(24.0),
+                  InputField(
+                      label: "Business Name",
+                      text: name,
+                      hint: "Enter your Business Name",
+                      onChanged: (value) {
+                        newName = value;
+                        setEnable(value != name);
+                      }),
+                  spacing(12.0),
+                  InputField(
+                    label: "Email Address",
+                    hint: user.email!,
+                    isEnable: false,
+                  ),
+                  spacing(12.0),
+                  RowMenu(
+                    title: 'Change Password',
+                    padding: const EdgeInsets.symmetric(vertical: 12.5),
+                    onClick: () {
+                      Navigator.pushNamed(
+                          context, ChangePasswordPage.routeName);
+                    },
+                  ),
+                  spacing(24.0),
+                  RoundedButton(
+                    text: 'Save Changes',
+                    isEnable: isEnable,
+                    onClick: () async {
+                      if (_formKey.currentState!.validate()) {
+                        await auth.updateProfile(newName);
+                        // if (imageProvider.image != null &&
+                        //     imageProvider.fileName != '') {
+                        //   final url = await dbProvider.getImageUrl(
+                        //       imageProvider.image!, false);
+                        //
+                        //   dbProvider.setUserProfile(url);
+                        // }
 
-                      showMessageSnackBar(context, auth.message);
-                      imageProvider.clearImage();
-                    }
-                  },
-                ),
-              ],
+                        showMessageSnackBar(context, auth.message);
+                        // imageProvider.clearImage();
+                      }
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         ),
