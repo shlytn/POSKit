@@ -55,4 +55,24 @@ class DatabaseService {
 
     return await ref.getDownloadURL();
   }
+  
+  Future<void> setUserProfile(String? imageUrl) async {
+    final _userRef = _db
+        .collection('users')
+        .doc(user!.uid);
+
+    final data = {
+      "profile_image": imageUrl,
+    };
+    
+    return await _userRef.set(data);
+  }
+  
+  Stream<DocumentSnapshot> getUserProfile(){
+    final _userRef = _db
+        .collection('users')
+    .doc(user!.uid);
+
+    return _userRef.snapshots();
+  }
 }
