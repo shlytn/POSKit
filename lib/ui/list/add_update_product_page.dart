@@ -11,37 +11,42 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-class AddUpdateProductPage extends StatelessWidget {
+class AddUpdateProductPage extends StatefulWidget {
   static const routeName = '/add_product';
   static const pageTitle = 'add_product';
 
   final Item? item;
 
-  AddUpdateProductPage({Key? key, this.item}) : super(key: key);
+  const AddUpdateProductPage({Key? key, this.item}) : super(key: key);
 
+  @override
+  State<AddUpdateProductPage> createState() => _AddUpdateProductPageState();
+}
+
+class _AddUpdateProductPageState extends State<AddUpdateProductPage> {
   final _formKey = GlobalKey<FormState>();
+  bool isManage = false;
 
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<DatabaseProvider>(context);
     final imageProvider = Provider.of<ImagePickerProvider>(context);
 
-    var isUpdate = item != null;
+    var isUpdate = widget.item != null;
     var title = isUpdate ? "Update Product" : "Add Product";
     String name = '';
     String? category, barcode, url;
     int? sellingPrice, capitalPrice, stock;
     stock = 0;
-    bool isManage = false;
     String image = imageProvider.fileName;
 
     if (isUpdate) {
-      name = item!.name;
-      sellingPrice = item!.sellingPrice;
-      capitalPrice = item!.capitalPrice;
-      isManage = item!.isManage;
-      category = item?.category;
-      barcode = item?.barcode;
+      name = widget.item!.name;
+      sellingPrice = widget.item!.sellingPrice;
+      capitalPrice = widget.item!.capitalPrice;
+      isManage = widget.item!.isManage;
+      category = widget.item?.category;
+      barcode = widget.item?.barcode;
     }
 
     return Scaffold(
@@ -87,7 +92,15 @@ class AddUpdateProductPage extends StatelessWidget {
                   fileName: image,
                 ),
                 spacing(12.0),
-                const StockManage(),
+                StockManage(
+                  isManage: isManage,
+                  onSwitchChange: (value) => setState(() {
+                    isManage = value;
+                  }),
+                  onStockChanged: (value) {
+                    stock = int.parse(value);
+                  },
+                ),
                 spacing(12.0),
                 InputField(
                     label: "Product Category",
@@ -125,7 +138,7 @@ class AddUpdateProductPage extends StatelessWidget {
                             imageUrl: url);
 
                         if (isUpdate) {
-                          provider.updateItem(item!.id!, newItem);
+                          provider.updateItem(widget.item!.id!, newItem);
                           Navigator.pop(context);
                         } else {
                           provider.addItem(newItem);
@@ -140,7 +153,7 @@ class AddUpdateProductPage extends StatelessWidget {
                 TextButton(
                   onPressed: () {
                     if (isUpdate) {
-                      provider.deleteItem(item!.id!);
+                      provider.deleteItem(widget.item!.id!);
                     }
                     Navigator.pop(context);
                     imageProvider.clearImage();
