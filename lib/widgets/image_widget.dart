@@ -1,6 +1,8 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dicoding_capstone_pos/common/styles.dart';
+import 'package:dicoding_capstone_pos/provider/database_provider.dart';
 import 'package:dicoding_capstone_pos/provider/image_picker_provider.dart';
 import 'package:dicoding_capstone_pos/widgets/image_bottom_sheet.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,29 +14,43 @@ class ImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     final image = Provider.of<ImagePickerProvider>(context).image;
+
+    final user = Provider.of<DocumentSnapshot?>(context);
+    final imageUrl = user?["profile_image"];
 
     return Stack(
       children: [
-        _buildImage(image),
+        _buildImage(imageUrl, image),
         Positioned(bottom: 0, right: 5, child: _buildCameraButton(context))
       ],
     );
   }
 
-  Widget _buildImage(File? image) {
+  Widget _buildImage(String? url, File? image) {
     return ClipOval(
-      child: image != null
-          ? Image.file(image, width: 150.0, height: 150.0, fit: BoxFit.cover)
-          : Image.asset(
-              'assets/images/pp.jpg',
-              width: 150.0,
-              height: 150.0,
-            ),
+      child: url != null
+          ? Image.network(url, width: 150.0, height: 150.0, fit: BoxFit.cover)
+          // : image != null
+          //     ? Image.file(
+          //         image,
+          //         width: 150.0,
+          //         height: 150.0,
+          //         fit: BoxFit.cover,
+          //       )
+              : Image.asset(
+                  'assets/images/pp.jpg',
+                  width: 150.0,
+                  height: 150.0,
+                ),
     );
   }
 
   Widget _buildCameraButton(BuildContext context) {
+    final dbProvider = Provider.of<DatabaseProvider>(context);
+    final imageProvider = Provider.of<ImagePickerProvider>(context);
+
     return ClipOval(
       child: Container(
         decoration: const BoxDecoration(
@@ -46,8 +62,16 @@ class ImageWidget extends StatelessWidget {
             CupertinoIcons.camera_fill,
             color: primaryColor,
           ),
-          onTap: () {
+          onTap: () async {
             showImageSource(context);
+            if (imageProvider.image != null &&
+                imageProvider.fileName != '') {
+              final url = await dbProvider.getImageUrl(
+                  imageProvider.image!, false);
+
+              await dbProvider.setUserProfile(url);
+              imageProvider.clearImage();
+            }
           },
         ),
       ),
