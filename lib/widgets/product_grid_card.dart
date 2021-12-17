@@ -1,6 +1,7 @@
 import 'package:dicoding_capstone_pos/common/styles.dart';
 import 'package:dicoding_capstone_pos/data/models/item.dart';
 import 'package:dicoding_capstone_pos/ui/list/add_update_product_page.dart';
+import 'package:dicoding_capstone_pos/widgets/product_add_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -73,14 +74,7 @@ class GridProductCard extends StatelessWidget {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: secondaryColor),
-                          child: IconButton(
-                            splashColor: Colors.transparent,
-                            iconSize: 20,
-                            padding: const EdgeInsets.all(0),
-                            color: Colors.white,
-                            onPressed: () {},
-                            icon: const Icon(CupertinoIcons.add),
-                          ),
+                          child: const ProductAddButton(),
                         )
                       ],
                     )
