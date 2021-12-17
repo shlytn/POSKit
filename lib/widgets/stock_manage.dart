@@ -3,16 +3,17 @@ import 'package:flutter/material.dart';
 
 import 'input_field.dart';
 
-class StockManage extends StatefulWidget {
-  const StockManage({Key? key}) : super(key: key);
+class StockManage extends StatelessWidget {
+  final ValueChanged onStockChanged;
+  final ValueChanged onSwitchChange;
+  final bool isManage;
 
-  @override
-  State<StockManage> createState() => _StockManageState();
-}
-
-class _StockManageState extends State<StockManage> {
-  var isManage = false;
-  var stock = 0;
+  const StockManage({
+    Key? key,
+    required this.onStockChanged,
+    required this.onSwitchChange,
+    required this.isManage,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +25,7 @@ class _StockManageState extends State<StockManage> {
             const Text('Manage Stock'),
             Switch(
               value: isManage,
-              onChanged: (value) => setState(() {
-                isManage = value;
-              }),
+              onChanged: onSwitchChange,
             )
           ],
         ),
@@ -36,7 +35,7 @@ class _StockManageState extends State<StockManage> {
             label: "Product Stock",
             hint: "100",
             type: TextInputType.number,
-            onChanged: (value) => stock = int.parse(value),
+            onChanged: onStockChanged,
           ),
       ],
     );
