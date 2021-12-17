@@ -27,6 +27,10 @@ class _AddUpdateProductPageState extends State<AddUpdateProductPage> {
   final _formKey = GlobalKey<FormState>();
   bool isManage = false;
 
+  String name = '';
+  String? category, barcode, url;
+  int? sellingPrice, capitalPrice, stock;
+
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<DatabaseProvider>(context);
@@ -34,10 +38,9 @@ class _AddUpdateProductPageState extends State<AddUpdateProductPage> {
 
     var isUpdate = widget.item != null;
     var title = isUpdate ? "Update Product" : "Add Product";
-    String name = '';
-    String? category, barcode, url;
-    int? sellingPrice, capitalPrice, stock;
+
     stock = 0;
+
     String image = imageProvider.fileName;
 
     if (isUpdate) {
