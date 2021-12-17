@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dicoding_capstone_pos/data/api/database_service.dart';
 import 'package:dicoding_capstone_pos/data/models/item.dart';
 import 'package:dicoding_capstone_pos/utils/result_state.dart';
@@ -58,5 +59,18 @@ class DatabaseProvider extends ChangeNotifier {
 
   Future<String> getImageUrl(File image, bool isItem) async {
     return await _api.uploadImage(image, isItem);
+  }
+
+  Future<void> setUserProfile(String? imageUrl) async {
+    try{
+      await _api.setUserProfile(imageUrl);
+      debugPrint("Success to add Profile");
+    } catch (e) {
+      debugPrint("Failed to add Profile");
+    }
+  }
+
+  Stream<DocumentSnapshot> getUserProfile() {
+    return _api.getUserProfile();
   }
 }
