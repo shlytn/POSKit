@@ -2,7 +2,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
 import 'package:dicoding_capstone_pos/data/models/item.dart';
-import 'package:dicoding_capstone_pos/widgets/card_product.dart';
+import 'package:dicoding_capstone_pos/widgets/product_list_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';

@@ -2,7 +2,7 @@
 
 import 'package:dicoding_capstone_pos/ui/cart/order_detail.dart';
 import 'package:dicoding_capstone_pos/widgets/cart_button.dart';
-import 'package:dicoding_capstone_pos/widgets/list_cart.dart';
+import 'package:dicoding_capstone_pos/widgets/cart_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

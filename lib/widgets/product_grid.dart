@@ -1,5 +1,5 @@
 import 'package:dicoding_capstone_pos/data/models/item.dart';
-import 'package:dicoding_capstone_pos/widgets/grid_product_card.dart';
+import 'package:dicoding_capstone_pos/widgets/product_grid_card.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

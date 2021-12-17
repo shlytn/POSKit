@@ -1,5 +1,5 @@
 import 'package:dicoding_capstone_pos/common/styles.dart';
-import 'package:dicoding_capstone_pos/widgets/list_history.dart';
+import 'package:dicoding_capstone_pos/widgets/history_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
