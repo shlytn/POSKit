@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dicoding_capstone_pos/common/styles.dart';
 import 'package:dicoding_capstone_pos/provider/auth_provider.dart';
 import 'package:dicoding_capstone_pos/provider/database_provider.dart';
 import 'package:dicoding_capstone_pos/provider/image_picker_provider.dart';
@@ -58,6 +59,11 @@ class _SettingsPageState extends State<SettingsPage> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   const ImageWidget(),
+                  TextButton(
+                    child: const Text("Clear Avatar",
+                        style: TextStyle(color: secondaryColor)),
+                    onPressed: () => dbProvider.setUserProfile(null),
+                  ),
                   spacing(24.0),
                   InputField(
                       label: "Business Name",
