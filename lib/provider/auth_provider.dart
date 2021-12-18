@@ -1,3 +1,4 @@
+import 'package:dicoding_capstone_pos/data/api/database_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 
@@ -34,6 +35,7 @@ class AuthProvider extends ChangeNotifier {
         _user = user!;
         _state = AuthState.authenticated;
         notifyListeners();
+        await DatabaseService().setUserProfile(null);
       }
       return true;
     } on FirebaseAuthException catch (e) {
