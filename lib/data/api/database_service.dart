@@ -25,7 +25,7 @@ class DatabaseService {
   }
 
   Stream<List<Item>> getData() {
-    return _ref.snapshots().map((snapshot) =>
+    return _ref.orderBy('name').snapshots().map((snapshot) =>
         snapshot.docs.map((doc) => Item.fromFirebase(doc)).toList());
   }
 
