@@ -33,41 +33,54 @@ class DatabaseProvider extends ChangeNotifier {
   Future<void> addItem(Item item) async {
     try {
       await _api.addData(item);
-      debugPrint("Success to add data");
+      _message = "Success to add data";
     } catch (e) {
-      debugPrint("Failed to add Data");
+      _message = "Failed to add Data";
     }
+    notifyListeners();
   }
 
   Future<void> updateItem(String id, Item item) async {
     try {
       await _api.updateData(id, item);
-      debugPrint("Success to update data");
+      _message = "Success to update data";
     } catch (e) {
-      debugPrint("Failed to update data");
+      _message = "Failed to update data";
     }
+    notifyListeners();
   }
 
   Future<void> deleteItem(String id) async {
     try {
       await _api.deleteData(id);
-      debugPrint("Success to delete data");
+      _message = "Success to delete data";
     } catch (e) {
-      debugPrint("Failed to delete data");
+      _message = "Failed to delete data";
     }
+    notifyListeners();
   }
 
-  Future<String> getImageUrl(File image, bool isItem) async {
-    return await _api.uploadImage(image, isItem);
+  Future<String?> getImageUrl(File image, bool isItem) async {
+    try {
+      final url = await _api.uploadImage(image, isItem);
+      _message = "Success to upload Image";
+      notifyListeners();
+      return url;
+    } catch (e) {
+      _message = "Failed to upload Image";
+      notifyListeners();
+      return null;
+    }
   }
 
   Future<void> setUserProfile(String? imageUrl) async {
     try{
       await _api.setUserProfile(imageUrl);
-      debugPrint("Success to add Profile");
+      _message = "Success to add Profile";
     } catch (e) {
-      debugPrint("Failed to add Profile");
+      _message = "Failed to add Profile";
     }
+    notifyListeners();
   }
 
   Stream<DocumentSnapshot> getUserProfile() {
