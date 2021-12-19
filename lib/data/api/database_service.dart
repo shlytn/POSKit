@@ -80,4 +80,17 @@ class DatabaseService {
   Stream<DocumentSnapshot> getUserProfile(){
     return _userRef.snapshots();
   }
+
+  Stream<List<CartItem>> getCart() {
+    return _cartRef.snapshots().map((snapshot) =>
+        snapshot.docs.map((doc) => CartItem.fromFirebase(doc)).toList());
+  }
+
+  Future<void> addCart(CartItem item) {
+    return _cartRef.doc(item.item.id).set(item);
+  }
+
+  Future<void> deleteCart(String id) {
+    return _cartRef.doc(id).delete();
+  }
 }
