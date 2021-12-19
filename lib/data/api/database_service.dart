@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dicoding_capstone_pos/data/models/cart_item.dart';
 import 'package:dicoding_capstone_pos/data/models/item.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -10,6 +11,7 @@ class DatabaseService {
   final _db = FirebaseFirestore.instance;
   late CollectionReference _ref;
   late DocumentReference _userRef;
+  late CollectionReference _cartRef;
   User? user = FirebaseAuth.instance.currentUser;
 
   DatabaseService() {
@@ -22,6 +24,14 @@ class DatabaseService {
         .withConverter<Item>(
             fromFirestore: (snapshot, _) => Item.fromJson(snapshot.data()!),
             toFirestore: (item, _) => item.toJson());
+
+    _cartRef = _userRef
+        .collection('cart')
+        .withConverter<CartItem>(
+        fromFirestore: (snapshot, _) => CartItem.fromJson(snapshot.data()!),
+        toFirestore: (item, _) => item.toJson());
+
+    print("user = ${user?.uid}");
   }
 
   Stream<List<Item>> getData() {
