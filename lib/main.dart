@@ -1,5 +1,6 @@
 import 'package:dicoding_capstone_pos/data/models/item.dart';
 import 'package:dicoding_capstone_pos/provider/auth_provider.dart';
+import 'package:dicoding_capstone_pos/provider/cart_provider.dart';
 import 'package:dicoding_capstone_pos/provider/database_provider.dart';
 import 'package:dicoding_capstone_pos/provider/image_picker_provider.dart';
 import 'package:dicoding_capstone_pos/ui/auth/email_sent_page.dart';
@@ -41,6 +42,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => AuthProvider.instance()),
         ChangeNotifierProvider(create: (_) => DatabaseProvider(),),
         ChangeNotifierProvider(create: (_) => ImagePickerProvider(),),
+        ChangeNotifierProvider(create: (_) => CartProvider(),),
       ],
       child: MaterialApp(
         title: 'Flutter App',
