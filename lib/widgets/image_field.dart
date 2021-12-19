@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class ImageField extends StatefulWidget {
+class ImageField extends StatelessWidget {
   final String buttonText;
   final String fileName;
 
@@ -14,11 +14,6 @@ class ImageField extends StatefulWidget {
     required this.fileName,
   }) : super(key: key);
 
-  @override
-  State<ImageField> createState() => _ImageFieldState();
-}
-
-class _ImageFieldState extends State<ImageField> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,7 +30,7 @@ class _ImageFieldState extends State<ImageField> {
         children: [
           Expanded(
             child: IconText(
-              text: widget.fileName,
+              text: fileName,
               icon: CupertinoIcons.photo,
               textColor: Colors.black,
               iconSize: 50.0,
@@ -45,7 +40,7 @@ class _ImageFieldState extends State<ImageField> {
             onPressed: () {
               showImageSource(context);
             },
-            child: Text(widget.buttonText),
+            child: Text(buttonText),
           ),
         ],
       ),
