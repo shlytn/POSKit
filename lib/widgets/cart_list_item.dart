@@ -26,7 +26,7 @@ class CartListItem extends StatelessWidget {
               child: Image.asset('assets/images/food.jpg'),
             ),
           ),
-          SizedBox(width: 10.0),
+          const SizedBox(width: 10.0),
           Expanded(
             flex: 2,
             child: Padding(
@@ -36,18 +36,17 @@ class CartListItem extends StatelessWidget {
                 children: [
                   Text(
                     item.item.name,
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  Text(
+                  const Text(
                     '(must choose level)',
                     style: TextStyle(
-                        fontSize: 12,
-                        color: CupertinoColors.inactiveGray),
+                        fontSize: 12, color: CupertinoColors.inactiveGray),
                   ),
-                  SizedBox(height: 15.0),
+                  const SizedBox(height: 15.0),
                   Text(
                     item.item.sellingPrice.toString(),
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                         color: secondaryColor),
@@ -59,8 +58,7 @@ class CartListItem extends StatelessWidget {
           Expanded(
             flex: 2,
             child: Padding(
-              padding:
-              const EdgeInsets.only(left: 1, right: 20.0, top: 25),
+              padding: const EdgeInsets.only(left: 1, right: 20.0, top: 25),
               child: Container(
                 height: 32.0,
                 decoration: BoxDecoration(
@@ -74,11 +72,11 @@ class CartListItem extends StatelessWidget {
                       padding: const EdgeInsets.all(0),
                       color: Colors.white,
                       onPressed: () {},
-                      icon: Icon(CupertinoIcons.minus),
+                      icon: const Icon(CupertinoIcons.minus),
                     ),
                     Text(
                       item.quantity.toString(),
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                     ),
                     IconButton(
                       splashColor: Colors.transparent,
@@ -86,7 +84,7 @@ class CartListItem extends StatelessWidget {
                       padding: const EdgeInsets.all(0),
                       color: Colors.white,
                       onPressed: () {},
-                      icon: Icon(CupertinoIcons.add),
+                      icon: const Icon(CupertinoIcons.add),
                     ),
                   ],
                 ),
