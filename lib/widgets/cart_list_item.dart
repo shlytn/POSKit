@@ -1,9 +1,12 @@
 import 'package:dicoding_capstone_pos/common/styles.dart';
+import 'package:dicoding_capstone_pos/data/models/cart_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CartListItem extends StatelessWidget {
-  const CartListItem({Key? key}) : super(key: key);
+  final CartItem item;
+
+  const CartListItem({Key? key, required this.item}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +35,7 @@ class CartListItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Tuna Salad',
+                    item.item.name,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   Text(
@@ -43,7 +46,7 @@ class CartListItem extends StatelessWidget {
                   ),
                   SizedBox(height: 15.0),
                   Text(
-                    '\$10.99',
+                    item.item.sellingPrice.toString(),
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
@@ -74,7 +77,7 @@ class CartListItem extends StatelessWidget {
                       icon: Icon(CupertinoIcons.minus),
                     ),
                     Text(
-                      '1',
+                      item.quantity.toString(),
                       style: TextStyle(color: Colors.white),
                     ),
                     IconButton(
