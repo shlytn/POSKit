@@ -1,0 +1,69 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dicoding_capstone_pos/data/models/item.dart';
+
+class Cart {
+  Cart({
+    this.id,
+    required this.items,
+    required this.totalItem,
+    required this.totalPrice,
+  });
+
+  String? id;
+  CartItem items;
+  int totalItem;
+  int totalPrice;
+
+  factory Cart.fromJson(Map<String, dynamic> json) => Cart(
+    items: json["items"],
+    totalItem: json["totalItem"].toInt(),
+    totalPrice: json["totalItem"].toInt(),
+  );
+
+  factory Cart.fromFirebase(DocumentSnapshot doc) => Cart(
+    id: doc.id,
+    items: doc["items"],
+    totalItem: doc["totalItem"].toInt(),
+    totalPrice: doc["totalItem"].toInt(),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "items": items,
+    "totalItem": totalItem,
+    "totalPrice": totalPrice,
+  };
+}
+
+class CartItem {
+  CartItem({
+    this.id,
+    required this.item,
+    required this.quantity,
+    required this.total,
+  });
+
+  String? id;
+  Item item;
+  int quantity;
+  int total;
+
+  factory CartItem.fromJson(Map<String, dynamic> json) => CartItem(
+    id: json["item"].id,
+    item: json["item"],
+    quantity: json["count"].toInt(),
+    total: json["count"].toInt(),
+  );
+
+  factory CartItem.fromFirebase(DocumentSnapshot doc) => CartItem(
+    id: doc.id,
+    item: doc["item"],
+    quantity: doc["count"].toInt(),
+    total: doc["count"].toInt(),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "item": item.toJson(),
+    "count": quantity,
+    "total": total,
+  };
+}
