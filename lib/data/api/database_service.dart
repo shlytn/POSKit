@@ -34,6 +34,8 @@ class DatabaseService {
     print("user = ${user?.uid}");
   }
 
+  /* Item DB */
+
   Stream<List<Item>> getStreamData() {
     return _ref.orderBy('name').snapshots().map((snapshot) =>
         snapshot.docs.map((doc) => Item.fromFirebase(doc)).toList());
@@ -58,6 +60,8 @@ class DatabaseService {
   Future<void> deleteData(String id) {
     return _ref.doc(id).delete();
   }
+
+  /* Image DB */
 
   Future<String> uploadImage(File image, bool isItem) async {
     String filename = basename(image.path);
@@ -84,6 +88,8 @@ class DatabaseService {
   Stream<DocumentSnapshot> getUserProfile(){
     return _userRef.snapshots();
   }
+
+  /* Cart DB */
 
   Stream<List<CartItem>> getCart() {
     return _cartRef.snapshots().map((snapshot) =>
