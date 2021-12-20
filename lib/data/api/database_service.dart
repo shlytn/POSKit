@@ -141,9 +141,9 @@ class DatabaseService {
 
   /* History DB */
 
-  Stream<List<Item>> getHistory() {
+  Stream<List<History>> getHistory() {
     return _historyRef.orderBy('dateTime', descending: true).snapshots().map((snapshot) =>
-        snapshot.docs.map((doc) => Item.fromFirebase(doc)).toList());
+        snapshot.docs.map((doc) => History.fromFirebase(doc)).toList());
   }
   
 }
