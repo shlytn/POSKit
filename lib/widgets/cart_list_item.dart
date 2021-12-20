@@ -96,7 +96,9 @@ class CartListItem extends StatelessWidget {
                     iconSize: 16,
                     padding: const EdgeInsets.all(0),
                     color: Colors.white,
-                    onPressed: () {},
+                    onPressed: () async {
+                      await provider.updateCart(item.id!, item, false);
+                    },
                     icon: const Icon(CupertinoIcons.minus),
                   ),
                   Text(
@@ -108,7 +110,9 @@ class CartListItem extends StatelessWidget {
                     iconSize: 16,
                     padding: const EdgeInsets.all(0),
                     color: Colors.white,
-                    onPressed: () {},
+                    onPressed: () async {
+                      await provider.updateCart(item.id!, item, true);
+                    },
                     icon: const Icon(CupertinoIcons.add),
                   ),
                 ],
