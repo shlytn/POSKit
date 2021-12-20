@@ -3,8 +3,7 @@
 
 import 'package:dicoding_capstone_pos/data/models/item.dart';
 import 'package:dicoding_capstone_pos/provider/database_provider.dart';
-import 'package:dicoding_capstone_pos/utils/result_state.dart';
-import 'package:dicoding_capstone_pos/widgets/empty_widget.dart';
+import 'package:dicoding_capstone_pos/widgets/check_state.dart';
 import 'package:dicoding_capstone_pos/widgets/product_list_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -20,12 +19,9 @@ class ListViewProduct extends StatelessWidget {
     final items = Provider.of<List<Item>>(context);
 
     return Consumer<DatabaseProvider>(builder: (context, provider, _) {
-      if (provider.state == ResultState.loading) {
-        return const CircularProgressIndicator();
-      } else if (provider.state == ResultState.noData) {
-        return const Center(child: EmptyWidget());
-      } else if (provider.state == ResultState.hasData) {
-        return ListView.separated(
+      return CheckState(
+        provider: provider,
+        child: ListView.separated(
           separatorBuilder: (context, index) {
             return Divider();
           },
@@ -33,9 +29,8 @@ class ListViewProduct extends StatelessWidget {
           itemBuilder: (context, index) {
             return CardProduct(item: items[index]);
           },
-        );
-      }
-      return const Center(child: Text("Ups, something went wrong!"));
+        ),
+      );
     });
   }
 }

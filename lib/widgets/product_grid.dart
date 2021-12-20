@@ -1,7 +1,6 @@
 import 'package:dicoding_capstone_pos/data/models/item.dart';
 import 'package:dicoding_capstone_pos/provider/database_provider.dart';
-import 'package:dicoding_capstone_pos/utils/result_state.dart';
-import 'package:dicoding_capstone_pos/widgets/empty_widget.dart';
+import 'package:dicoding_capstone_pos/widgets/check_state.dart';
 import 'package:dicoding_capstone_pos/widgets/product_grid_card.dart';
 
 import 'package:flutter/cupertino.dart';
@@ -18,12 +17,9 @@ class GridViewProduct extends StatelessWidget {
     final items = Provider.of<List<Item>>(context);
 
     return Consumer<DatabaseProvider>(builder: (context, provider, _) {
-      if (provider.state == ResultState.loading) {
-        return const CircularProgressIndicator();
-      } else if (provider.state == ResultState.noData) {
-        return const Center(child: EmptyWidget());
-      } else if (provider.state == ResultState.hasData) {
-        return GridView.builder(
+      return CheckState(
+        provider: provider,
+        child: GridView.builder(
           itemCount: items.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
@@ -35,10 +31,8 @@ class GridViewProduct extends StatelessWidget {
               item: items[index],
             );
           },
-        );
-      }
-
-      return const Center(child: Text("Ups, something went wrong!"));
+        ),
+      );
     });
   }
 }
