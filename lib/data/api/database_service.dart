@@ -39,6 +39,10 @@ class DatabaseService {
         snapshot.docs.map((doc) => Item.fromFirebase(doc)).toList());
   }
 
+  Future<QuerySnapshot> getData(){
+    return _ref.get();
+  }
+
   Future<DocumentSnapshot> getDataById(String id) {
     return _ref.doc(id).get();
   }
@@ -84,6 +88,10 @@ class DatabaseService {
   Stream<List<CartItem>> getCart() {
     return _cartRef.snapshots().map((snapshot) =>
         snapshot.docs.map((doc) => CartItem.fromFirebase(doc)).toList());
+  }
+
+  Future<QuerySnapshot> getCartData(){
+    return _cartRef.get();
   }
 
   Future<void> addCart(Item item) async {
