@@ -31,7 +31,7 @@ class CartListItem extends StatelessWidget {
             backgroundColor: background,
           ),
         ],
-        extentRatio: 1/5,
+        extentRatio: 1 / 5,
       ),
       child: Container(
         decoration: BoxDecoration(
@@ -47,8 +47,16 @@ class CartListItem extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: item.item.imageUrl != null
-                ? Image.network(item.item.imageUrl!, fit: BoxFit.cover)
-                : Image.asset('assets/images/food.jpg', fit: BoxFit.cover),
+                    ? Image.network(
+                        item.item.imageUrl!,
+                        height: 100.0,
+                        fit: BoxFit.cover,
+                      )
+                    : Image.asset(
+                        'assets/images/food.jpg',
+                        height: 100.0,
+                        fit: BoxFit.cover,
+                      ),
               ),
             ),
             const SizedBox(width: 10.0),
