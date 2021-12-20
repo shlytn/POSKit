@@ -99,6 +99,20 @@ class DatabaseService {
     return _cartRef.doc(item.id).set(cartItem);
   }
 
+  Future<void> updateCart(String id, CartItem item, bool isPlus) async {
+    CartItem cartItem;
+    if (isPlus) {
+      cartItem = CartItem(item: item.item, quantity: item.quantity + 1, total: item.item.sellingPrice);
+    } else {
+      if (item.quantity > 1){
+        cartItem = CartItem(item: item.item, quantity: item.quantity - 1, total: item.item.sellingPrice);
+      } else {
+        return await deleteCart(id);
+      }
+    }
+    return _cartRef.doc(id).update(cartItem.toJson());
+  }
+
   Future<void> deleteCart(String id) {
     return _cartRef.doc(id).delete();
   }

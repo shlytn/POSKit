@@ -31,6 +31,16 @@ class CartProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> updateCart(String id, CartItem item, bool isPlus) async {
+    try {
+      await _api.updateCart(id, item, isPlus);
+      _message = "Updated";
+    } catch (e) {
+      _message = "Failed to update item";
+    }
+    notifyListeners();
+  }
+
   Future<void> deleteCart(String id) async {
     try {
       await _api.deleteCart(id);
