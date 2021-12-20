@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:dicoding_capstone_pos/common/styles.dart';
+import 'package:dicoding_capstone_pos/widgets/order_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -84,7 +85,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
             padding: const EdgeInsets.only(left: 16.0, right: 16.0),
             child: Column(
               children: [
-                _buildOrderList(),
+                OrderList(),
                 Divider(),
                 SizedBox(height: 8.0),
                 Row(
