@@ -3,7 +3,7 @@ import 'package:dicoding_capstone_pos/common/styles.dart';
 import 'package:dicoding_capstone_pos/provider/auth_provider.dart';
 import 'package:dicoding_capstone_pos/provider/database_provider.dart';
 import 'package:dicoding_capstone_pos/provider/image_picker_provider.dart';
-import 'package:dicoding_capstone_pos/ui/profile/change_password_page.dart';
+import 'package:dicoding_capstone_pos/ui/profile/settings/change_password_page.dart';
 import 'package:dicoding_capstone_pos/widgets/image_widget.dart';
 import 'package:dicoding_capstone_pos/widgets/input_field.dart';
 import 'package:dicoding_capstone_pos/widgets/rounded_button.dart';

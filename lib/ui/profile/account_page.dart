@@ -2,8 +2,8 @@
 
 import 'package:dicoding_capstone_pos/provider/auth_provider.dart';
 import 'package:dicoding_capstone_pos/ui/auth/onboarding_page.dart';
-import 'package:dicoding_capstone_pos/ui/profile/help_page.dart';
-import 'package:dicoding_capstone_pos/ui/profile/settings_page.dart';
+import 'package:dicoding_capstone_pos/ui/profile/help/help_page.dart';
+import 'package:dicoding_capstone_pos/ui/profile/settings/settings_page.dart';
 import 'package:dicoding_capstone_pos/widgets/row_menu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
