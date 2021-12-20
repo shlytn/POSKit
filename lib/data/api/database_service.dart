@@ -12,6 +12,7 @@ class DatabaseService {
   late CollectionReference _ref;
   late DocumentReference _userRef;
   late CollectionReference _cartRef;
+  late CollectionReference _historyRef;
   User? user = FirebaseAuth.instance.currentUser;
 
   DatabaseService() {
@@ -29,6 +30,12 @@ class DatabaseService {
         .collection('cart')
         .withConverter<CartItem>(
         fromFirestore: (snapshot, _) => CartItem.fromJson(snapshot.data()!),
+        toFirestore: (item, _) => item.toJson());
+
+    _historyRef = _userRef
+        .collection('history')
+        .withConverter<History>(
+        fromFirestore: (snapshot, _) => History.fromFirebase(snapshot),
         toFirestore: (item, _) => item.toJson());
 
     print("user = ${user?.uid}");
