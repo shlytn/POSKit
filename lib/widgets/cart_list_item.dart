@@ -1,8 +1,11 @@
 import 'package:dicoding_capstone_pos/common/styles.dart';
 import 'package:dicoding_capstone_pos/data/models/cart_item.dart';
+import 'package:dicoding_capstone_pos/provider/cart_provider.dart';
+import 'package:dicoding_capstone_pos/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:provider/provider.dart';
 
 class CartListItem extends StatelessWidget {
   final CartItem item;
@@ -11,12 +14,18 @@ class CartListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<CartProvider>(context);
+
     return Slidable(
       endActionPane: ActionPane(
         motion: const ScrollMotion(),
         children: [
           SlidableAction(
-            onPressed: (BuildContext context) {},
+            onPressed: (BuildContext context) async {
+              await provider.deleteCart(item.id!);
+
+              showMessageSnackBar(context, provider.message);
+            },
             icon: CupertinoIcons.delete,
             foregroundColor: Colors.red,
             backgroundColor: background,
