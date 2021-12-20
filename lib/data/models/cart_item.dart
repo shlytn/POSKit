@@ -49,16 +49,16 @@ class CartItem {
 
   factory CartItem.fromJson(Map<String, dynamic> json) => CartItem(
     id: json["item"].id,
-    item: json["item"],
+    item: Item.fromJson(json["item"]),
     quantity: json["count"].toInt(),
-    total: json["count"].toInt(),
+    total: json["total"].toInt(),
   );
 
   factory CartItem.fromFirebase(DocumentSnapshot doc) => CartItem(
     id: doc.id,
-    item: doc["item"],
+    item: Item.fromFirebase(doc["item"]),
     quantity: doc["count"].toInt(),
-    total: doc["count"].toInt(),
+    total: doc["total"].toInt(),
   );
 
   Map<String, dynamic> toJson() => {
