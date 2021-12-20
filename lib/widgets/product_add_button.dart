@@ -1,4 +1,3 @@
-import 'package:dicoding_capstone_pos/data/models/cart_item.dart';
 import 'package:dicoding_capstone_pos/data/models/item.dart';
 import 'package:dicoding_capstone_pos/provider/cart_provider.dart';
 import 'package:dicoding_capstone_pos/widgets/widgets.dart';
@@ -21,8 +20,7 @@ class ProductAddButton extends StatelessWidget {
         padding: const EdgeInsets.all(0),
         color: Colors.white,
         onPressed: () async {
-          final cartItem = CartItem(item: item, quantity: 1, total: item.sellingPrice);
-          await provider.addCart(cartItem);
+          await provider.addCart(item);
 
           showMessageSnackBar(context, provider.message);
         },

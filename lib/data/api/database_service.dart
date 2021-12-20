@@ -86,8 +86,17 @@ class DatabaseService {
         snapshot.docs.map((doc) => CartItem.fromFirebase(doc)).toList());
   }
 
-  Future<void> addCart(CartItem item) {
-    return _cartRef.doc(item.item.id).set(item);
+  Future<void> addCart(Item item) async {
+    DocumentSnapshot? doc = await _cartRef.doc(item.id).get();
+
+    CartItem cartItem;
+    if (!doc.exists){
+      cartItem = CartItem(item: item, quantity: 1, total: item.sellingPrice);
+    } else {
+      final quantity = CartItem.fromFirebase(doc).quantity;
+      cartItem = CartItem(item: item, quantity: quantity + 1, total: item.sellingPrice);
+    }
+    return _cartRef.doc(item.id).set(cartItem);
   }
 
   Future<void> deleteCart(String id) {

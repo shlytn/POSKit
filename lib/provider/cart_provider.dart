@@ -1,5 +1,6 @@
 import 'package:dicoding_capstone_pos/data/api/database_service.dart';
 import 'package:dicoding_capstone_pos/data/models/cart_item.dart';
+import 'package:dicoding_capstone_pos/data/models/item.dart';
 import 'package:dicoding_capstone_pos/utils/result_state.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -19,7 +20,7 @@ class CartProvider extends ChangeNotifier {
     return result;
   }
 
-  Future<void> addCart(CartItem item) async {
+  Future<void> addCart(Item item) async {
     try {
       await _api.addCart(item);
       _message = "Item added to cart";
