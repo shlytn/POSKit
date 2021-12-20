@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dicoding_capstone_pos/data/models/cart_item.dart';
 import 'package:dicoding_capstone_pos/provider/cart_provider.dart';
 import 'package:dicoding_capstone_pos/ui/cart/order_detail.dart';
@@ -32,6 +33,8 @@ class _CartPageState extends State<CartPage> {
       body: StreamProvider<List<CartItem>>.value(
         value: provider.getCart(),
         initialData: [],
+        updateShouldNotify: const ListEquality<CartItem>().equals,
+        catchError: (_, __) => [],
         child: Column(
           children: [
             SizedBox(height: 8.0),

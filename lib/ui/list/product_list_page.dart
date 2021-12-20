@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dicoding_capstone_pos/common/styles.dart';
 import 'package:dicoding_capstone_pos/data/models/item.dart';
 import 'package:dicoding_capstone_pos/provider/database_provider.dart';
@@ -45,6 +46,8 @@ class _ProductListPageState extends State<ProductListPage> {
       body: StreamProvider<List<Item>>.value(
         value: provider.getItems(),
         initialData: const [],
+        updateShouldNotify: const ListEquality<Item>().equals,
+        catchError: (_, __) => [],
         child: Column(
           children: [
             Row(
