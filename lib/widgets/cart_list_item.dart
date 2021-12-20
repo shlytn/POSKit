@@ -16,34 +16,29 @@ class CartListItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Expanded(
             flex: 1,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: Image.asset('assets/images/food.jpg'),
+              child: Image.asset('assets/images/food.jpg', fit: BoxFit.cover),
             ),
           ),
           const SizedBox(width: 10.0),
           Expanded(
-            flex: 2,
             child: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     item.item.name,
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  const Text(
-                    '(must choose level)',
-                    style: TextStyle(
-                        fontSize: 12, color: CupertinoColors.inactiveGray),
-                  ),
-                  const SizedBox(height: 15.0),
+                  const SizedBox(height: 30.0),
                   Text(
                     item.item.sellingPrice.toString(),
                     style: const TextStyle(
@@ -55,42 +50,36 @@ class CartListItem extends StatelessWidget {
               ),
             ),
           ),
-          Expanded(
-            flex: 2,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 1, right: 20.0, top: 25),
-              child: Container(
-                height: 32.0,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: secondaryColor),
-                child: Row(
-                  children: [
-                    IconButton(
-                      splashColor: Colors.transparent,
-                      iconSize: 16,
-                      padding: const EdgeInsets.all(0),
-                      color: Colors.white,
-                      onPressed: () {},
-                      icon: const Icon(CupertinoIcons.minus),
-                    ),
-                    Text(
-                      item.quantity.toString(),
-                      style: const TextStyle(color: Colors.white),
-                    ),
-                    IconButton(
-                      splashColor: Colors.transparent,
-                      iconSize: 16,
-                      padding: const EdgeInsets.all(0),
-                      color: Colors.white,
-                      onPressed: () {},
-                      icon: const Icon(CupertinoIcons.add),
-                    ),
-                  ],
+          Container(
+            height: 32.0,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10), color: secondaryColor),
+            margin: const EdgeInsets.all(16.0),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(
+                  iconSize: 16,
+                  padding: const EdgeInsets.all(0),
+                  color: Colors.white,
+                  onPressed: () {},
+                  icon: const Icon(CupertinoIcons.minus),
                 ),
-              ),
+                Text(
+                  item.quantity.toString(),
+                  style: const TextStyle(color: Colors.white),
+                ),
+                IconButton(
+                  splashColor: Colors.red,
+                  iconSize: 16,
+                  padding: const EdgeInsets.all(0),
+                  color: Colors.white,
+                  onPressed: () {},
+                  icon: const Icon(CupertinoIcons.add),
+                ),
+              ],
             ),
-          )
+          ),
         ],
       ),
     );
