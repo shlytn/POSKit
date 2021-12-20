@@ -56,7 +56,7 @@ class CartItem {
 
   factory CartItem.fromFirebase(DocumentSnapshot doc) => CartItem(
     id: doc.id,
-    item: Item.fromFirebase(doc["item"]),
+    item: Item.fromJson(doc["item"]),
     quantity: doc["count"].toInt(),
     total: doc["total"].toInt(),
   );
