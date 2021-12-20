@@ -18,8 +18,8 @@ class GridViewProduct extends StatelessWidget {
     final items = Provider.of<List<Item>>(context);
 
     return Consumer<DatabaseProvider>(builder: (context, provider, _) {
-      if (provider.state == ResultState.error) {
-        return const Center(child: Text("Ups, something went wrong!"));
+      if (provider.state == ResultState.loading) {
+        return const CircularProgressIndicator();
       } else if (provider.state == ResultState.noData) {
         return const Center(child: EmptyWidget());
       } else if (provider.state == ResultState.hasData) {
@@ -38,7 +38,7 @@ class GridViewProduct extends StatelessWidget {
         );
       }
 
-      return const CircularProgressIndicator();
+      return const Center(child: Text("Ups, something went wrong!"));
     });
   }
 }
