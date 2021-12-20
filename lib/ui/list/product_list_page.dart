@@ -55,8 +55,8 @@ class _ProductListPageState extends State<ProductListPage> {
                     height: 56.0,
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      border:
-                          Border.all(color: CupertinoColors.lightBackgroundGray),
+                      border: Border.all(
+                          color: CupertinoColors.lightBackgroundGray),
                     ),
                     child: const Center(
                       child: Padding(
@@ -64,14 +64,14 @@ class _ProductListPageState extends State<ProductListPage> {
                         child: TextField(
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: CupertinoColors.inactiveGray),
+                              borderSide: BorderSide(
+                                  color: CupertinoColors.inactiveGray),
                             ),
                             suffixIcon: Icon(CupertinoIcons.search),
                             labelText: 'search product',
                             focusedBorder: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: CupertinoColors.inactiveGray),
+                              borderSide: BorderSide(
+                                  color: CupertinoColors.inactiveGray),
                             ),
                           ),
                         ),
@@ -84,8 +84,8 @@ class _ProductListPageState extends State<ProductListPage> {
                     height: 56.0,
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      border:
-                          Border.all(color: CupertinoColors.lightBackgroundGray),
+                      border: Border.all(
+                          color: CupertinoColors.lightBackgroundGray),
                     ),
                     child: isListView
                         ? IconButton(
