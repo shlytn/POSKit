@@ -1,8 +1,13 @@
+import 'package:dicoding_capstone_pos/data/models/cart_item.dart';
+import 'package:dicoding_capstone_pos/data/models/item.dart';
+import 'package:dicoding_capstone_pos/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ProductAddButton extends StatelessWidget {
-  const ProductAddButton({Key? key}) : super(key: key);
+  final Item item;
+
+  const ProductAddButton({Key? key, required this.item}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
