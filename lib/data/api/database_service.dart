@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dicoding_capstone_pos/data/models/cart_item.dart';
+import 'package:dicoding_capstone_pos/data/models/history.dart';
 import 'package:dicoding_capstone_pos/data/models/item.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -137,4 +138,12 @@ class DatabaseService {
   Future<void> deleteCart(String id) {
     return _cartRef.doc(id).delete();
   }
+
+  /* History DB */
+
+  Stream<List<Item>> getHistory() {
+    return _historyRef.orderBy('dateTime', descending: true).snapshots().map((snapshot) =>
+        snapshot.docs.map((doc) => Item.fromFirebase(doc)).toList());
+  }
+  
 }
