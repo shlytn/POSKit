@@ -44,9 +44,9 @@ class CartProvider extends ChangeNotifier {
   Future<void> deleteCart(String id) async {
     try {
       await _api.deleteCart(id);
-      _message = "Delete Cart Item";
+      _message = "Deleted";
     } catch (e) {
-      _message = "Failed to delete cart item";
+      _message = "Failed to delete item";
     }
     notifyListeners();
   }
