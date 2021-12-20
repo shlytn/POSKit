@@ -17,28 +17,28 @@ class GridViewProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     final items = Provider.of<List<Item>>(context);
 
-    return Consumer<DatabaseProvider>(
-      builder: (context, provider, _) {
-        if (provider.state == ResultState.error){
-          return const Center(child: Text("Ups, something went wrong!"));
-        } else if (provider.state == ResultState.noData){
-          return const Center(child: EmptyWidget());
-        } else if (provider.state == ResultState.hasData) {
-          return GridView.builder(
-            itemCount: items.length,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
-                childAspectRatio: 10 / 15),
-            itemBuilder: (context, index) {
-              return GridProductCard(item: items[index],);
-            },
-          );
-        }
-
-        return const CircularProgressIndicator();
+    return Consumer<DatabaseProvider>(builder: (context, provider, _) {
+      if (provider.state == ResultState.error) {
+        return const Center(child: Text("Ups, something went wrong!"));
+      } else if (provider.state == ResultState.noData) {
+        return const Center(child: EmptyWidget());
+      } else if (provider.state == ResultState.hasData) {
+        return GridView.builder(
+          itemCount: items.length,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
+              childAspectRatio: 10 / 15),
+          itemBuilder: (context, index) {
+            return GridProductCard(
+              item: items[index],
+            );
+          },
+        );
       }
-    );
+
+      return const CircularProgressIndicator();
+    });
   }
 }

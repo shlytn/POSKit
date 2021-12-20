@@ -19,25 +19,23 @@ class ListViewProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     final items = Provider.of<List<Item>>(context);
 
-    return Consumer<DatabaseProvider>(
-      builder: (context, provider, _) {
-        if (provider.state == ResultState.error){
-          return const Center(child: Text("Ups, something went wrong!"));
-        } else if (provider.state == ResultState.noData){
-          return const Center(child: EmptyWidget());
-        } else if (provider.state == ResultState.hasData) {
-          return ListView.separated(
-            separatorBuilder: (context, index) {
-              return Divider();
-            },
-            itemCount: items.length,
-            itemBuilder: (context, index) {
-              return CardProduct(item: items[index]);
-            },
-          );
-        }
-        return const CircularProgressIndicator();
+    return Consumer<DatabaseProvider>(builder: (context, provider, _) {
+      if (provider.state == ResultState.error) {
+        return const Center(child: Text("Ups, something went wrong!"));
+      } else if (provider.state == ResultState.noData) {
+        return const Center(child: EmptyWidget());
+      } else if (provider.state == ResultState.hasData) {
+        return ListView.separated(
+          separatorBuilder: (context, index) {
+            return Divider();
+          },
+          itemCount: items.length,
+          itemBuilder: (context, index) {
+            return CardProduct(item: items[index]);
+          },
+        );
       }
-    );
+      return const CircularProgressIndicator();
+    });
   }
 }
