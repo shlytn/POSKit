@@ -46,8 +46,8 @@ class _ProductListPageState extends State<ProductListPage> {
       body: StreamProvider<List<Item>>.value(
         value: provider.getItems(),
         initialData: const [],
-        updateShouldNotify: const ListEquality<Item>().equals,
-        catchError: (_, __) => [],
+        // updateShouldNotify: const ListEquality<Item>().equals,
+        // catchError: (_, __) => [],
         child: Column(
           children: [
             Row(
@@ -113,7 +113,12 @@ class _ProductListPageState extends State<ProductListPage> {
             ),
             const SizedBox(height: 8.0),
             Expanded(
-              child: isListView ? const ListViewProduct() : const GridViewProduct(),
+              child: RefreshIndicator(
+                  onRefresh: () => Navigator.pushNamedAndRemoveUntil(
+                      context, ProductListPage.routeName, (route) => false),
+                  child: isListView
+                      ? const ListViewProduct()
+                      : const GridViewProduct()),
             ),
             const CartButton(
               route: CartPage.routeName,

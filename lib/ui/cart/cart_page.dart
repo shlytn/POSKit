@@ -33,8 +33,8 @@ class _CartPageState extends State<CartPage> {
       body: StreamProvider<List<CartItem>>.value(
         value: provider.getCart(),
         initialData: [],
-        updateShouldNotify: const ListEquality<CartItem>().equals,
-        catchError: (_, __) => [],
+        // updateShouldNotify: const ListEquality<CartItem>().equals,
+        // catchError: (_, __) => [],
         child: Column(
           children: [
             SizedBox(height: 8.0),
