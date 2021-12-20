@@ -34,7 +34,7 @@ class DatabaseService {
     print("user = ${user?.uid}");
   }
 
-  Stream<List<Item>> getData() {
+  Stream<List<Item>> getStreamData() {
     return _ref.orderBy('name').snapshots().map((snapshot) =>
         snapshot.docs.map((doc) => Item.fromFirebase(doc)).toList());
   }
