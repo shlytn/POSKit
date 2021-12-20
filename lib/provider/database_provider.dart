@@ -21,17 +21,8 @@ class DatabaseProvider extends ChangeNotifier {
 
   String get message => _message;
 
-  late Item _item;
-
-  Item get item => _item;
-
-  List<Item> _items = [];
-
-  List<Item> get items => _items;
-
   Stream<List<Item>> getItems() {
-    final result = _api.getData();
-    return result;
+    return _api.getStreamData();
   }
 
   Future<dynamic> checkItems() async {
@@ -81,16 +72,7 @@ class DatabaseProvider extends ChangeNotifier {
   }
 
   Future<String?> getImageUrl(File image, bool isItem) async {
-    try {
-      final url = await _api.uploadImage(image, isItem);
-      _message = "Success to upload Image";
-      notifyListeners();
-      return url;
-    } catch (e) {
-      _message = "Failed to upload Image";
-      notifyListeners();
-      return null;
-    }
+    return await _api.uploadImage(image, isItem);
   }
 
   Future<void> setUserProfile(String? imageUrl) async {

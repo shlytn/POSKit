@@ -16,8 +16,7 @@ class CartProvider extends ChangeNotifier {
   String get message => _message;
 
   Stream<List<CartItem>> getCart() {
-    final result = _api.getCart();
-    return result;
+    return _api.getCart();
   }
 
   Future<dynamic> checkItems() async {
@@ -42,7 +41,6 @@ class CartProvider extends ChangeNotifier {
       _message = "Item added to cart";
     } catch (e) {
       _message = "Failed to add cart";
-      print(e);
     }
     notifyListeners();
   }
