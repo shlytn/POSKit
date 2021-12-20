@@ -7,6 +7,10 @@ import 'package:dicoding_capstone_pos/utils/result_state.dart';
 import 'package:flutter/cupertino.dart';
 
 class DatabaseProvider extends ChangeNotifier {
+  DatabaseProvider(){
+    checkItems();
+  }
+
   final _api = DatabaseService();
 
   late ResultState _state;
@@ -28,6 +32,22 @@ class DatabaseProvider extends ChangeNotifier {
   Stream<List<Item>> getItems() {
     final result = _api.getData();
     return result;
+  }
+
+  Future<dynamic> checkItems() async {
+    try{
+      _state = ResultState.loading;
+      final data = await _api.getData();
+      if (data.size > 0){
+        _state = ResultState.hasData;
+      } else {
+        _state = ResultState.noData;
+      }
+    } catch (e) {
+      _state = ResultState.error;
+    } finally {
+      notifyListeners();
+    }
   }
 
   Future<void> addItem(Item item) async {

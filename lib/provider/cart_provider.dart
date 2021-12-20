@@ -20,6 +20,22 @@ class CartProvider extends ChangeNotifier {
     return result;
   }
 
+  Future<dynamic> checkItems() async {
+    try{
+      _state = ResultState.loading;
+      final data = await _api.getCartData();
+      if (data.size > 0){
+        _state = ResultState.hasData;
+      } else {
+        _state = ResultState.noData;
+      }
+    } catch (e) {
+      _state = ResultState.error;
+    } finally {
+      notifyListeners();
+    }
+  }
+
   Future<void> addCart(Item item) async {
     try {
       await _api.addCart(item);
