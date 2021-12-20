@@ -5,6 +5,10 @@ import 'package:dicoding_capstone_pos/utils/result_state.dart';
 import 'package:flutter/cupertino.dart';
 
 class CartProvider extends ChangeNotifier {
+  CartProvider(){
+    checkItems();
+  }
+
   final _api = DatabaseService();
 
   late ResultState _state;
