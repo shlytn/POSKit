@@ -1,6 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-// ignore_for_file: prefer_const_literals_to_create_immutables
-
 import 'package:dicoding_capstone_pos/data/models/cart_item.dart';
 import 'package:dicoding_capstone_pos/provider/cart_provider.dart';
 import 'package:dicoding_capstone_pos/widgets/cart_list_item.dart';
@@ -23,7 +20,7 @@ class ListViewCart extends StatelessWidget {
         provider: provider,
         child: ListView.separated(
           separatorBuilder: (context, index) {
-            return Divider();
+            return const Divider();
           },
           itemCount: items.length,
           itemBuilder: (context, index) {

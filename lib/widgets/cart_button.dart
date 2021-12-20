@@ -1,4 +1,3 @@
-// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, use_key_in_widget_constructors
 import 'package:dicoding_capstone_pos/common/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,7 +16,7 @@ class CartButton extends StatelessWidget {
         },
         style: ElevatedButton.styleFrom(
             primary: secondaryColor, onPrimary: Colors.white),
-        child: Container(
+        child: SizedBox(
           height: 60,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

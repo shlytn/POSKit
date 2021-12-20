@@ -58,7 +58,7 @@ class CardProduct extends StatelessWidget {
                       spacing(15.0),
                       Text(
                         "${item.sellingPrice}",
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
                             color: secondaryColor),

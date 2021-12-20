@@ -63,7 +63,7 @@ class GridProductCard extends StatelessWidget {
                       children: [
                         Text(
                           "${item.sellingPrice}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               color: secondaryColor,
                               fontSize: 16),
