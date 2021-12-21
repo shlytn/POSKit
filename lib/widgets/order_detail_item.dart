@@ -9,7 +9,7 @@ class OrderDetailItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int totalPrice = item.item.capitalPrice;
+    final total = item.quantity * item.item.sellingPrice;
     return Column(
       children: [
         Row(
@@ -33,7 +33,7 @@ class OrderDetailItem extends StatelessWidget {
             const Spacer(),
             Align(
               alignment: Alignment.centerRight,
-              child: Text("Rp.${item.item.sellingPrice.toString()}"),
+              child: Text("Rp.$total"),
             )
           ],
         ),
