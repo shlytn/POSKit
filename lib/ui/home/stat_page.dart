@@ -13,7 +13,8 @@ class StatPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: background,
       appBar: AppBar(
-        title: const Center(child: Text('Home')),
+        title: Text('Home'),
+        centerTitle: true,
         shadowColor: Colors.white54,
       ),
       body: SingleChildScrollView(
