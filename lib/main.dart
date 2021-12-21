@@ -19,6 +19,7 @@ import 'package:dicoding_capstone_pos/ui/profile/settings/change_password_page.d
 import 'package:dicoding_capstone_pos/ui/profile/help/add_product.dart';
 import 'package:dicoding_capstone_pos/ui/profile/help/help_page.dart';
 import 'package:dicoding_capstone_pos/ui/profile/settings/settings_page.dart';
+import 'package:dicoding_capstone_pos/ui/result/failed_page.dart';
 import 'package:dicoding_capstone_pos/ui/result/success_page.dart';
 import 'package:dicoding_capstone_pos/utils/auth_wrapper.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -61,7 +62,7 @@ class MyApp extends StatelessWidget {
           ),
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        initialRoute: AuthWrapper.routeName,
+        initialRoute: FailedPage.routeName,
         routes: {
           AuthWrapper.routeName: (context) => const AuthWrapper(),
           OnboardingPage.routeName: (context) => const OnboardingPage(),
@@ -81,7 +82,8 @@ class MyApp extends StatelessWidget {
           EmailSentPage.routeName: (context) => const EmailSentPage(),
           UserHelpPage.routeName: (context) => const UserHelpPage(),
           AddProductHelp.routeName: (context) => const AddProductHelp(),
-          SuccessPage.routeName: (context) => const SuccessPage()
+          SuccessPage.routeName: (context) => const SuccessPage(),
+          FailedPage.routeName: (context) => const FailedPage()
         },
       ),
     );
