@@ -39,7 +39,7 @@ class SuccessPage extends StatelessWidget {
                     ),
                     SizedBox(height: 8.0),
                     Text(
-                      'Successful Transaction',
+                      'Transaction Successful',
                       style: TextStyle(
                           color: secondaryColor,
                           fontWeight: FontWeight.bold,
