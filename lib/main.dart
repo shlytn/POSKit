@@ -62,7 +62,7 @@ class MyApp extends StatelessWidget {
           ),
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        initialRoute: FailedPage.routeName,
+        initialRoute: AuthWrapper.routeName,
         routes: {
           AuthWrapper.routeName: (context) => const AuthWrapper(),
           OnboardingPage.routeName: (context) => const OnboardingPage(),
