@@ -116,22 +116,25 @@ class DatabaseService {
       cartItem = CartItem(item: item, quantity: 1, total: item.sellingPrice);
     } else {
       final quantity = CartItem.fromFirebase(doc).quantity;
-      cartItem = CartItem(item: item, quantity: quantity + 1, total: item.sellingPrice);
+      final newQuantity = quantity + 1;
+      cartItem = CartItem(item: item, quantity: newQuantity, total: item.sellingPrice * newQuantity);
     }
     return _cartRef.doc(item.id).set(cartItem);
   }
 
   Future<void> updateCart(String id, CartItem item, bool isPlus) async {
     CartItem cartItem;
+    int quantity;
     if (isPlus) {
-      cartItem = CartItem(item: item.item, quantity: item.quantity + 1, total: item.item.sellingPrice);
+      quantity = item.quantity + 1;
     } else {
       if (item.quantity > 1){
-        cartItem = CartItem(item: item.item, quantity: item.quantity - 1, total: item.item.sellingPrice);
+        quantity = item.quantity - 1;
       } else {
         return await deleteCart(id);
       }
     }
+    cartItem = CartItem(item: item.item, quantity: quantity, total: item.item.sellingPrice * quantity);
     return _cartRef.doc(id).update(cartItem.toJson());
   }
 
