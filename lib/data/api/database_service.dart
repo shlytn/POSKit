@@ -145,5 +145,16 @@ class DatabaseService {
     return _historyRef.orderBy('dateTime', descending: true).snapshots().map((snapshot) =>
         snapshot.docs.map((doc) => History.fromFirebase(doc)).toList());
   }
-  
+
+  Future<QuerySnapshot> getHistoryData(){
+    return _ref.get();
+  }
+
+  Future<DocumentReference> addHistory(List<CartItem> items) {
+    DateTime now = DateTime.now();
+
+    History history = History(dateTime: now, items: items, totalItem: getTotalQuantity(items), totalPrice: getTotalPrice(items));
+
+    return _ref.add(history);
+  }
 }
