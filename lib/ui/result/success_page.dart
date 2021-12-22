@@ -83,7 +83,7 @@ class SuccessPage extends StatelessWidget {
                                       color: primaryColor,
                                     ),
                                     Text(
-                                      'Subtotal: Rp ${formatCurrency.format(provider.totalPrice)}',
+                                      'Subtotal: Rp. ${formatCurrency.format(provider.totalPrice)}',
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: primaryColor),
