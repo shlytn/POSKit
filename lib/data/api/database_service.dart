@@ -165,11 +165,14 @@ class DatabaseService {
   }
 
   Future<QuerySnapshot> getHistoryData() {
-    return _ref.get();
+    return _historyRef.get();
   }
 
   Future<DocumentReference> addHistory(List<CartItem> items) {
     DateTime now = DateTime.now();
+
+    var formatter = DateFormat('yyyy-MM-dd');
+    String todayDate = formatter.format(now);
 
     History history = History(
         dateTime: now,
@@ -177,6 +180,9 @@ class DatabaseService {
         totalItem: getTotalQuantity(items),
         totalPrice: getTotalPrice(items));
 
-    return _ref.add(history);
+    return _historyRef
+        .doc(todayDate)
+        .collection('transactions')
+        .add(history.toJson());
   }
 }
