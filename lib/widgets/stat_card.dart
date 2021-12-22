@@ -66,15 +66,17 @@ class StatCard extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: Text(
-              total,
-              style: const TextStyle(
-                fontSize: 22.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: FittedBox(
+                fit: BoxFit.fitWidth,
+                child: Text(
+                  total,
+                  style: const TextStyle(
+                    fontSize: 22.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              )),
           Text(
             isProfit ? "Total Profit" : "Total Transaction",
             style: const TextStyle(color: Color(0XFF737D93)),
