@@ -1,6 +1,8 @@
 import 'package:dicoding_capstone_pos/common/styles.dart';
+import 'package:dicoding_capstone_pos/provider/cart_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
 
 class CartButton extends StatelessWidget {
   final String route;
@@ -8,6 +10,8 @@ class CartButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<CartProvider>(context);
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24.0),
       child: ElevatedButton(
@@ -22,19 +26,19 @@ class CartButton extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               RichText(
-                text: const TextSpan(
+                text: TextSpan(
                   children: [
-                    WidgetSpan(
+                    const WidgetSpan(
                       child: Padding(
                         padding: EdgeInsets.only(right: 4.0),
                         child: Icon(CupertinoIcons.cart_fill, size: 18),
                       ),
                     ),
-                    TextSpan(text: '8 items')
+                    TextSpan(text: '${provider.totalItem} items')
                   ],
                 ),
               ),
-              const Text('Total: \$890.00')
+              Text('Total: Rp ${provider.totalPrice}')
             ],
           ),
         ),
