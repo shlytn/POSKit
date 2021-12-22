@@ -42,9 +42,9 @@ class HistoryProvider extends ChangeNotifier {
   Future<void> addHistory(List<CartItem> items) async {
     try {
       await _api.addHistory(items);
-      _message = "Added to history";
+      _message = "Transaction Success";
     } catch (e) {
-      _message = "Failed to add history";
+      _message = "Failed to make Transaction";
     }
     notifyListeners();
   }
