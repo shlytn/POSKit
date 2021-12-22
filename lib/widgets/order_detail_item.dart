@@ -2,6 +2,7 @@ import 'package:dicoding_capstone_pos/common/styles.dart';
 import 'package:dicoding_capstone_pos/data/models/cart_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class OrderDetailItem extends StatelessWidget {
   final CartItem item;
@@ -10,6 +11,7 @@ class OrderDetailItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final total = item.quantity * item.item.sellingPrice;
+    final formatCurrency = NumberFormat("#,##0", "en_US");
 
     return Column(
       children: [
@@ -34,7 +36,7 @@ class OrderDetailItem extends StatelessWidget {
             const Spacer(),
             Align(
               alignment: Alignment.centerRight,
-              child: Text("Rp. $total"),
+              child: Text("Rp. ${formatCurrency.format(total)}"),
             )
           ],
         ),

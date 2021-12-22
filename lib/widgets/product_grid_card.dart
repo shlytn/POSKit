@@ -4,6 +4,7 @@ import 'package:dicoding_capstone_pos/ui/list/add_update_product_page.dart';
 import 'package:dicoding_capstone_pos/widgets/product_add_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class GridProductCard extends StatelessWidget {
   final Item item;
@@ -13,6 +14,7 @@ class GridProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ImageProvider<Object> image;
+    final formatCurrency = NumberFormat("#,##0", "en_US");
     if (item.imageUrl != null) {
       image = NetworkImage(item.imageUrl!);
     } else {
@@ -36,9 +38,7 @@ class GridProductCard extends StatelessWidget {
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    image: DecorationImage(
-                        image: image,
-                        fit: BoxFit.cover),
+                    image: DecorationImage(image: image, fit: BoxFit.cover),
                   ),
                 ),
               ),
@@ -62,7 +62,7 @@ class GridProductCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "${item.sellingPrice}",
+                          "Rp. ${formatCurrency.format(item.sellingPrice)}",
                           style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               color: secondaryColor,
@@ -74,7 +74,9 @@ class GridProductCard extends StatelessWidget {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: secondaryColor),
-                          child: ProductAddButton(item: item,),
+                          child: ProductAddButton(
+                            item: item,
+                          ),
                         )
                       ],
                     )

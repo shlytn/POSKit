@@ -3,6 +3,7 @@ import 'package:dicoding_capstone_pos/provider/cart_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class CartButton extends StatelessWidget {
   final String route;
@@ -11,6 +12,7 @@ class CartButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<CartProvider>(context);
+    final formatCurrency = NumberFormat("#,##0", "en_US");
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -38,7 +40,7 @@ class CartButton extends StatelessWidget {
                   ],
                 ),
               ),
-              Text('Total: Rp ${provider.totalPrice}')
+              Text('Total: Rp ${formatCurrency.format(provider.totalPrice)}')
             ],
           ),
         ),
