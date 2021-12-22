@@ -21,7 +21,7 @@ class History {
         items:
             List<CartItem>.from(json["items"].map((x) => CartItem.fromJson(x))),
         totalItem: json["totalItem"].toInt(),
-        totalPrice: json["totalItem"].toInt(),
+        totalPrice: json["totalPrice"].toInt(),
       );
 
   factory History.fromFirebase(DocumentSnapshot doc) => History(
@@ -30,12 +30,12 @@ class History {
         items:
             List<CartItem>.from(doc["items"].map((x) => CartItem.fromJson(x))),
         totalItem: doc["totalItem"].toInt(),
-        totalPrice: doc["totalItem"].toInt(),
+        totalPrice: doc["totalPrice"].toInt(),
       );
 
   Map<String, dynamic> toJson() => {
         "dateTime": dateTime,
-        "items": List<CartItem>.from(items.map((x) => x.toJson())),
+        "items": List<dynamic>.from(items.map((x) => x.toJson())),
         "totalItem": totalItem,
         "totalPrice": totalPrice,
       };
