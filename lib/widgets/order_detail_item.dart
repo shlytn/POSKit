@@ -10,6 +10,7 @@ class OrderDetailItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final total = item.quantity * item.item.sellingPrice;
+
     return Column(
       children: [
         Row(
@@ -33,7 +34,7 @@ class OrderDetailItem extends StatelessWidget {
             const Spacer(),
             Align(
               alignment: Alignment.centerRight,
-              child: Text("Rp.$total"),
+              child: Text("Rp. $total"),
             )
           ],
         ),

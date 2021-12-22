@@ -1,9 +1,9 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:dicoding_capstone_pos/common/styles.dart';
+import 'package:dicoding_capstone_pos/data/models/cart_item.dart';
 import 'package:dicoding_capstone_pos/provider/cart_provider.dart';
 import 'package:dicoding_capstone_pos/ui/result/success_page.dart';
 import 'package:dicoding_capstone_pos/widgets/order_detail_list.dart';
+import 'package:dicoding_capstone_pos/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -29,11 +29,11 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
       appBar: AppBar(
         centerTitle: true,
         elevation: 0,
-        title: Text('Order Details'),
+        title: const Text('Order Details'),
       ),
       body: StreamProvider<List<CartItem>>.value(
         value: provider.getCart(),
-        initialData: [],
+        initialData: const [],
         child: Column(
           children: [
             Container(
@@ -45,7 +45,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.all(16.0),
                     child: Text(
                       'Customer',
@@ -56,7 +56,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                     onPressed: () {},
                     icon: IconButton(
                       onPressed: () {},
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.arrow_forward_ios,
                         size: 12,
                       ),
@@ -65,17 +65,17 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                 ],
               ),
             ),
-            SizedBox(height: 8.0),
+            spacing(8.0),
             Wrap(
               spacing: 8,
               children: List.generate(
                 _choicesList.length,
                 (index) {
                   return ChoiceChip(
-                    labelPadding: EdgeInsets.all(2.0),
+                    labelPadding: const EdgeInsets.all(2.0),
                     label: Text(
                       _choicesList[index],
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                     ),
                     selected: defaultChoice == index,
                     selectedColor: secondaryColor,
@@ -89,12 +89,12 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                 },
               ),
             ),
-            SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+            spacing(20.0),
+            const Padding(
+              padding: EdgeInsets.only(left: 16.0, right: 16.0),
               child: OrderDetailList(),
             ),
-            Spacer(),
+            const Spacer(),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: ElevatedButton(
@@ -104,7 +104,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                 },
                 style: ElevatedButton.styleFrom(
                     primary: secondaryColor, onPrimary: Colors.white),
-                child: Container(
+                child: const SizedBox(
                   width: double.infinity,
                   height: 60,
                   child: Center(

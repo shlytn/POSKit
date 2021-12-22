@@ -1,8 +1,8 @@
-import 'package:dicoding_capstone_pos/common/styles.dart';
 import 'package:dicoding_capstone_pos/data/models/cart_item.dart';
 import 'package:dicoding_capstone_pos/provider/cart_provider.dart';
 import 'package:dicoding_capstone_pos/widgets/check_state.dart';
 import 'package:dicoding_capstone_pos/widgets/order_detail_item.dart';
+import 'package:dicoding_capstone_pos/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -24,24 +24,24 @@ class OrderDetailList extends StatelessWidget {
             children: [
               ListView.separated(
                 shrinkWrap: true,
-                separatorBuilder: (context, index) => Divider(),
+                separatorBuilder: (context, index) => const Divider(),
                 itemCount: items.length,
                 itemBuilder: (context, index) {
                   return OrderDetailItem(item: items[index]);
                 },
               ),
-              Divider(),
-              SizedBox(height: 8.0),
+              const Divider(),
+              spacing(8.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Discount', style: TextStyle(fontSize: 16)),
-                  Container(
+                  const Text('Discount', style: TextStyle(fontSize: 16)),
+                  SizedBox(
                     height: 9,
                     child: IconButton(
                       padding: const EdgeInsets.all(0),
                       onPressed: () {},
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.arrow_forward_ios,
                         size: 9,
                       ),
@@ -49,13 +49,13 @@ class OrderDetailList extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 8.0),
-              Divider(),
-              SizedBox(height: 8.0),
+              spacing(8.0),
+              const Divider(),
+              spacing(8.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  const Text(
                     'Subtotal',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
@@ -65,16 +65,16 @@ class OrderDetailList extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 8.0),
-              Divider(),
-              SizedBox(height: 8.0),
+              spacing(8.0),
+              const Divider(),
+              spacing(8.0),
               Center(
                 child: TextButton.icon(
                   style:
                       TextButton.styleFrom(primary: CupertinoColors.systemRed),
                   onPressed: () {},
-                  icon: Icon(CupertinoIcons.trash),
-                  label: Text('Delete Order'),
+                  icon: const Icon(CupertinoIcons.trash),
+                  label: const Text('Delete Order'),
                 ),
               ),
             ],
