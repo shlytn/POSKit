@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 
 class OrderDetailPage extends StatefulWidget {
   static const routeName = '/order_detail';
+
   const OrderDetailPage({Key? key}) : super(key: key);
 
   @override
@@ -35,6 +36,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
         value: provider.getCart(),
         initialData: const [],
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
               height: 56.0,
@@ -66,30 +68,49 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
               ),
             ),
             spacing(8.0),
-            Wrap(
-              spacing: 8,
-              children: List.generate(
-                _choicesList.length,
-                (index) {
-                  return ChoiceChip(
-                    labelPadding: const EdgeInsets.all(2.0),
-                    label: Text(
-                      _choicesList[index],
-                      style: const TextStyle(color: Colors.white),
-                    ),
-                    selected: defaultChoice == index,
-                    selectedColor: secondaryColor,
-                    onSelected: (value) {
-                      setState(() {
-                        defaultChoice = value ? index : defaultChoice;
-                      });
-                    },
-                    elevation: 0,
-                  );
-                },
+            Center(
+              child: Wrap(
+                spacing: 8,
+                children: List.generate(
+                  _choicesList.length,
+                  (index) {
+                    return ChoiceChip(
+                      labelPadding: const EdgeInsets.all(2.0),
+                      label: Text(
+                        _choicesList[index],
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                      selected: defaultChoice == index,
+                      selectedColor: secondaryColor,
+                      onSelected: (value) {
+                        setState(() {
+                          defaultChoice = value ? index : defaultChoice;
+                        });
+                      },
+                      elevation: 0,
+                    );
+                  },
+                ),
               ),
             ),
             spacing(20.0),
+            Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: RichText(
+                text: TextSpan(
+                  children: [
+                    const TextSpan(text: "Total Items: "),
+                    TextSpan(text: "${provider.totalItem}")
+                  ],
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20.0,
+                    color: Colors.black,
+                  ),
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
             const Padding(
               padding: EdgeInsets.only(left: 16.0, right: 16.0),
               child: OrderDetailList(),
