@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:dicoding_capstone_pos/common/styles.dart';
-import 'package:dicoding_capstone_pos/data/models/cart_item.dart';
 import 'package:dicoding_capstone_pos/provider/cart_provider.dart';
-import 'package:dicoding_capstone_pos/widgets/order_list.dart';
+import 'package:dicoding_capstone_pos/ui/result/success_page.dart';
+import 'package:dicoding_capstone_pos/widgets/order_detail_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -92,66 +92,16 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
             SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-              child: Column(
-                children: [
-                  OrderList(),
-                  Divider(),
-                  SizedBox(height: 8.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('Discount', style: TextStyle(fontSize: 16)),
-                      Container(
-                        height: 9,
-                        child: IconButton(
-                          padding: const EdgeInsets.all(0),
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.arrow_forward_ios,
-                            size: 9,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 8.0),
-                  Divider(),
-                  SizedBox(height: 8.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Subtotal',
-                        style:
-                            TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                      ),
-                      Text(
-                        '\$10.99',
-                        style:
-                            TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 8.0),
-                  Divider(),
-                  SizedBox(height: 8.0),
-                  Center(
-                    child: TextButton.icon(
-                      style: TextButton.styleFrom(
-                          primary: CupertinoColors.systemRed),
-                      onPressed: () {},
-                      icon: Icon(CupertinoIcons.trash),
-                      label: Text('Delete Order'),
-                    ),
-                  ),
-                ],
-              ),
+              child: OrderDetailList(),
             ),
             Spacer(),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacementNamed(
+                      context, SuccessPage.routeName);
+                },
                 style: ElevatedButton.styleFrom(
                     primary: secondaryColor, onPrimary: Colors.white),
                 child: Container(
@@ -171,7 +121,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
       ),
     );
   }
-  
+
   @override
   void initState() {
     super.initState();

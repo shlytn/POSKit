@@ -19,6 +19,8 @@ import 'package:dicoding_capstone_pos/ui/profile/settings/change_password_page.d
 import 'package:dicoding_capstone_pos/ui/profile/help/add_product.dart';
 import 'package:dicoding_capstone_pos/ui/profile/help/help_page.dart';
 import 'package:dicoding_capstone_pos/ui/profile/settings/settings_page.dart';
+import 'package:dicoding_capstone_pos/ui/result/failed_page.dart';
+import 'package:dicoding_capstone_pos/ui/result/success_page.dart';
 import 'package:dicoding_capstone_pos/utils/auth_wrapper.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
@@ -40,9 +42,15 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider.instance()),
-        ChangeNotifierProvider(create: (_) => DatabaseProvider(),),
-        ChangeNotifierProvider(create: (_) => ImagePickerProvider(),),
-        ChangeNotifierProvider(create: (_) => CartProvider(),),
+        ChangeNotifierProvider(
+          create: (_) => DatabaseProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => ImagePickerProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => CartProvider(),
+        ),
       ],
       child: MaterialApp(
         title: 'Flutter App',
@@ -73,7 +81,9 @@ class MyApp extends StatelessWidget {
           ChangePasswordPage.routeName: (context) => ChangePasswordPage(),
           EmailSentPage.routeName: (context) => const EmailSentPage(),
           UserHelpPage.routeName: (context) => const UserHelpPage(),
-          AddProductHelp.routeName: (context) => const AddProductHelp()
+          AddProductHelp.routeName: (context) => const AddProductHelp(),
+          SuccessPage.routeName: (context) => const SuccessPage(),
+          FailedPage.routeName: (context) => const FailedPage()
         },
       ),
     );

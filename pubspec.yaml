@@ -74,6 +74,7 @@ flutter:
     - assets/images/
     - assets/images/onboarding/
     - assets/images/help/
+    - assets/images/logo/
 
   # To add assets to your application, add an assets section, like this:
   # An image asset can refer to one or more resolution-specific "variants", see

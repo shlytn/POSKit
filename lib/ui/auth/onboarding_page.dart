@@ -31,12 +31,15 @@ class _OnboardingPageState extends State<OnboardingPage> {
           children: [
             Expanded(
               child: IntroductionScreen(
-                globalHeader: const Align(
+                globalHeader: Align(
                   alignment: Alignment.topLeft,
                   child: SafeArea(
                     child: Padding(
                       padding: EdgeInsets.only(top: 16, right: 16),
-                      child: Text("Logo"),
+                      child: SizedBox(
+                          width: 70,
+                          height: 70,
+                          child: Image.asset('assets/images/logo/logo.png')),
                     ),
                   ),
                 ),
@@ -63,7 +66,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     onPressed: () =>
                         Navigator.pushNamed(context, LoginPage.routeName),
                     child: const Text(LoginPage.pageTitle,
-                        style: TextStyle(fontSize: 16.0, color: secondaryColor)),
+                        style:
+                            TextStyle(fontSize: 16.0, color: secondaryColor)),
                   ),
                 ],
               ),
