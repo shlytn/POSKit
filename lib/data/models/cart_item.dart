@@ -17,14 +17,14 @@ class Cart {
   factory Cart.fromJson(Map<String, dynamic> json) => Cart(
     items: json["items"],
     totalItem: json["totalItem"].toInt(),
-    totalPrice: json["totalItem"].toInt(),
+    totalPrice: json["totalPrice"].toInt(),
   );
 
   factory Cart.fromFirebase(DocumentSnapshot doc) => Cart(
     id: doc.id,
     items: doc["items"],
     totalItem: doc["totalItem"].toInt(),
-    totalPrice: doc["totalItem"].toInt(),
+    totalPrice: doc["totalPrice"].toInt(),
   );
 
   Map<String, dynamic> toJson() => {
