@@ -17,25 +17,17 @@ class DatabaseService {
   User? user = FirebaseAuth.instance.currentUser;
 
   DatabaseService() {
-    _userRef = _db
-        .collection('users')
-        .doc(user!.uid);
+    _userRef = _db.collection('users').doc(user!.uid);
 
-    _ref = _userRef
-        .collection('items')
-        .withConverter<Item>(
-            fromFirestore: (snapshot, _) => Item.fromJson(snapshot.data()!),
-            toFirestore: (item, _) => item.toJson());
-
-    _cartRef = _userRef
-        .collection('cart')
-        .withConverter<CartItem>(
-        fromFirestore: (snapshot, _) => CartItem.fromJson(snapshot.data()!),
+    _ref = _userRef.collection('items').withConverter<Item>(
+        fromFirestore: (snapshot, _) => Item.fromJson(snapshot.data()!),
         toFirestore: (item, _) => item.toJson());
 
-    _historyRef = _userRef
-        .collection('history')
-        .withConverter<History>(
+    _cartRef = _userRef.collection('cart').withConverter<CartItem>(
+        fromFirestore: (snapshot, _) => CartItem.fromFirebase(snapshot),
+        toFirestore: (item, _) => item.toJson());
+
+    _historyRef = _userRef.collection('history').withConverter<History>(
         fromFirestore: (snapshot, _) => History.fromFirebase(snapshot),
         toFirestore: (item, _) => item.toJson());
 
@@ -49,7 +41,7 @@ class DatabaseService {
         snapshot.docs.map((doc) => Item.fromFirebase(doc)).toList());
   }
 
-  Future<QuerySnapshot> getData(){
+  Future<QuerySnapshot> getData() {
     return _ref.get();
   }
 
@@ -84,16 +76,16 @@ class DatabaseService {
 
     return await ref.getDownloadURL();
   }
-  
+
   Future<void> setUserProfile(String? imageUrl) async {
     final data = {
       "profile_image": imageUrl,
     };
-    
+
     return await _userRef.set(data);
   }
-  
-  Stream<DocumentSnapshot> getUserProfile(){
+
+  Stream<DocumentSnapshot> getUserProfile() {
     return _userRef.snapshots();
   }
 
@@ -104,7 +96,7 @@ class DatabaseService {
         snapshot.docs.map((doc) => CartItem.fromFirebase(doc)).toList());
   }
 
-  Future<QuerySnapshot> getCartData(){
+  Future<QuerySnapshot> getCartData() {
     return _cartRef.get();
   }
 
@@ -112,12 +104,15 @@ class DatabaseService {
     DocumentSnapshot? doc = await _cartRef.doc(item.id).get();
 
     CartItem cartItem;
-    if (!doc.exists){
+    if (!doc.exists) {
       cartItem = CartItem(item: item, quantity: 1, total: item.sellingPrice);
     } else {
       final quantity = CartItem.fromFirebase(doc).quantity;
       final newQuantity = quantity + 1;
-      cartItem = CartItem(item: item, quantity: newQuantity, total: item.sellingPrice * newQuantity);
+      cartItem = CartItem(
+          item: item,
+          quantity: newQuantity,
+          total: item.sellingPrice * newQuantity);
     }
     return _cartRef.doc(item.id).set(cartItem);
   }
@@ -128,27 +123,30 @@ class DatabaseService {
     if (isPlus) {
       quantity = item.quantity + 1;
     } else {
-      if (item.quantity > 1){
+      if (item.quantity > 1) {
         quantity = item.quantity - 1;
       } else {
         return await deleteCart(id);
       }
     }
-    cartItem = CartItem(item: item.item, quantity: quantity, total: item.item.sellingPrice * quantity);
+    cartItem = CartItem(
+        item: item.item,
+        quantity: quantity,
+        total: item.item.sellingPrice * quantity);
     return _cartRef.doc(id).update(cartItem.toJson());
   }
 
   int getTotalPrice(List<CartItem> items) {
     int total = 0;
-    for(var item in items){
+    for (var item in items) {
       total += item.total;
     }
     return total;
   }
 
-  int getTotalQuantity(List<CartItem> items){
+  int getTotalQuantity(List<CartItem> items) {
     int total = 0;
-    for(var item in items){
+    for (var item in items) {
       total += item.quantity;
     }
     return total;
@@ -161,18 +159,23 @@ class DatabaseService {
   /* History DB */
 
   Stream<List<History>> getHistory() {
-    return _historyRef.orderBy('dateTime', descending: true).snapshots().map((snapshot) =>
-        snapshot.docs.map((doc) => History.fromFirebase(doc)).toList());
+    return _historyRef.orderBy('dateTime', descending: true).snapshots().map(
+        (snapshot) =>
+            snapshot.docs.map((doc) => History.fromFirebase(doc)).toList());
   }
 
-  Future<QuerySnapshot> getHistoryData(){
+  Future<QuerySnapshot> getHistoryData() {
     return _ref.get();
   }
 
   Future<DocumentReference> addHistory(List<CartItem> items) {
     DateTime now = DateTime.now();
 
-    History history = History(dateTime: now, items: items, totalItem: getTotalQuantity(items), totalPrice: getTotalPrice(items));
+    History history = History(
+        dateTime: now,
+        items: items,
+        totalItem: getTotalQuantity(items),
+        totalPrice: getTotalPrice(items));
 
     return _ref.add(history);
   }
