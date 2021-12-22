@@ -60,8 +60,8 @@ class OrderDetailList extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
                   Text(
-                    '\$10.99',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    "${provider.totalPrice}",
+                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
                 ],
               ),
