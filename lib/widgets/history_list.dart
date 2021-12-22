@@ -1,20 +1,23 @@
 import 'package:dicoding_capstone_pos/widgets/history_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class ListHistory extends StatelessWidget {
   const ListHistory({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final formatCurrency = NumberFormat("#,##0.00", "en_US");
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const [
+          children: [
             Text("Monday, 02 November 2021"),
-            Text("Rp 300.000", style: TextStyle(fontWeight: FontWeight.bold)),
+            Text("Rp. ${formatCurrency.format(300000)}",
+                style: TextStyle(fontWeight: FontWeight.bold)),
           ],
         ),
         const SizedBox(

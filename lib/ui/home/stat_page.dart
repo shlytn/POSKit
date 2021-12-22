@@ -5,10 +5,12 @@ import 'package:dicoding_capstone_pos/widgets/stock_card.dart';
 import 'package:dicoding_capstone_pos/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class StatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final formatCurrency = NumberFormat("#,##0.00", "en_US");
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: background,
@@ -29,7 +31,7 @@ class StatPage extends StatelessWidget {
                       isProfit: true,
                       isIncrease: true,
                       percentage: "8.00%",
-                      total: "Rp 50.000,00"),
+                      total: "Rp. ${formatCurrency.format(50000)}"),
                 ),
                 SizedBox(
                   width: width * 0.025,

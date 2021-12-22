@@ -1,12 +1,14 @@
 import 'package:dicoding_capstone_pos/common/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class SaleCard extends StatelessWidget {
   const SaleCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final formatCurrency = NumberFormat("#,##0", "en_US");
     return Container(
       decoration: BoxDecoration(
         color: primaryColor,
@@ -27,14 +29,14 @@ class SaleCard extends StatelessWidget {
             padding: const EdgeInsets.all(10.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Text(
                   'Tuna Salad',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 28.0),
                 Text(
-                  '\$10.99',
+                  'Rp.${formatCurrency.format(10000)}.',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,

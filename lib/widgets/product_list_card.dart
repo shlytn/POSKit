@@ -5,6 +5,7 @@ import 'package:dicoding_capstone_pos/widgets/product_add_button.dart';
 import 'package:dicoding_capstone_pos/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class CardProduct extends StatelessWidget {
   final Item item;
@@ -13,6 +14,7 @@ class CardProduct extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final formatCurrency = NumberFormat("#,##0", "en_US");
     return GestureDetector(
       onDoubleTap: () {
         Navigator.pushNamed(context, AddUpdateProductPage.routeName,
@@ -57,7 +59,7 @@ class CardProduct extends StatelessWidget {
                       ),
                       spacing(15.0),
                       Text(
-                        "${item.sellingPrice}",
+                        "Rp. ${formatCurrency.format(item.sellingPrice)}",
                         style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
@@ -75,7 +77,9 @@ class CardProduct extends StatelessWidget {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: secondaryColor),
-                  child: ProductAddButton(item: item,),
+                  child: ProductAddButton(
+                    item: item,
+                  ),
                 ),
               )
             ],
