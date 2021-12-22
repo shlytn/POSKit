@@ -19,6 +19,27 @@ class CartProvider extends ChangeNotifier {
 
   String get message => _message;
 
+  int _totalItem = 0;
+
+  int get totalItem => _totalItem;
+
+  int _totalPrice = 0;
+
+  int get totalPrice => _totalPrice;
+
+  List<CartItem> _items = [];
+
+  List<CartItem> get items => _items;
+
+  Future<void> countTotal() async {
+    Stream<List<CartItem>> items = _api.getCart();
+    _items = await items.first;
+    _totalItem = _api.getTotalQuantity(_items);
+    _totalPrice = _api.getTotalPrice(_items);
+
+    notifyListeners();
+  }
+
   Stream<List<CartItem>> getCart() {
     return _api.getCart();
   }
@@ -27,6 +48,7 @@ class CartProvider extends ChangeNotifier {
     try{
       _state = ResultState.loading;
       final data = await _api.getCartData();
+      await countTotal();
       if (data.size > 0){
         _state = ResultState.hasData;
       } else {
@@ -42,6 +64,7 @@ class CartProvider extends ChangeNotifier {
   Future<void> addCart(Item item) async {
     try {
       await _api.addCart(item);
+      await countTotal();
       _message = "Item added to cart";
     } catch (e) {
       _message = "Failed to add cart";
@@ -52,6 +75,7 @@ class CartProvider extends ChangeNotifier {
   Future<void> updateCart(String id, CartItem item, bool isPlus) async {
     try {
       await _api.updateCart(id, item, isPlus);
+      await countTotal();
       _message = "Updated";
     } catch (e) {
       _message = "Failed to update item";
@@ -62,6 +86,7 @@ class CartProvider extends ChangeNotifier {
   Future<void> deleteCart(String id) async {
     try {
       await _api.deleteCart(id);
+      await countTotal();
       _message = "Deleted";
     } catch (e) {
       _message = "Failed to delete item";

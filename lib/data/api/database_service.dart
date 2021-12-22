@@ -138,6 +138,22 @@ class DatabaseService {
     return _cartRef.doc(id).update(cartItem.toJson());
   }
 
+  int getTotalPrice(List<CartItem> items) {
+    int total = 0;
+    for(var item in items){
+      total += item.total;
+    }
+    return total;
+  }
+
+  int getTotalQuantity(List<CartItem> items){
+    int total = 0;
+    for(var item in items){
+      total += item.quantity;
+    }
+    return total;
+  }
+
   Future<void> deleteCart(String id) {
     return _cartRef.doc(id).delete();
   }
