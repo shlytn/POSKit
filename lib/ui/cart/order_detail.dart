@@ -93,7 +93,6 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                 ),
               ),
             ),
-            spacing(20.0),
             Padding(
               padding: const EdgeInsets.all(18.0),
               child: RichText(

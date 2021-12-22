@@ -40,7 +40,7 @@ class CartButton extends StatelessWidget {
                   ],
                 ),
               ),
-              Text('Total: Rp ${formatCurrency.format(provider.totalPrice)}')
+              Text('Total: Rp. ${formatCurrency.format(provider.totalPrice)}')
             ],
           ),
         ),

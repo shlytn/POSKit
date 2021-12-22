@@ -62,7 +62,7 @@ class OrderDetailList extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
                   Text(
-                    "Rp ${formatCurrency.format(provider.totalPrice)}",
+                    "Rp. ${formatCurrency.format(provider.totalPrice)}",
                     style: const TextStyle(
                         fontWeight: FontWeight.bold, fontSize: 16),
                   ),

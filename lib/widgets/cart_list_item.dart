@@ -77,7 +77,7 @@ class CartListItem extends StatelessWidget {
                     ),
                     const SizedBox(height: 20.0),
                     Text(
-                      "Rp ${formatCurrency.format(totalPrice)}",
+                      "Rp. ${formatCurrency.format(totalPrice)}",
                       style: const TextStyle(
                           fontWeight: FontWeight.bold, color: secondaryColor),
                     )
