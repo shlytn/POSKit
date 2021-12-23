@@ -58,7 +58,7 @@ class DatabaseService {
   }
 
   Future<void> updateSoldData(String id, int totalSold) async {
-    DocumentSnapshot? doc = await _cartRef.doc(id).get();
+    DocumentSnapshot? doc = await _ref.doc(id).get();
     int sold = Item.fromFirebase(doc).sold! + totalSold;
 
     return _ref.doc(id).update({"sold": sold});
