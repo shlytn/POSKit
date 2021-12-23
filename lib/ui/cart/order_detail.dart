@@ -1,6 +1,8 @@
 import 'package:dicoding_capstone_pos/common/styles.dart';
 import 'package:dicoding_capstone_pos/data/models/cart_item.dart';
 import 'package:dicoding_capstone_pos/provider/cart_provider.dart';
+import 'package:dicoding_capstone_pos/provider/history_provider.dart';
+import 'package:dicoding_capstone_pos/ui/result/failed_page.dart';
 import 'package:dicoding_capstone_pos/ui/result/success_page.dart';
 import 'package:dicoding_capstone_pos/widgets/order_detail_list.dart';
 import 'package:dicoding_capstone_pos/widgets/widgets.dart';
@@ -24,6 +26,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<CartProvider>(context);
+    final historyProvider = Provider.of<HistoryProvider>(context);
 
     return Scaffold(
       backgroundColor: background,
@@ -119,9 +122,16 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: ElevatedButton(
-                onPressed: () {
-                  Navigator.pushReplacementNamed(
-                      context, SuccessPage.routeName);
+                onPressed: () async {
+                  if (await historyProvider.addHistory(provider.items)){
+                    Navigator.pushReplacementNamed(
+                        context, SuccessPage.routeName);
+                  } else {
+                    Navigator.pushReplacementNamed(
+                        context, FailedPage.routeName);
+                  }
+                  
+                  showMessageSnackBar(context, historyProvider.message);
                 },
                 style: ElevatedButton.styleFrom(
                     primary: secondaryColor, onPrimary: Colors.white),
