@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dicoding_capstone_pos/data/api/database_service.dart';
 import 'package:dicoding_capstone_pos/data/models/cart_item.dart';
 import 'package:dicoding_capstone_pos/data/models/history.dart';
@@ -39,13 +40,16 @@ class HistoryProvider extends ChangeNotifier {
     }
   }
 
-  Future<void> addHistory(List<CartItem> items) async {
+  Future<bool> addHistory(List<CartItem> items) async {
     try {
       await _api.addHistory(items);
       _message = "Transaction Success";
+      notifyListeners();
+      return true;
     } catch (e) {
       _message = "Failed to make Transaction";
+      notifyListeners();
+      return false;
     }
-    notifyListeners();
   }
 }
