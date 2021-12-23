@@ -15,6 +15,7 @@ class CardProduct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final formatCurrency = NumberFormat("#,##0", "en_US");
+
     return GestureDetector(
       onDoubleTap: () {
         Navigator.pushNamed(context, AddUpdateProductPage.routeName,

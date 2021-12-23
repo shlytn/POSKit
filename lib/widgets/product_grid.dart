@@ -19,18 +19,23 @@ class GridViewProduct extends StatelessWidget {
     return Consumer<DatabaseProvider>(builder: (context, provider, _) {
       return CheckState(
         provider: provider,
-        child: GridView.builder(
-          itemCount: items.length,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
-              childAspectRatio: 10 / 15),
-          itemBuilder: (context, index) {
-            return GridProductCard(
-              item: items[index],
-            );
-          },
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 10.0
+          ),
+          child: GridView.builder(
+            itemCount: items.length,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 8,
+                mainAxisSpacing: 8,
+                childAspectRatio: 10 / 15),
+            itemBuilder: (context, index) {
+              return GridProductCard(
+                item: items[index],
+              );
+            },
+          ),
         ),
       );
     });
