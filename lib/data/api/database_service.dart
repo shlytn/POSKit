@@ -6,7 +6,6 @@ import 'package:dicoding_capstone_pos/data/models/history.dart';
 import 'package:dicoding_capstone_pos/data/models/item.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:intl/intl.dart';
 import 'package:path/path.dart';
 
 class DatabaseService {
@@ -189,11 +188,12 @@ class DatabaseService {
     return _historyRef.get();
   }
 
-  Future<DocumentReference> addHistory(List<CartItem> items) {
+  Future<void> addHistory(List<CartItem> items) {
     DateTime now = DateTime.now();
-
-    var formatter = DateFormat('yyyy-MM-dd');
-    String todayDate = formatter.format(now);
+    int timestamp = Timestamp
+        .now()
+        .millisecondsSinceEpoch;
+    String id = "#TRX$timestamp";
 
     History history = History(
         dateTime: now,
@@ -201,9 +201,6 @@ class DatabaseService {
         totalItem: getTotalQuantity(items),
         totalPrice: getTotalPrice(items));
 
-    return _historyRef
-        .doc(todayDate)
-        .collection('transactions')
-        .add(history.toJson());
+    return _historyRef.doc(id).set(history);
   }
 }
