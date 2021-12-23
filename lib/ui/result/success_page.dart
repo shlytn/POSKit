@@ -106,6 +106,7 @@ class SuccessPage extends StatelessWidget {
                   padding: const EdgeInsets.all(16.0),
                   child: ElevatedButton(
                     onPressed: () {
+                      provider.clearCart();
                       Navigator.pushReplacementNamed(
                           context, HomePage.routeName);
                     },
