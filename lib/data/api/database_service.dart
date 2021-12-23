@@ -118,9 +118,7 @@ class DatabaseService {
     if (!doc.exists) {
       cartItem = CartItem(item: item, quantity: 1, total: item.sellingPrice);
     } else {
-      final quantity = CartItem
-          .fromFirebase(doc)
-          .quantity;
+      final quantity = CartItem.fromFirebase(doc).quantity;
       final newQuantity = quantity + 1;
       cartItem = CartItem(
           item: item,
@@ -171,7 +169,7 @@ class DatabaseService {
 
   Future<void> clearCart() async {
     var snapshots = await getCartData();
-    for (var doc in snapshots.docs){
+    for (var doc in snapshots.docs) {
       doc.reference.delete();
     }
   }
@@ -190,9 +188,7 @@ class DatabaseService {
 
   Future<void> addHistory(List<CartItem> items) {
     DateTime now = DateTime.now();
-    int timestamp = Timestamp
-        .now()
-        .millisecondsSinceEpoch;
+    int timestamp = Timestamp.now().millisecondsSinceEpoch;
     String id = "#TRX$timestamp";
 
     History history = History(
