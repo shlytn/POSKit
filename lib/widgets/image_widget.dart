@@ -32,13 +32,13 @@ class ImageWidget extends StatelessWidget {
     return ClipOval(
       child: url != null
           ? Image.network(url, width: 150.0, height: 150.0, fit: BoxFit.cover)
-          // : image != null
-          //     ? Image.file(
-          //         image,
-          //         width: 150.0,
-          //         height: 150.0,
-          //         fit: BoxFit.cover,
-          //       )
+          : image != null
+              ? Image.file(
+                  image,
+                  width: 150.0,
+                  height: 150.0,
+                  fit: BoxFit.cover,
+                )
               : Image.asset(
                   'assets/images/pp.jpg',
                   width: 150.0,
@@ -70,8 +70,8 @@ class ImageWidget extends StatelessWidget {
                   imageProvider.image!, false);
 
               await dbProvider.setUserProfile(url);
-              imageProvider.clearImage();
             }
+            imageProvider.clearImage();
           },
         ),
       ),
