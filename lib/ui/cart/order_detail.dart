@@ -95,6 +95,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                 onPressed: () async {
                   if (provider.totalItem > 0) {
                     if (await historyProvider.addHistory(provider.items)) {
+                      await provider.updateItemSold(provider.items);
                       Navigator.pushReplacementNamed(
                           context, SuccessPage.routeName);
                       provider.clearCart();
