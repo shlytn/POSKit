@@ -1,13 +1,20 @@
 import 'package:dicoding_capstone_pos/common/styles.dart';
+import 'package:dicoding_capstone_pos/data/models/history.dart';
+import 'package:dicoding_capstone_pos/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class HistoryCard extends StatelessWidget {
-  const HistoryCard({Key? key}) : super(key: key);
+  final History history;
+
+  const HistoryCard({Key? key, required this.history}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final formatCurrency = NumberFormat("#,##0.00", "en_US");
+    final date = DateFormat("EEEE, dd MM yyyy").format(history.dateTime);
+    final time = DateFormat("hh:mm a").format(history.dateTime);
+
     return Container(
       decoration: BoxDecoration(
         color: primaryColor,
@@ -20,27 +27,29 @@ class HistoryCard extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Text(date),
+              spacing(8.0),
               Text(
-                "Rp. ${formatCurrency.format(100000)}",
-                style: TextStyle(fontWeight: FontWeight.bold),
+                "Rp. ${formatCurrency.format(history.totalPrice)}",
+                style: const TextStyle(fontWeight: FontWeight.bold),
               ),
               RichText(
-                text: const TextSpan(
-                    text: "10.00 AM",
+                text: TextSpan(
+                    text: time,
                     children: [
-                      TextSpan(text: " - "),
-                      TextSpan(text: "#TRX0101211113"),
+                      const TextSpan(text: " - "),
+                      TextSpan(text: "${history.id}"),
                     ],
-                    style: TextStyle(color: Colors.black)),
+                    style: const TextStyle(color: Colors.black)),
               )
             ],
           ),
-          Spacer(),
+          const Spacer(),
           ElevatedButton(
-            onPressed: () {},
-            child: const Text("PAID OFF"),
+            onPressed: null,
+            child: const Text("PAID"),
             style: ElevatedButton.styleFrom(
-              primary: secondaryColor,
+              primary: Colors.grey,
               onPrimary: primaryColor,
             ),
           ),

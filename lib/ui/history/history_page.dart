@@ -1,7 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dicoding_capstone_pos/common/styles.dart';
 import 'package:dicoding_capstone_pos/data/models/history.dart';
 import 'package:dicoding_capstone_pos/provider/history_provider.dart';
-import 'package:dicoding_capstone_pos/widgets/history_section.dart';
+import 'package:dicoding_capstone_pos/widgets/history_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -16,7 +17,6 @@ class HistoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<HistoryProvider>(context);
-    final formatCurrency = NumberFormat("#,##0.00", "en_US");
 
     return Scaffold(
       backgroundColor: background,
@@ -27,7 +27,7 @@ class HistoryPage extends StatelessWidget {
       body: StreamProvider<List<History>>.value(
         value: provider.getHistory(),
         initialData: const [],
-        child: const HistorySection(),
+        child: const ListHistory(),
       ),
     );
   }
