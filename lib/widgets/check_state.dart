@@ -15,7 +15,7 @@ class CheckState extends StatelessWidget {
     if (provider.state == ResultState.loading) {
       return const CircularProgressIndicator();
     } else if (provider.state == ResultState.noData) {
-      return const Center(child: EmptyWidget());
+      return child;
     } else if (provider.state == ResultState.hasData) {
       return child;
     }
