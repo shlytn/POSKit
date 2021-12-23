@@ -15,7 +15,7 @@ class CartButton extends StatelessWidget {
     final formatCurrency = NumberFormat("#,##0", "en_US");
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
       child: ElevatedButton(
         onPressed: () {
           Navigator.pushNamed(context, route);
