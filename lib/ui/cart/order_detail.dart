@@ -21,7 +21,7 @@ class OrderDetailPage extends StatefulWidget {
 
 class _OrderDetailPageState extends State<OrderDetailPage> {
   int? defaultChoice;
-  final List<String> _choicesList = ['Take Away', 'Delivery', 'Dine In'];
+  final List<String> _choicesList = ['Cash'];
 
   @override
   Widget build(BuildContext context) {
@@ -41,35 +41,6 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              height: 56.0,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border.all(color: CupertinoColors.lightBackgroundGray),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.all(16.0),
-                    child: Text(
-                      'Customer',
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.arrow_forward_ios,
-                        size: 12,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
             spacing(8.0),
             Center(
               child: Wrap(
@@ -96,7 +67,6 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                 ),
               ),
             ),
-            spacing(20.0),
             Padding(
               padding: const EdgeInsets.all(18.0),
               child: RichText(

@@ -31,7 +31,7 @@ class FailedPage extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
+                  children: const [
                     Icon(
                       CupertinoIcons.xmark_circle_fill,
                       color: CupertinoColors.destructiveRed,
@@ -56,7 +56,7 @@ class FailedPage extends StatelessWidget {
               ),
             ),
           ),
-          Spacer(),
+          const Spacer(),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: ElevatedButton(
@@ -65,7 +65,7 @@ class FailedPage extends StatelessWidget {
               },
               style: ElevatedButton.styleFrom(
                   primary: primaryColor, onPrimary: error),
-              child: Container(
+              child: const SizedBox(
                 width: double.infinity,
                 height: 60,
                 child: Center(

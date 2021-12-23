@@ -1,5 +1,6 @@
 import 'package:dicoding_capstone_pos/common/styles.dart';
 import 'package:dicoding_capstone_pos/ui/home/home_page.dart';
+import 'package:dicoding_capstone_pos/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -32,25 +33,25 @@ class SuccessPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Icon(
+                    const Icon(
                       CupertinoIcons.check_mark_circled_solid,
                       color: CupertinoColors.systemGreen,
                       size: 140,
                     ),
-                    SizedBox(height: 8.0),
-                    Text(
+                    spacing(8.0),
+                    const Text(
                       'Transaction Successful',
                       style: TextStyle(
                           color: secondaryColor,
                           fontWeight: FontWeight.bold,
                           fontSize: 22),
                     ),
-                    SizedBox(height: 8.0),
-                    Text(
+                    spacing(8.0),
+                    const Text(
                       'NOTE: Do not forget to give smile to customers.',
                       textAlign: TextAlign.center,
                     ),
-                    SizedBox(height: 8.0),
+                    spacing(8.0),
                     Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Container(
@@ -62,7 +63,7 @@ class SuccessPage extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(
                               vertical: 8.0, horizontal: 16.0),
                           child: Column(
-                            children: [
+                            children: const [
                               Text(
                                 'Methode Payment: CASH',
                                 style: TextStyle(
@@ -89,7 +90,7 @@ class SuccessPage extends StatelessWidget {
               ),
             ),
           ),
-          Spacer(),
+          const Spacer(),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: ElevatedButton(
@@ -98,7 +99,7 @@ class SuccessPage extends StatelessWidget {
               },
               style: ElevatedButton.styleFrom(
                   primary: primaryColor, onPrimary: secondaryColor),
-              child: Container(
+              child: const SizedBox(
                 width: double.infinity,
                 height: 60,
                 child: Center(

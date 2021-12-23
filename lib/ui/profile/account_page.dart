@@ -74,15 +74,11 @@ class AccountPage extends StatelessWidget {
               height: 1,
             ),
             RowMenu(
-                title: 'Business Information',
+                title: 'User Help',
                 padding: padding,
-                onClick: () {}),
-            Divider(
-              height: 1,
-            ),
-            RowMenu(title: 'User Help', padding: padding, onClick: () {
-              Navigator.pushNamed(context, UserHelpPage.routeName);
-            }),
+                onClick: () {
+                  Navigator.pushNamed(context, UserHelpPage.routeName);
+                }),
             Divider(
               height: 1,
             ),
