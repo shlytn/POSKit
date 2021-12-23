@@ -35,7 +35,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   alignment: Alignment.topLeft,
                   child: SafeArea(
                     child: Padding(
-                      padding: EdgeInsets.only(top: 16, right: 16),
+                      padding: const EdgeInsets.only(top: 16, right: 16),
                       child: SizedBox(
                           width: 70,
                           height: 70,
