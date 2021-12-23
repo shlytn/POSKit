@@ -97,7 +97,6 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                     if (await historyProvider.addHistory(provider.items)) {
                       Navigator.pushReplacementNamed(
                           context, SuccessPage.routeName);
-                      provider.clearCart();
                     } else {
                       Navigator.pushReplacementNamed(
                           context, FailedPage.routeName);
@@ -106,9 +105,9 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                     showMessageSnackBar(context, historyProvider.message);
                   } else {
                     showInfoDialog(
-                        context: context,
-                        title: 'No Data',
-                        desc: 'Please input item to cart first',
+                      context: context,
+                      title: 'No Data',
+                      desc: 'Please input item to cart first',
                     );
                   }
                 },
