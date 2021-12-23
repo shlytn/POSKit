@@ -90,6 +90,10 @@ class DatabaseService {
     return _userRef.snapshots();
   }
 
+  Future<DocumentSnapshot> getProfile() {
+    return _userRef.get();
+  }
+
   /* Cart DB */
 
   Stream<List<CartItem>> getCart() {

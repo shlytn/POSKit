@@ -9,6 +9,7 @@ import 'package:flutter/cupertino.dart';
 class DatabaseProvider extends ChangeNotifier {
   DatabaseProvider(){
     checkItems();
+    getProfile();
   }
 
   final _api = DatabaseService();
@@ -20,6 +21,10 @@ class DatabaseProvider extends ChangeNotifier {
   String _message = '';
 
   String get message => _message;
+
+  dynamic _profile;
+
+  dynamic get profile => _profile;
 
   Stream<List<Item>> getItems() {
     return _api.getStreamData();
@@ -87,5 +92,11 @@ class DatabaseProvider extends ChangeNotifier {
 
   Stream<DocumentSnapshot> getUserProfile() {
     return _api.getUserProfile();
+  }
+
+  Future<dynamic> getProfile() async {
+    final result = await _api.getProfile();
+    _profile = result.data();
+    notifyListeners();
   }
 }

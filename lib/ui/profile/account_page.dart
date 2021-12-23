@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:dicoding_capstone_pos/provider/auth_provider.dart';
+import 'package:dicoding_capstone_pos/provider/database_provider.dart';
 import 'package:dicoding_capstone_pos/ui/auth/onboarding_page.dart';
 import 'package:dicoding_capstone_pos/ui/profile/help/help_page.dart';
 import 'package:dicoding_capstone_pos/ui/profile/settings/settings_page.dart';
@@ -17,6 +18,16 @@ class AccountPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profile = Provider.of<DatabaseProvider>(context).profile;
+
+    var profileImage = profile["profile_image"];
+    var image;
+    if (profileImage != null){
+      image = NetworkImage(profileImage);
+    } else {
+      image = AssetImage('assets/images/pp.jpg');
+    }
+
     var user = Provider.of<AuthProvider>(context).user;
     var name = user.displayName != null && user.displayName != ''
         ? user.displayName
@@ -43,7 +54,7 @@ class AccountPage extends StatelessWidget {
             Row(
               children: [
                 CircleAvatar(
-                  backgroundImage: AssetImage('assets/images/pp.jpg'),
+                  backgroundImage: image,
                   maxRadius: 40,
                 ),
                 SizedBox(width: 10.0),
