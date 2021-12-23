@@ -15,6 +15,7 @@ class GridProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final ImageProvider<Object> image;
     final formatCurrency = NumberFormat("#,##0", "en_US");
+
     if (item.imageUrl != null) {
       image = NetworkImage(item.imageUrl!);
     } else {
