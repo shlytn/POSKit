@@ -12,7 +12,7 @@ class HistoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final formatCurrency = NumberFormat("#,##0.00", "en_US");
-    final date = DateFormat("EEEE, dd MM yyyy").format(history.dateTime);
+    final date = DateFormat("EEEE, dd MMMM yyyy").format(history.dateTime);
     final time = DateFormat("hh:mm a").format(history.dateTime);
 
     return Container(
