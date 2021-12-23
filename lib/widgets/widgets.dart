@@ -26,6 +26,6 @@ showInfoDialog({
     animType: AnimType.SCALE,
     title: title,
     desc: desc,
-    autoHide: const Duration(seconds: 2),
+    autoHide: const Duration(seconds: 3),
   ).show();
 }
