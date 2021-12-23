@@ -1,19 +1,20 @@
 import 'package:dicoding_capstone_pos/common/styles.dart';
-import 'package:dicoding_capstone_pos/widgets/sale_card.dart';
-import 'package:dicoding_capstone_pos/widgets/stat_card.dart';
-import 'package:dicoding_capstone_pos/widgets/stock_card.dart';
+import 'package:dicoding_capstone_pos/widgets/sale_list.dart';
+import 'package:dicoding_capstone_pos/widgets/stats_widget.dart';
+import 'package:dicoding_capstone_pos/widgets/stock_list.dart';
 import 'package:dicoding_capstone_pos/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class StatPage extends StatelessWidget {
+  const StatPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: background,
       appBar: AppBar(
-        title: Text('Home'),
+        title: const Text('Home'),
         centerTitle: true,
         shadowColor: Colors.white54,
       ),
@@ -22,57 +23,17 @@ class StatPage extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 20.0),
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Row(
-              children: [
-                Expanded(
-                  child: StatCard(
-                      isProfit: true,
-                      isIncrease: true,
-                      percentage: "8.00%",
-                      total: "Rp 50.000,00"),
-                ),
-                SizedBox(
-                  width: width * 0.025,
-                ),
-                Expanded(
-                  child: StatCard(
-                      isProfit: false,
-                      isIncrease: true,
-                      percentage: "2.13%",
-                      total: "150"),
-                ),
-              ],
-            ),
+            const StatsWidget(),
             spacing(24.0),
             _buildTitleText("Best-Selling Products"),
             spacing(12.0),
-            ListView.builder(
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 5.0),
-                  child: SaleCard(),
-                );
-              },
-              itemCount: 3,
-              shrinkWrap: true,
-              physics: const ClampingScrollPhysics(),
-            ),
+            const SaleList(),
             spacing(24.0),
             _buildTitleText("Out of Stock!"),
             spacing(12.0),
-            SizedBox(
+            const SizedBox(
               height: 200.0,
-              child: ListView.builder(
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 7.0),
-                    child: StockCard(),
-                  );
-                },
-                itemCount: 3,
-                scrollDirection: Axis.horizontal,
-                physics: const ClampingScrollPhysics(),
-              ),
+              child: StockList(),
             ),
             spacing(24.0),
           ]),
