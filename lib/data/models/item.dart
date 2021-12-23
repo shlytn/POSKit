@@ -11,6 +11,7 @@ class Item {
     this.category,
     this.barcode,
     this.imageUrl,
+    this.sold,
   });
 
   String? id;
@@ -22,16 +23,18 @@ class Item {
   String? category;
   String? barcode;
   String? imageUrl;
+  int? sold;
 
   factory Item.fromJson(Map<String, dynamic> json) => Item(
     name: json["name"],
     sellingPrice: json["sellingPrice"].toInt(),
     capitalPrice: json["capitalPrice"].toInt(),
     isManage: json["isManage"],
-    stock: json["stock"].toInt(),
+    stock: json["stock"] ?? 0,
     category: json["category"],
     barcode: json["barcode"],
     imageUrl: json["imageUrl"],
+    sold: json["sold"].toInt() ?? 0,
   );
 
   factory Item.fromFirebase(DocumentSnapshot doc) => Item(
@@ -40,10 +43,11 @@ class Item {
     sellingPrice: doc["sellingPrice"].toInt(),
     capitalPrice: doc["capitalPrice"].toInt(),
     isManage: doc["isManage"],
-    stock: doc["stock"],
+    stock: doc["stock"] ?? 0,
     category: doc["category"],
     barcode: doc["barcode"],
     imageUrl: doc["imageUrl"],
+    sold: doc["sold"].toInt() ?? 0,
   );
 
   Map<String, dynamic> toJson() => {
@@ -55,5 +59,6 @@ class Item {
     "category": category,
     "barcode": barcode,
     "imageUrl": imageUrl,
+    "sold": sold,
   };
 }

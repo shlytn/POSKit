@@ -58,6 +58,13 @@ class DatabaseService {
     return _ref.doc(id).set(item);
   }
 
+  Future<void> updateSoldData(String id, int totalSold) async {
+    DocumentSnapshot? doc = await _cartRef.doc(id).get();
+    int sold = Item.fromFirebase(doc).sold! + totalSold;
+
+    return _ref.doc(id).update({"sold": sold});
+  }
+
   Future<void> deleteData(String id) {
     return _ref.doc(id).delete();
   }

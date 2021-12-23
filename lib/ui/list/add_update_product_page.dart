@@ -138,7 +138,9 @@ class _AddUpdateProductPageState extends State<AddUpdateProductPage> {
                             stock: stock,
                             category: category,
                             barcode: barcode,
-                            imageUrl: url);
+                            imageUrl: url,
+                            sold: 0,
+                        );
 
                         if (isUpdate) {
                           provider.updateItem(widget.item!.id!, newItem);
