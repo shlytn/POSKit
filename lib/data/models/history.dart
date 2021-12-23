@@ -17,7 +17,7 @@ class History {
   int totalPrice;
 
   factory History.fromJson(Map<String, dynamic> json) => History(
-        dateTime: json["dateTime"],
+        dateTime: json["dateTime"].toDate(),
         items:
             List<CartItem>.from(json["items"].map((x) => CartItem.fromJson(x))),
         totalItem: json["totalItem"].toInt(),
@@ -26,7 +26,7 @@ class History {
 
   factory History.fromFirebase(DocumentSnapshot doc) => History(
         id: doc.id,
-        dateTime: doc["dateTime"],
+        dateTime: doc["dateTime"].toDate(),
         items:
             List<CartItem>.from(doc["items"].map((x) => CartItem.fromJson(x))),
         totalItem: doc["totalItem"].toInt(),
