@@ -102,22 +102,12 @@ class CartProvider extends ChangeNotifier {
   }
 
   Future<void> updateItemSold(List<CartItem> items) async {
-    int sold = 0;
     try {
       for (var item in items) {
-        sold = item.item.sold ?? 0;
-        sold += item.quantity;
-        try {
-          await _api.updateSoldData(item.id!, sold);
-        } catch (e) {
-          print(e);
-        }
-        print(sold);
+        await _api.updateSoldData(item.id!, item.quantity);
       }
-      print("berhasil");
     } catch (e) {
-      print(e);
+      debugPrint(e.toString());
     }
-
   }
 }

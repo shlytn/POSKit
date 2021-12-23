@@ -59,7 +59,14 @@ class DatabaseService {
 
   Future<void> updateSoldData(String id, int totalSold) async {
     DocumentSnapshot? doc = await _ref.doc(id).get();
-    int sold = Item.fromFirebase(doc).sold! + totalSold;
+    Item item = Item.fromFirebase(doc);
+    int sold = (item.sold ?? 0) + totalSold;
+
+    if (item.isManage) {
+      int stock =
+          (item.stock! - totalSold) >= 0 ? (item.stock! - totalSold) : 0;
+      return _ref.doc(id).update({"sold": sold, "stock": stock});
+    }
 
     return _ref.doc(id).update({"sold": sold});
   }
