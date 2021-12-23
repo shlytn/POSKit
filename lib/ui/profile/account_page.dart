@@ -1,11 +1,10 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:dicoding_capstone_pos/provider/auth_provider.dart';
 import 'package:dicoding_capstone_pos/provider/database_provider.dart';
 import 'package:dicoding_capstone_pos/ui/auth/onboarding_page.dart';
 import 'package:dicoding_capstone_pos/ui/profile/help/help_page.dart';
 import 'package:dicoding_capstone_pos/ui/profile/settings/settings_page.dart';
 import 'package:dicoding_capstone_pos/widgets/row_menu.dart';
+import 'package:dicoding_capstone_pos/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -21,11 +20,11 @@ class AccountPage extends StatelessWidget {
     final profile = Provider.of<DatabaseProvider>(context).profile;
 
     var profileImage = profile["profile_image"];
-    var image;
+    dynamic image;
     if (profileImage != null){
       image = NetworkImage(profileImage);
     } else {
-      image = AssetImage('assets/images/pp.jpg');
+      image = const AssetImage('assets/images/pp.jpg');
     }
 
     var user = Provider.of<AuthProvider>(context).user;
@@ -33,7 +32,7 @@ class AccountPage extends StatelessWidget {
         ? user.displayName
         : 'Anonymous';
 
-    var padding = EdgeInsets.only(
+    var padding = const EdgeInsets.only(
       top: 12.5,
       bottom: 12.5,
       left: 4.0,
@@ -42,7 +41,7 @@ class AccountPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Center(
+        title: const Center(
           child: Text('Account'),
         ),
         automaticallyImplyLeading: false,
@@ -57,13 +56,13 @@ class AccountPage extends StatelessWidget {
                   backgroundImage: image,
                   maxRadius: 40,
                 ),
-                SizedBox(width: 10.0),
+                const SizedBox(width: 10.0),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       "$name",
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 22,
                           color: Colors.black),
@@ -73,7 +72,7 @@ class AccountPage extends StatelessWidget {
                 )
               ],
             ),
-            SizedBox(height: 22.0),
+            spacing(22.0),
             RowMenu(
               title: 'Setting Account',
               padding: padding,
@@ -81,7 +80,7 @@ class AccountPage extends StatelessWidget {
                 Navigator.pushNamed(context, SettingsPage.routeName);
               },
             ),
-            Divider(
+            const Divider(
               height: 1,
             ),
             RowMenu(
@@ -90,10 +89,10 @@ class AccountPage extends StatelessWidget {
                 onClick: () {
                   Navigator.pushNamed(context, UserHelpPage.routeName);
                 }),
-            Divider(
+            const Divider(
               height: 1,
             ),
-            Spacer(),
+            const Spacer(),
             Container(
               decoration: BoxDecoration(
                 border: Border.all(color: CupertinoColors.systemRed),
@@ -111,7 +110,7 @@ class AccountPage extends StatelessWidget {
                   onPrimary: CupertinoColors.systemRed,
                   elevation: 0,
                 ),
-                child: Text(
+                child: const Text(
                   'Log out',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
