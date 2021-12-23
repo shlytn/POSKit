@@ -123,16 +123,24 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
               padding: const EdgeInsets.all(16.0),
               child: ElevatedButton(
                 onPressed: () async {
-                  if (await historyProvider.addHistory(provider.items)){
-                    Navigator.pushReplacementNamed(
-                        context, SuccessPage.routeName);
-                    provider.clearCart();
+                  if (provider.totalItem > 0) {
+                    if (await historyProvider.addHistory(provider.items)) {
+                      Navigator.pushReplacementNamed(
+                          context, SuccessPage.routeName);
+                      provider.clearCart();
+                    } else {
+                      Navigator.pushReplacementNamed(
+                          context, FailedPage.routeName);
+                    }
+
+                    showMessageSnackBar(context, historyProvider.message);
                   } else {
-                    Navigator.pushReplacementNamed(
-                        context, FailedPage.routeName);
+                    showInfoDialog(
+                        context: context,
+                        title: 'No Data',
+                        desc: 'Please input item to cart first',
+                    );
                   }
-                  
-                  showMessageSnackBar(context, historyProvider.message);
                 },
                 style: ElevatedButton.styleFrom(
                     primary: secondaryColor, onPrimary: Colors.white),
