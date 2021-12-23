@@ -48,7 +48,6 @@ class CartItem {
   int total;
 
   factory CartItem.fromJson(Map<String, dynamic> json) => CartItem(
-    id: json["item"].id,
     item: Item.fromJson(json["item"]),
     quantity: json["count"].toInt(),
     total: json["total"].toInt(),
