@@ -1,14 +1,19 @@
 import 'package:dicoding_capstone_pos/common/styles.dart';
+import 'package:dicoding_capstone_pos/data/models/item.dart';
+import 'package:dicoding_capstone_pos/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class SaleCard extends StatelessWidget {
-  const SaleCard({Key? key}) : super(key: key);
+  final Item item;
+
+  const SaleCard({Key? key, required this.item}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final formatCurrency = NumberFormat("#,##0", "en_US");
+
     return Container(
       decoration: BoxDecoration(
         color: primaryColor,
@@ -19,7 +24,9 @@ class SaleCard extends StatelessWidget {
           flex: 1,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
-            child: Image.asset('assets/images/food.jpg'),
+            child: item.imageUrl != null
+                ? Image.network(item.imageUrl!, height: 100.0, fit: BoxFit.cover,)
+                : Image.asset('assets/images/food.jpg', height: 100.0, fit: BoxFit.cover,),
           ),
         ),
         const SizedBox(width: 10.0),
@@ -31,13 +38,13 @@ class SaleCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Tuna Salad',
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  item.name,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 28.0),
+                spacing(28.0),
                 Text(
-                  'Rp.${formatCurrency.format(10000)}.',
-                  style: TextStyle(
+                  'Rp.${formatCurrency.format(item.sellingPrice)}.',
+                  style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
                       color: secondaryColor),
@@ -55,8 +62,8 @@ class SaleCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10), color: secondaryColor),
             child: Center(
               child: Text(
-                "80",
-                style: TextStyle(color: onSecondary),
+                "${item.sold}",
+                style: const TextStyle(color: onSecondary),
               ),
             ),
           ),
