@@ -119,7 +119,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                   height: 60,
                   child: Center(
                     child: Text(
-                      'Confirm Order',
+                      'Make Transaction',
                       style: TextStyle(fontSize: 16),
                     ),
                   ),
