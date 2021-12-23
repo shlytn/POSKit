@@ -93,4 +93,8 @@ class CartProvider extends ChangeNotifier {
     }
     notifyListeners();
   }
+
+  Future<void> clearCart() async {
+    await _api.clearCart();
+  }
 }

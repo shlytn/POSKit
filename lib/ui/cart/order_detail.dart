@@ -126,6 +126,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                   if (await historyProvider.addHistory(provider.items)){
                     Navigator.pushReplacementNamed(
                         context, SuccessPage.routeName);
+                    provider.clearCart();
                   } else {
                     Navigator.pushReplacementNamed(
                         context, FailedPage.routeName);

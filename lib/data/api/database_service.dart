@@ -108,7 +108,9 @@ class DatabaseService {
     if (!doc.exists) {
       cartItem = CartItem(item: item, quantity: 1, total: item.sellingPrice);
     } else {
-      final quantity = CartItem.fromFirebase(doc).quantity;
+      final quantity = CartItem
+          .fromFirebase(doc)
+          .quantity;
       final newQuantity = quantity + 1;
       cartItem = CartItem(
           item: item,
@@ -155,6 +157,13 @@ class DatabaseService {
 
   Future<void> deleteCart(String id) {
     return _cartRef.doc(id).delete();
+  }
+
+  Future<void> clearCart() async {
+    var snapshots = await getCartData();
+    for (var doc in snapshots.docs){
+      doc.reference.delete();
+    }
   }
 
   /* History DB */
