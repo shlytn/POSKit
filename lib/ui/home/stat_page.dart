@@ -5,12 +5,16 @@ import 'package:dicoding_capstone_pos/widgets/stock_list.dart';
 import 'package:dicoding_capstone_pos/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class StatPage extends StatelessWidget {
   const StatPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final formatCurrency = NumberFormat("#,##0.00", "en_US");
+    var width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       backgroundColor: background,
       appBar: AppBar(
@@ -23,7 +27,27 @@ class StatPage extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 20.0),
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            const StatsWidget(),
+            Row(
+              children: [
+                Expanded(
+                  child: StatCard(
+                      isProfit: true,
+                      isIncrease: true,
+                      percentage: "8.00%",
+                      total: "Rp. ${formatCurrency.format(50000)}"),
+                ),
+                SizedBox(
+                  width: width * 0.025,
+                ),
+                Expanded(
+                  child: StatCard(
+                      isProfit: false,
+                      isIncrease: true,
+                      percentage: "2.13%",
+                      total: "150"),
+                ),
+              ],
+            ),
             spacing(24.0),
             _buildTitleText("Best-Selling Products"),
             spacing(12.0),

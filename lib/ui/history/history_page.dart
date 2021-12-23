@@ -5,6 +5,7 @@ import 'package:dicoding_capstone_pos/widgets/history_section.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class HistoryPage extends StatelessWidget {
   static const routeName = '/history';
@@ -15,6 +16,7 @@ class HistoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<HistoryProvider>(context);
+    final formatCurrency = NumberFormat("#,##0.00", "en_US");
 
     return Scaffold(
       backgroundColor: background,

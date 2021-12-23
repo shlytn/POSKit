@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class CartListItem extends StatelessWidget {
   final CartItem item;
@@ -15,6 +16,8 @@ class CartListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<CartProvider>(context);
+    final totalPrice = item.item.sellingPrice * item.quantity;
+    final formatCurrency = NumberFormat("#,##0", "en_US");
 
     return Slidable(
       endActionPane: ActionPane(
@@ -69,15 +72,14 @@ class CartListItem extends StatelessWidget {
                   children: [
                     Text(
                       item.item.name,
-                      style: const TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(height: 30.0),
-                    Text(
-                      item.item.sellingPrice.toString(),
                       style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                          color: secondaryColor),
+                          fontWeight: FontWeight.bold, fontSize: 16),
+                    ),
+                    const SizedBox(height: 20.0),
+                    Text(
+                      "Rp. ${formatCurrency.format(totalPrice)}",
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, color: secondaryColor),
                     )
                   ],
                 ),

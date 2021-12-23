@@ -6,6 +6,7 @@ import 'package:dicoding_capstone_pos/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class OrderDetailList extends StatelessWidget {
   const OrderDetailList({
@@ -15,6 +16,7 @@ class OrderDetailList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final items = Provider.of<List<CartItem>>(context);
+    final formatCurrency = NumberFormat("#,##0", "en_US");
 
     return Consumer<CartProvider>(
       builder: (context, provider, _) {
@@ -60,8 +62,9 @@ class OrderDetailList extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
                   Text(
-                    "${provider.totalPrice}",
-                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    "Rp. ${formatCurrency.format(provider.totalPrice)}",
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 16),
                   ),
                 ],
               ),
