@@ -206,4 +206,12 @@ class DatabaseService {
 
     return _historyRef.doc(id).set(history);
   }
+
+  int countTotalTransaction(List<History> transactions){
+    int totalIncome = 0;
+    for (var trans in transactions){
+      totalIncome += trans.totalPrice;
+    }
+    return totalIncome;
+  }
 }

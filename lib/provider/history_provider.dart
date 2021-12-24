@@ -19,8 +19,22 @@ class HistoryProvider extends ChangeNotifier {
 
   String get message => _message;
 
+  int _totalIncome = 0;
+
+  int get totalIncome => _totalIncome;
+
+  List<History>_transactions = [];
+
+  List<History> get transactions => _transactions;
+
+  int _totalTransaction = 0;
+
+  int get totalTransaction => _totalTransaction;
+
   Stream<List<History>> getHistory() {
-    return _api.getHistory();
+    final result = _api.getHistory();
+    countTotal(result);
+    return result;
   }
 
   Future<dynamic> checkItems() async {
@@ -50,5 +64,13 @@ class HistoryProvider extends ChangeNotifier {
       notifyListeners();
       return false;
     }
+  }
+
+  Future<void> countTotal(Stream<List<History>> history) async {
+    _transactions = await history.first;
+    _totalIncome = _api.countTotalTransaction(_transactions);
+    _totalTransaction = await history.length;
+
+    notifyListeners();
   }
 }
