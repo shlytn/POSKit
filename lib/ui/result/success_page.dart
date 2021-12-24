@@ -107,8 +107,8 @@ class SuccessPage extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {
                       provider.clearCart();
-                      Navigator.pushReplacementNamed(
-                          context, HomePage.routeName);
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, HomePage.routeName, (route) => false);
                     },
                     style: ElevatedButton.styleFrom(
                         primary: primaryColor, onPrimary: secondaryColor),

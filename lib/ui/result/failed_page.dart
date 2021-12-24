@@ -62,7 +62,8 @@ class FailedPage extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: ElevatedButton(
               onPressed: () {
-                Navigator.pushReplacementNamed(context, HomePage.routeName);
+                Navigator.pushNamedAndRemoveUntil(
+                    context, HomePage.routeName, (route) => false);
               },
               style: ElevatedButton.styleFrom(
                   primary: primaryColor, onPrimary: error),
