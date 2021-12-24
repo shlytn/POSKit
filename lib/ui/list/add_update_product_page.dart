@@ -48,6 +48,7 @@ class _AddUpdateProductPageState extends State<AddUpdateProductPage> {
       sellingPrice = widget.item!.sellingPrice;
       capitalPrice = widget.item!.capitalPrice;
       isManage = widget.item!.isManage;
+      stock = widget.item!.stock;
       category = widget.item?.category;
       barcode = widget.item?.barcode;
     }
@@ -70,20 +71,20 @@ class _AddUpdateProductPageState extends State<AddUpdateProductPage> {
                 spacing(16.0),
                 InputField(
                     label: "Product Name",
-                    hint: "Product Name",
+                    hint: "Enter product name",
                     text: name,
                     onChanged: (value) => name = value),
                 spacing(12.0),
                 InputField(
                     label: "Selling Price",
-                    hint: "20000",
+                    hint: "e.g. 20000",
                     text: sellingPrice != null ? sellingPrice.toString() : '',
                     type: TextInputType.number,
                     onChanged: (value) => sellingPrice = int.parse(value)),
                 spacing(12.0),
                 InputField(
                     label: "Capital Price",
-                    hint: "18000",
+                    hint: "e.g. 18000",
                     text: capitalPrice != null ? capitalPrice.toString() : '',
                     type: TextInputType.number,
                     onChanged: (value) => capitalPrice = int.parse(value)),
@@ -100,6 +101,7 @@ class _AddUpdateProductPageState extends State<AddUpdateProductPage> {
                   onSwitchChange: (value) => setState(() {
                     isManage = value;
                   }),
+                  text: stock.toString(),
                   onStockChanged: (value) {
                     stock = int.parse(value);
                   },
@@ -107,14 +109,14 @@ class _AddUpdateProductPageState extends State<AddUpdateProductPage> {
                 spacing(12.0),
                 InputField(
                     label: "Product Category",
-                    hint: "Product Category",
+                    hint: "Enter product category",
                     validate: false,
                     text: category,
                     onChanged: (value) => category = value),
                 spacing(12.0),
                 InputField(
                   label: "Barcode",
-                  hint: "8732349",
+                  hint: "e.g. 8732349",
                   validate: false,
                   text: barcode,
                   type: TextInputType.number,

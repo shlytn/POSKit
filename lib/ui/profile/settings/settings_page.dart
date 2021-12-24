@@ -78,6 +78,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     label: "Email Address",
                     hint: user.email!,
                     isEnable: false,
+                    hintColor: Colors.black54,
                   ),
                   spacing(12.0),
                   RowMenu(

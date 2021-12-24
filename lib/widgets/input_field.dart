@@ -12,6 +12,7 @@ class InputField extends StatefulWidget {
   final ValueChanged<String>? onChanged;
   final bool isEnable;
   final bool validate;
+  final Color hintColor;
 
   const InputField({
     Key? key,
@@ -22,6 +23,7 @@ class InputField extends StatefulWidget {
     this.onChanged,
     this.isEnable = true,
     this.validate = true,
+    this.hintColor = Colors.black38,
   }) : super(key: key);
 
   @override
@@ -49,12 +51,14 @@ class _InputFieldState extends State<InputField> {
             autovalidateMode: AutovalidateMode.onUserInteraction,
             controller: _controller,
             enabled: widget.isEnable,
+            cursorColor: Colors.blue,
             textCapitalization: widget.type == TextInputType.text
                 ? TextCapitalization.words
                 : TextCapitalization.none,
             decoration: InputDecoration(
               border: InputBorder.none,
               hintText: widget.hint,
+              hintStyle: TextStyle(color: widget.hintColor),
             ),
             keyboardType: widget.type,
             onChanged: widget.onChanged,

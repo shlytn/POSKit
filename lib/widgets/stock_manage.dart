@@ -7,12 +7,14 @@ class StockManage extends StatelessWidget {
   final ValueChanged onStockChanged;
   final ValueChanged onSwitchChange;
   final bool isManage;
+  final String? text;
 
   const StockManage({
     Key? key,
     required this.onStockChanged,
     required this.onSwitchChange,
     required this.isManage,
+    this.text,
   }) : super(key: key);
 
   @override
@@ -33,7 +35,8 @@ class StockManage extends StatelessWidget {
         if (isManage)
           InputField(
             label: "Product Stock",
-            hint: "100",
+            hint: "e.g. 100",
+            text: text,
             type: TextInputType.number,
             onChanged: onStockChanged,
           ),
