@@ -34,24 +34,6 @@ class OrderDetailList extends StatelessWidget {
               ),
               const Divider(),
               spacing(8.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text('Discount', style: TextStyle(fontSize: 16)),
-                  SizedBox(
-                    height: 9,
-                    child: IconButton(
-                      padding: const EdgeInsets.all(0),
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.arrow_forward_ios,
-                        size: 9,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              spacing(8.0),
               const Divider(),
               spacing(8.0),
               Row(
