@@ -45,6 +45,8 @@ class _SettingsPageState extends State<SettingsPage> {
     var dbProvider = Provider.of<DatabaseProvider>(context);
     var imageProvider = Provider.of<ImagePickerProvider>(context);
 
+    setEnable(imageProvider.image != null && imageProvider.fileName != '');
+
     return Scaffold(
       appBar: AppBar(title: const Text(SettingsPage.pageTitle)),
       body: StreamProvider<DocumentSnapshot?>.value(
