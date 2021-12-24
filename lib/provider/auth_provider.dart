@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dicoding_capstone_pos/data/api/database_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -59,8 +60,9 @@ class AuthProvider extends ChangeNotifier {
       return true;
     } on FirebaseAuthException catch (e) {
       _state = AuthState.unauthenticated;
+      _message = getMessageFromErrorCode(e, "Login");
       notifyListeners();
-      return _message = getMessageFromErrorCode(e, "Login");
+      return _message;
     } catch (e) {
       _state = AuthState.unauthenticated;
       notifyListeners();
@@ -122,9 +124,11 @@ class AuthProvider extends ChangeNotifier {
     try {
       await _firebaseAuth.sendPasswordResetEmail(email: email);
       _message = "Password Reset sent to Email";
+      notifyListeners();
       return true;
     } catch (e) {
-      _message = "Failed to reset password";
+      _message = "Failed to send email";
+      notifyListeners();
       return false;
     }
   }
