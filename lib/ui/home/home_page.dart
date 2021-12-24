@@ -22,7 +22,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _listWidget[_bottomNavIndex],
+      body: IndexedStack(
+        children: _listWidget,
+        index: _bottomNavIndex,
+      ),
       bottomNavigationBar: FancyBottomNavigation(
         onTabChangedListener: _onBottomNavTapped,
         tabs: _bottomNavBarItems,
