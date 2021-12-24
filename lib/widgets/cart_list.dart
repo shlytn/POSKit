@@ -2,6 +2,7 @@ import 'package:dicoding_capstone_pos/data/models/cart_item.dart';
 import 'package:dicoding_capstone_pos/provider/cart_provider.dart';
 import 'package:dicoding_capstone_pos/widgets/cart_list_item.dart';
 import 'package:dicoding_capstone_pos/widgets/check_state.dart';
+import 'package:dicoding_capstone_pos/widgets/empty_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
@@ -14,6 +15,10 @@ class ListViewCart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final items = Provider.of<List<CartItem>>(context);
+
+    if(items.isEmpty){
+      return const Center(child: EmptyWidget());
+    }
 
     return Consumer<CartProvider>(builder: (context, provider, _) {
       return CheckState(

@@ -1,6 +1,7 @@
 import 'package:dicoding_capstone_pos/data/models/item.dart';
 import 'package:dicoding_capstone_pos/provider/database_provider.dart';
 import 'package:dicoding_capstone_pos/widgets/check_state.dart';
+import 'package:dicoding_capstone_pos/widgets/empty_widget.dart';
 import 'package:dicoding_capstone_pos/widgets/product_grid_card.dart';
 
 import 'package:flutter/cupertino.dart';
@@ -15,6 +16,10 @@ class GridViewProduct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final items = Provider.of<List<Item>>(context);
+
+    if(items.isEmpty){
+      return const Center(child: EmptyWidget());
+    }
 
     return Consumer<DatabaseProvider>(builder: (context, provider, _) {
       return CheckState(

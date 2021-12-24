@@ -1,4 +1,5 @@
 import 'package:dicoding_capstone_pos/data/models/history.dart';
+import 'package:dicoding_capstone_pos/widgets/empty_widget.dart';
 import 'package:dicoding_capstone_pos/widgets/history_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,10 @@ class ListHistory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final history = Provider.of<List<History>>(context);
+
+    if(history.isEmpty){
+      return const Center(child: EmptyWidget());
+    }
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 20.0),
