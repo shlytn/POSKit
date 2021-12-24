@@ -1,5 +1,4 @@
 import 'package:dicoding_capstone_pos/utils/result_state.dart';
-import 'package:dicoding_capstone_pos/widgets/empty_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
