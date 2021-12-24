@@ -30,8 +30,6 @@ class DatabaseService {
     _historyRef = _userRef.collection('history').withConverter<History>(
         fromFirestore: (snapshot, _) => History.fromFirebase(snapshot),
         toFirestore: (item, _) => item.toJson());
-
-    print("user = ${user?.uid}");
   }
 
   /* Item DB */

@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dicoding_capstone_pos/data/models/cart_item.dart';
 import 'package:dicoding_capstone_pos/provider/cart_provider.dart';
 import 'package:dicoding_capstone_pos/ui/cart/order_detail.dart';
@@ -33,9 +32,7 @@ class _CartPageState extends State<CartPage> {
       ),
       body: StreamProvider<List<CartItem>>.value(
         value: provider.getCart(),
-        initialData: [],
-        // updateShouldNotify: const ListEquality<CartItem>().equals,
-        // catchError: (_, __) => [],
+        initialData: const [],
         child: Column(
           children: [
             spacing(8.0),

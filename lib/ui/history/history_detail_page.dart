@@ -1,7 +1,6 @@
 import 'package:dicoding_capstone_pos/common/styles.dart';
 import 'package:dicoding_capstone_pos/data/models/history.dart';
 import 'package:dicoding_capstone_pos/widgets/history_detail_list.dart';
-import 'package:dicoding_capstone_pos/widgets/order_detail_list.dart';
 import 'package:dicoding_capstone_pos/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
