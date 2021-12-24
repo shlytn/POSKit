@@ -103,7 +103,7 @@ class AuthProvider extends ChangeNotifier {
   }
 
   Future<dynamic> updateProfile(String name) async {
-    try{
+    try {
       User? user = _firebaseAuth.currentUser;
       if (user != null) {
         await user.updateDisplayName(name);

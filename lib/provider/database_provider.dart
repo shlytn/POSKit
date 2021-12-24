@@ -7,7 +7,7 @@ import 'package:dicoding_capstone_pos/utils/result_state.dart';
 import 'package:flutter/cupertino.dart';
 
 class DatabaseProvider extends ChangeNotifier {
-  DatabaseProvider(){
+  DatabaseProvider() {
     checkItems();
     getProfile();
   }
@@ -31,10 +31,10 @@ class DatabaseProvider extends ChangeNotifier {
   }
 
   Future<dynamic> checkItems() async {
-    try{
+    try {
       _state = ResultState.loading;
       final data = await _api.getData();
-      if (data.size > 0){
+      if (data.size > 0) {
         _state = ResultState.hasData;
       } else {
         _state = ResultState.noData;
@@ -81,7 +81,7 @@ class DatabaseProvider extends ChangeNotifier {
   }
 
   Future<void> setUserProfile(String? imageUrl) async {
-    try{
+    try {
       await _api.setUserProfile(imageUrl);
       _message = "Success to add Profile";
     } catch (e) {

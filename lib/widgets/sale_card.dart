@@ -25,8 +25,16 @@ class SaleCard extends StatelessWidget {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: item.imageUrl != null
-                ? Image.network(item.imageUrl!, height: 100.0, fit: BoxFit.cover,)
-                : Image.asset('assets/images/food.jpg', height: 100.0, fit: BoxFit.cover,),
+                ? Image.network(
+                    item.imageUrl!,
+                    height: 100.0,
+                    fit: BoxFit.cover,
+                  )
+                : Image.asset(
+                    'assets/images/food.jpg',
+                    height: 100.0,
+                    fit: BoxFit.cover,
+                  ),
           ),
         ),
         const SizedBox(width: 10.0),

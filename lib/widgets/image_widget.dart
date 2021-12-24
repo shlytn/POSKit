@@ -13,7 +13,6 @@ class ImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final image = Provider.of<ImagePickerProvider>(context).image;
 
     final user = Provider.of<DocumentSnapshot?>(context);

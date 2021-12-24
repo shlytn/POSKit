@@ -12,7 +12,7 @@ class StockCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onDoubleTap: (){
+      onDoubleTap: () {
         Navigator.pushNamed(context, AddUpdateProductPage.routeName,
             arguments: true);
       },
@@ -25,9 +25,19 @@ class StockCard extends StatelessWidget {
           Expanded(
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20.0),
-              child:  item.imageUrl != null
-                  ? Image.network(item.imageUrl!, height: 100.0, width: 120.0, fit: BoxFit.cover,)
-                  : Image.asset('assets/images/food.jpg', height: 100.0, width: 120.0, fit: BoxFit.cover,),
+              child: item.imageUrl != null
+                  ? Image.network(
+                      item.imageUrl!,
+                      height: 100.0,
+                      width: 120.0,
+                      fit: BoxFit.cover,
+                    )
+                  : Image.asset(
+                      'assets/images/food.jpg',
+                      height: 100.0,
+                      width: 120.0,
+                      fit: BoxFit.cover,
+                    ),
             ),
           ),
           Padding(

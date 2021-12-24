@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class UserHelpPage extends StatelessWidget {
   static const routeName = '/user_help';
+
   const UserHelpPage({Key? key}) : super(key: key);
 
   @override
@@ -11,7 +12,7 @@ class UserHelpPage extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
-        title: Text('User Help'),
+        title: const Text('User Help'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -44,9 +45,9 @@ class UserHelpPage extends StatelessWidget {
           children: [
             Text(
               title,
-              style: TextStyle(fontSize: 16),
+              style: const TextStyle(fontSize: 16),
             ),
-            Icon(
+            const Icon(
               Icons.arrow_forward_ios,
               size: 12,
             ),

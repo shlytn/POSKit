@@ -15,23 +15,23 @@ class Cart {
   int totalPrice;
 
   factory Cart.fromJson(Map<String, dynamic> json) => Cart(
-    items: json["items"],
-    totalItem: json["totalItem"].toInt(),
-    totalPrice: json["totalPrice"].toInt(),
-  );
+        items: json["items"],
+        totalItem: json["totalItem"].toInt(),
+        totalPrice: json["totalPrice"].toInt(),
+      );
 
   factory Cart.fromFirebase(DocumentSnapshot doc) => Cart(
-    id: doc.id,
-    items: doc["items"],
-    totalItem: doc["totalItem"].toInt(),
-    totalPrice: doc["totalPrice"].toInt(),
-  );
+        id: doc.id,
+        items: doc["items"],
+        totalItem: doc["totalItem"].toInt(),
+        totalPrice: doc["totalPrice"].toInt(),
+      );
 
   Map<String, dynamic> toJson() => {
-    "items": items,
-    "totalItem": totalItem,
-    "totalPrice": totalPrice,
-  };
+        "items": items,
+        "totalItem": totalItem,
+        "totalPrice": totalPrice,
+      };
 }
 
 class CartItem {
@@ -48,21 +48,21 @@ class CartItem {
   int total;
 
   factory CartItem.fromJson(Map<String, dynamic> json) => CartItem(
-    item: Item.fromJson(json["item"]),
-    quantity: json["count"].toInt(),
-    total: json["total"].toInt(),
-  );
+        item: Item.fromJson(json["item"]),
+        quantity: json["count"].toInt(),
+        total: json["total"].toInt(),
+      );
 
   factory CartItem.fromFirebase(DocumentSnapshot doc) => CartItem(
-    id: doc.id,
-    item: Item.fromJson(doc["item"]),
-    quantity: doc["count"].toInt(),
-    total: doc["total"].toInt(),
-  );
+        id: doc.id,
+        item: Item.fromJson(doc["item"]),
+        quantity: doc["count"].toInt(),
+        total: doc["total"].toInt(),
+      );
 
   Map<String, dynamic> toJson() => {
-    "item": item.toJson(),
-    "count": quantity,
-    "total": total,
-  };
+        "item": item.toJson(),
+        "count": quantity,
+        "total": total,
+      };
 }

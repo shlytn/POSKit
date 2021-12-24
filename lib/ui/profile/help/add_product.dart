@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 class AddProductHelp extends StatelessWidget {
   static const routeName = '/add_product_help';
+
   const AddProductHelp({Key? key}) : super(key: key);
 
   @override
@@ -12,7 +13,7 @@ class AddProductHelp extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
-        title: Text('User Help'),
+        title: const Text('User Help'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -56,6 +57,7 @@ class AddProductHelp extends StatelessWidget {
 
 class BulletList extends StatelessWidget {
   final String text;
+
   const BulletList({
     Key? key,
     required this.text,

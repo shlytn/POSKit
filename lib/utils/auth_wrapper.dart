@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 
 class AuthWrapper extends StatelessWidget {
   static const routeName = '/auth';
+
   const AuthWrapper({Key? key}) : super(key: key);
 
   @override
@@ -19,10 +20,9 @@ class AuthWrapper extends StatelessWidget {
           case AuthState.authenticating:
             return const OnboardingPage();
           case AuthState.authenticated:
-            return HomePage();
+            return const HomePage();
         }
       },
     );
   }
-
 }

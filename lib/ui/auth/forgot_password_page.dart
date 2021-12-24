@@ -89,7 +89,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 ),
                 RoundedButton(
                   onClick: () async {
-                    if (await auth.resetPassword(_controller.text)){
+                    if (await auth.resetPassword(_controller.text)) {
                       Navigator.pushNamed(context, EmailSentPage.routeName);
                     }
                     showMessageSnackBar(context, auth.message);

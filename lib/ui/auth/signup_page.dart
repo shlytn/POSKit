@@ -26,70 +26,68 @@ class SignUpPage extends StatelessWidget {
     var password = '';
 
     return Scaffold(
-      body: Consumer<AuthProvider>(
-        builder: (context, auth, _) {
-          return SingleChildScrollView(
-            child: SafeArea(
-              child: Container(
-                margin: const EdgeInsets.symmetric(
-                  horizontal: 24.0,
-                ),
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const CustomAppBar(title: pageTitle),
-                      spacing(24.0),
-                      InputField(
-                        label: 'Business Name',
-                        hint: "Business Name",
-                        onChanged: (value) => name = value,
-                      ),
-                      spacing(16.0),
-                      InputField(
-                        label: 'Email',
-                        hint: "mail@mail.com",
-                        type: TextInputType.emailAddress,
-                        onChanged: (value) => email = value,
-                      ),
-                      spacing(16.0),
-                      PasswordField(
-                        label: 'Password',
-                        hint: "At least 6 characters",
-                        onChanged: (value) => password = value,
-                      ),
-                      spacing(44.0),
-                      auth.state == AuthState.authenticating
-                          ? const Center(child: CircularProgressIndicator())
-                          : RoundedButton(
-                          onClick: () async {
-                            if(_formKey.currentState!.validate()){
-                              await auth.signUp(name, email, password);
+      body: Consumer<AuthProvider>(builder: (context, auth, _) {
+        return SingleChildScrollView(
+          child: SafeArea(
+            child: Container(
+              margin: const EdgeInsets.symmetric(
+                horizontal: 24.0,
+              ),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const CustomAppBar(title: pageTitle),
+                    spacing(24.0),
+                    InputField(
+                      label: 'Business Name',
+                      hint: "Business Name",
+                      onChanged: (value) => name = value,
+                    ),
+                    spacing(16.0),
+                    InputField(
+                      label: 'Email',
+                      hint: "mail@mail.com",
+                      type: TextInputType.emailAddress,
+                      onChanged: (value) => email = value,
+                    ),
+                    spacing(16.0),
+                    PasswordField(
+                      label: 'Password',
+                      hint: "At least 6 characters",
+                      onChanged: (value) => password = value,
+                    ),
+                    spacing(44.0),
+                    auth.state == AuthState.authenticating
+                        ? const Center(child: CircularProgressIndicator())
+                        : RoundedButton(
+                            onClick: () async {
+                              if (_formKey.currentState!.validate()) {
+                                await auth.signUp(name, email, password);
 
-                              if (auth.state == AuthState.authenticated) {
-                                Navigator.pushNamedAndRemoveUntil(
-                                    context, HomePage.routeName, (route) => false);
-                              } else {
-                                showMessageSnackBar(context, auth.message);
+                                if (auth.state == AuthState.authenticated) {
+                                  Navigator.pushNamedAndRemoveUntil(context,
+                                      HomePage.routeName, (route) => false);
+                                } else {
+                                  showMessageSnackBar(context, auth.message);
+                                }
                               }
-                            }
-                          },
-                          text: pageTitle),
-                      spacing(16.0),
-                      AccountCheckText(
-                        isLogin: false,
-                        onClick: () =>
-                            Navigator.pushNamed(context, LoginPage.routeName),
-                      ),
-                    ],
-                  ),
+                            },
+                            text: pageTitle),
+                    spacing(16.0),
+                    AccountCheckText(
+                      isLogin: false,
+                      onClick: () =>
+                          Navigator.pushNamed(context, LoginPage.routeName),
+                    ),
+                  ],
                 ),
               ),
             ),
-          );
-        }
-      ),
+          ),
+        );
+      }),
     );
   }
 }

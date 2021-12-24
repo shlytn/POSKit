@@ -16,10 +16,16 @@ class SaleList extends StatelessWidget {
       itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 5.0),
-          child: SaleCard(item: items[index],),
+          child: SaleCard(
+            item: items[index],
+          ),
         );
       },
-      itemCount: items.length >= 3 ? 3 : items.isNotEmpty ? items.length : 0,
+      itemCount: items.length >= 3
+          ? 3
+          : items.isNotEmpty
+              ? items.length
+              : 0,
       shrinkWrap: true,
       physics: const ClampingScrollPhysics(),
     );

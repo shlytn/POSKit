@@ -15,16 +15,16 @@ class ProductAddButton extends StatelessWidget {
     final provider = Provider.of<CartProvider>(context);
 
     return IconButton(
-        splashColor: Colors.transparent,
-        iconSize: 24,
-        padding: const EdgeInsets.all(0),
-        color: Colors.white,
-        onPressed: () async {
-          await provider.addCart(item);
+      splashColor: Colors.transparent,
+      iconSize: 24,
+      padding: const EdgeInsets.all(0),
+      color: Colors.white,
+      onPressed: () async {
+        await provider.addCart(item);
 
-          showMessageSnackBar(context, provider.message);
-        },
-        icon: const Icon(CupertinoIcons.add),
+        showMessageSnackBar(context, provider.message);
+      },
+      icon: const Icon(CupertinoIcons.add),
     );
   }
 }

@@ -20,9 +20,7 @@ class GridViewProduct extends StatelessWidget {
       return CheckState(
         provider: provider,
         child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 10.0
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
           child: GridView.builder(
             itemCount: items.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

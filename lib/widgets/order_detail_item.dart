@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 
 class OrderDetailItem extends StatelessWidget {
   final CartItem item;
+
   const OrderDetailItem({Key? key, required this.item}) : super(key: key);
 
   @override

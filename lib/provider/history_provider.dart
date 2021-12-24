@@ -5,7 +5,7 @@ import 'package:dicoding_capstone_pos/utils/result_state.dart';
 import 'package:flutter/cupertino.dart';
 
 class HistoryProvider extends ChangeNotifier {
-  HistoryProvider(){
+  HistoryProvider() {
     checkItems();
   }
 
@@ -23,7 +23,7 @@ class HistoryProvider extends ChangeNotifier {
 
   int get totalIncome => _totalIncome;
 
-  List<History>_transactions = [];
+  List<History> _transactions = [];
 
   List<History> get transactions => _transactions;
 
@@ -38,10 +38,10 @@ class HistoryProvider extends ChangeNotifier {
   }
 
   Future<dynamic> checkItems() async {
-    try{
+    try {
       _state = ResultState.loading;
       final data = await _api.getHistoryData();
-      if (data.size > 0){
+      if (data.size > 0) {
         _state = ResultState.hasData;
       } else {
         _state = ResultState.noData;

@@ -133,15 +133,15 @@ class _AddUpdateProductPageState extends State<AddUpdateProductPage> {
                         }
 
                         final newItem = Item(
-                            name: name,
-                            sellingPrice: sellingPrice!,
-                            capitalPrice: capitalPrice!,
-                            isManage: isManage,
-                            stock: stock,
-                            category: category,
-                            barcode: barcode,
-                            imageUrl: url,
-                            sold: 0,
+                          name: name,
+                          sellingPrice: sellingPrice!,
+                          capitalPrice: capitalPrice!,
+                          isManage: isManage,
+                          stock: stock,
+                          category: category,
+                          barcode: barcode,
+                          imageUrl: url,
+                          sold: 0,
                         );
 
                         if (isUpdate) {

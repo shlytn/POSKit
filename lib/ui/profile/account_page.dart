@@ -21,7 +21,7 @@ class AccountPage extends StatelessWidget {
 
     var profileImage = profile["profile_image"];
     dynamic image;
-    if (profileImage != null){
+    if (profileImage != null) {
       image = NetworkImage(profileImage);
     } else {
       image = const AssetImage('assets/images/pp.jpg');

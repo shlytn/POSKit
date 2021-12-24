@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dicoding_capstone_pos/common/styles.dart';
 import 'package:dicoding_capstone_pos/data/models/history.dart';
 import 'package:dicoding_capstone_pos/provider/history_provider.dart';
@@ -6,7 +5,6 @@ import 'package:dicoding_capstone_pos/widgets/history_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:intl/intl.dart';
 
 class HistoryPage extends StatelessWidget {
   static const routeName = '/history';

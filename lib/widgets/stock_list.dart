@@ -9,12 +9,12 @@ class StockList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Item> items = List.from(Provider.of<List<Item>>(context));
-    
+
     items.sort((a, b) => a.stock!.compareTo(b.stock!));
     var filteredItems =
         items.where((e) => e.isManage && (e.stock! <= 3)).toList();
 
-    if(filteredItems.isEmpty){
+    if (filteredItems.isEmpty) {
       return const Center(child: Text("No Data"));
     }
 

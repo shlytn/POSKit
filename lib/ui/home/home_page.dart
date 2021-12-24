@@ -6,9 +6,11 @@ import 'package:fancy_bottom_navigation/fancy_bottom_navigation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget{
+class HomePage extends StatefulWidget {
   static const routeName = '/home';
   static const pageTitle = 'Home';
+
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -35,10 +37,10 @@ class _HomePageState extends State<HomePage> {
   }
 
   final List<Widget> _listWidget = [
-    StatPage(),
+    const StatPage(),
     const ProductListPage(),
-    HistoryPage(),
-    AccountPage(),
+    const HistoryPage(),
+    const AccountPage(),
   ];
 
   final List<TabData> _bottomNavBarItems = [

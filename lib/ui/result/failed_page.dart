@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 class FailedPage extends StatelessWidget {
   static const routeName = '/failed';
+
   const FailedPage({Key? key}) : super(key: key);
 
   @override
