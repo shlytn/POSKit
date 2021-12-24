@@ -96,16 +96,16 @@ class _SettingsPageState extends State<SettingsPage> {
                     onClick: () async {
                       if (_formKey.currentState!.validate()) {
                         await auth.updateProfile(newName);
-                        // if (imageProvider.image != null &&
-                        //     imageProvider.fileName != '') {
-                        //   final url = await dbProvider.getImageUrl(
-                        //       imageProvider.image!, false);
-                        //
-                        //   dbProvider.setUserProfile(url);
-                        // }
+                        if (imageProvider.image != null &&
+                            imageProvider.fileName != '') {
+                          final url = await dbProvider.getImageUrl(
+                              imageProvider.image!, false);
+
+                          await dbProvider.setUserProfile(url);
+                        }
 
                         showMessageSnackBar(context, auth.message);
-                        // imageProvider.clearImage();
+                        imageProvider.clearImage();
                       }
                     },
                   ),

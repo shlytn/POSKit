@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dicoding_capstone_pos/common/styles.dart';
-import 'package:dicoding_capstone_pos/provider/database_provider.dart';
 import 'package:dicoding_capstone_pos/provider/image_picker_provider.dart';
 import 'package:dicoding_capstone_pos/widgets/image_bottom_sheet.dart';
 import 'package:flutter/cupertino.dart';
@@ -48,9 +47,6 @@ class ImageWidget extends StatelessWidget {
   }
 
   Widget _buildCameraButton(BuildContext context) {
-    final dbProvider = Provider.of<DatabaseProvider>(context);
-    final imageProvider = Provider.of<ImagePickerProvider>(context);
-
     return ClipOval(
       child: Container(
         decoration: const BoxDecoration(
@@ -64,14 +60,6 @@ class ImageWidget extends StatelessWidget {
           ),
           onTap: () async {
             showImageSource(context);
-            if (imageProvider.image != null &&
-                imageProvider.fileName != '') {
-              final url = await dbProvider.getImageUrl(
-                  imageProvider.image!, false);
-
-              await dbProvider.setUserProfile(url);
-            }
-            imageProvider.clearImage();
           },
         ),
       ),
