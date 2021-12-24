@@ -1,6 +1,6 @@
-# dicoding_capstone_pos
+# POSKit
 
-A new Flutter project.
+A new Flutter App based on Point of Sale system to easy transaction management.
 
 ## Getting Started
 
