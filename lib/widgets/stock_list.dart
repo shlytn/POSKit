@@ -8,10 +8,10 @@ class StockList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Item> items = Provider.of<List<Item>>(context);
-
+    List<Item> items = List.from(Provider.of<List<Item>>(context));
+    
     items.sort((a, b) => a.stock!.compareTo(b.stock!));
-    final filteredItems =
+    var filteredItems =
         items.where((e) => e.isManage && (e.stock! <= 3)).toList();
 
     if(filteredItems.isEmpty){

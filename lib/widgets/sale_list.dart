@@ -8,10 +8,10 @@ class SaleList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final items = Provider.of<List<Item>>(context);
+    var items = List.from(Provider.of<List<Item>>(context));
 
     items.sort((b, a) => a.sold!.compareTo(b.sold!));
-    
+
     return ListView.builder(
       itemBuilder: (context, index) {
         return Padding(
@@ -24,5 +24,4 @@ class SaleList extends StatelessWidget {
       physics: const ClampingScrollPhysics(),
     );
   }
-
 }
