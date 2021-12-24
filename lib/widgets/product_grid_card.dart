@@ -53,9 +53,9 @@ class GridProductCard extends StatelessWidget {
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 3.0),
-                    const Text(
-                      '(must choose level)',
-                      style: TextStyle(
+                    Text(
+                      item.barcode != null ? "Barcode ID: ${item.barcode}" : '',
+                      style: const TextStyle(
                           fontSize: 12, color: CupertinoColors.inactiveGray),
                     ),
                     const SizedBox(height: 10.0),

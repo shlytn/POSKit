@@ -59,11 +59,11 @@ class CardProduct extends StatelessWidget {
                     children: [
                       Text(
                         item.name,
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        '(must choose level)',
-                        style: TextStyle(
+                        item.barcode != null ? "Barcode ID: ${item.barcode}" : '',
+                        style: const TextStyle(
                             fontSize: 12, color: CupertinoColors.inactiveGray),
                       ),
                       spacing(15.0),
