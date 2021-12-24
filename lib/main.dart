@@ -1,3 +1,4 @@
+import 'package:dicoding_capstone_pos/data/models/history.dart';
 import 'package:dicoding_capstone_pos/data/models/item.dart';
 import 'package:dicoding_capstone_pos/provider/auth_provider.dart';
 import 'package:dicoding_capstone_pos/provider/cart_provider.dart';
@@ -6,6 +7,7 @@ import 'package:dicoding_capstone_pos/provider/history_provider.dart';
 import 'package:dicoding_capstone_pos/provider/image_picker_provider.dart';
 import 'package:dicoding_capstone_pos/ui/auth/email_sent_page.dart';
 import 'package:dicoding_capstone_pos/ui/auth/forgot_password_page.dart';
+import 'package:dicoding_capstone_pos/ui/history/history_detail_page.dart';
 import 'package:dicoding_capstone_pos/ui/list/add_update_product_page.dart';
 import 'package:dicoding_capstone_pos/ui/home/home_page.dart';
 import 'package:dicoding_capstone_pos/ui/auth/login_page.dart';
@@ -79,6 +81,9 @@ class MyApp extends StatelessWidget {
               ),
           CartPage.routeName: (context) => const CartPage(),
           OrderDetailPage.routeName: (context) => const OrderDetailPage(),
+          HistoryDetailPage.routeName: (context) => HistoryDetailPage(
+            history: ModalRoute.of(context)?.settings.arguments as History,
+          ),
           AccountPage.routeName: (context) => const AccountPage(),
           ForgotPasswordPage.routeName: (context) => const ForgotPasswordPage(),
           SettingsPage.routeName: (context) => const SettingsPage(),
