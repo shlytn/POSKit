@@ -1,4 +1,5 @@
 import 'package:dicoding_capstone_pos/widgets/rounded_button.dart';
+import 'package:dicoding_capstone_pos/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -20,15 +21,15 @@ class AddProductHelp extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Bagaimana cara menambahkan barang',
               style: TextStyle(fontSize: 18),
             ),
-            SizedBox(height: 20.0),
-            BulletList(
+            spacing(20.0),
+            const BulletList(
               text: 'Masuk ke halaman List barang',
             ),
-            BulletList(
+            const BulletList(
               text: 'Tekan tombol + pada app bar',
             ),
             Center(
@@ -39,11 +40,11 @@ class AddProductHelp extends StatelessWidget {
                 ),
               ),
             ),
-            BulletList(
+            const BulletList(
               text:
                   'Akan ada form untuk menginput data barang, silahkan isi sesuai kebutuhan',
             ),
-            BulletList(
+            const BulletList(
               text:
                   'Jika sudah, tekan tombol Add Product untuk menambahkan barang',
             ),
@@ -70,15 +71,15 @@ class BulletList extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             '\u2022',
             style: TextStyle(fontSize: 18),
           ),
-          SizedBox(width: 5.0),
+          const SizedBox(width: 5.0),
           Flexible(
             child: Text(
               text,
-              style: TextStyle(fontSize: 16),
+              style: const TextStyle(fontSize: 16),
             ),
           ),
         ],
