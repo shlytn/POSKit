@@ -145,10 +145,10 @@ class _AddUpdateProductPageState extends State<AddUpdateProductPage> {
                         );
 
                         if (isUpdate) {
-                          provider.updateItem(widget.item!.id!, newItem);
+                          await provider.updateItem(widget.item!.id!, newItem);
                           Navigator.pop(context);
                         } else {
-                          provider.addItem(newItem);
+                          await provider.addItem(newItem);
                           _formKey.currentState!.reset();
                         }
                         showMessageSnackBar(context, provider.message);
