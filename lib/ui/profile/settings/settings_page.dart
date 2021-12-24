@@ -29,7 +29,6 @@ class _SettingsPageState extends State<SettingsPage> {
 
   setEnable(condition) {
     setState(() {
-      print("connn === $condition");
       isEnable = condition;
     });
   }
@@ -45,8 +44,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
     var dbProvider = Provider.of<DatabaseProvider>(context);
     var imageProvider = Provider.of<ImagePickerProvider>(context);
-
-
+    
     if (imageProvider.image != null && imageProvider.fileName != ''){
       setEnable(true);
     }
