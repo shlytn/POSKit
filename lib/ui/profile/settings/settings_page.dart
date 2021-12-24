@@ -29,6 +29,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
   setEnable(condition) {
     setState(() {
+      print("connn === $condition");
       isEnable = condition;
     });
   }
@@ -45,7 +46,10 @@ class _SettingsPageState extends State<SettingsPage> {
     var dbProvider = Provider.of<DatabaseProvider>(context);
     var imageProvider = Provider.of<ImagePickerProvider>(context);
 
-    setEnable(imageProvider.image != null && imageProvider.fileName != '');
+
+    if (imageProvider.image != null && imageProvider.fileName != ''){
+      setEnable(true);
+    }
 
     return Scaffold(
       appBar: AppBar(title: const Text(SettingsPage.pageTitle)),
@@ -78,9 +82,10 @@ class _SettingsPageState extends State<SettingsPage> {
                   spacing(12.0),
                   InputField(
                     label: "Email Address",
-                    hint: user.email!,
+                    text: user.email!,
+                    hint: "Email Address",
                     isEnable: false,
-                    hintColor: Colors.black54,
+                    textColor: Colors.black54,
                   ),
                   spacing(12.0),
                   RowMenu(

@@ -12,7 +12,7 @@ class InputField extends StatefulWidget {
   final ValueChanged<String>? onChanged;
   final bool isEnable;
   final bool validate;
-  final Color hintColor;
+  final Color textColor;
 
   const InputField({
     Key? key,
@@ -23,7 +23,7 @@ class InputField extends StatefulWidget {
     this.onChanged,
     this.isEnable = true,
     this.validate = true,
-    this.hintColor = Colors.black38,
+    this.textColor = Colors.black,
   }) : super(key: key);
 
   @override
@@ -58,8 +58,9 @@ class _InputFieldState extends State<InputField> {
             decoration: InputDecoration(
               border: InputBorder.none,
               hintText: widget.hint,
-              hintStyle: TextStyle(color: widget.hintColor),
+              hintStyle: const TextStyle(color: Colors.black38),
             ),
+            style: TextStyle(color: widget.textColor),
             keyboardType: widget.type,
             onChanged: widget.onChanged,
             inputFormatters: <TextInputFormatter>[
@@ -73,7 +74,7 @@ class _InputFieldState extends State<InputField> {
                         ? null
                         : "Please input a valid email."
                     : (value) {
-                        if (value == null || value.isEmpty) {
+                        if (value == null || value.isEmpty || value.trim() == '') {
                           return "Please input ${widget.label}";
                         }
                       }

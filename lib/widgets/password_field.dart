@@ -36,6 +36,7 @@ class _PasswordFieldState extends State<PasswordField> {
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: widget.hint,
+                hintStyle: const TextStyle(color: Colors.black38),
                 suffixIcon: IconButton(
                   icon: Icon(isVisible
                       ? CupertinoIcons.eye
