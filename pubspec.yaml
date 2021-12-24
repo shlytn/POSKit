@@ -48,6 +48,7 @@ dependencies:
   flutter_slidable: ^1.1.0
   intl: ^0.17.0
   awesome_dialog: ^2.1.2
+  flutter_phoenix: ^1.0.0
 
 dev_dependencies:
   flutter_test:

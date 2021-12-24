@@ -8,6 +8,7 @@ import 'package:dicoding_capstone_pos/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 
 class AccountPage extends StatelessWidget {
   static const routeName = '/account';
@@ -105,6 +106,7 @@ class AccountPage extends StatelessWidget {
                   Provider.of<AuthProvider>(context, listen: false).signOut();
                   Navigator.pushNamedAndRemoveUntil(
                       context, OnboardingPage.routeName, (route) => false);
+                  Phoenix.rebirth(context);
                 },
                 style: ElevatedButton.styleFrom(
                   onPrimary: CupertinoColors.systemRed,
