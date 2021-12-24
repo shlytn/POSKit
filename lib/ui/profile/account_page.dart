@@ -19,7 +19,7 @@ class AccountPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final profile = Provider.of<DatabaseProvider>(context).profile;
 
-    var profileImage = profile["profile_image"];
+    var profileImage = profile != null ? profile["profile_image"] : null;
     dynamic image;
     if (profileImage != null) {
       image = NetworkImage(profileImage);
